@@ -53,5 +53,8 @@ La carpeta sigue en `~/Downloads/vertice-studio` porque el usuario indicó esa r
 ## D-011 · 2026-09-24 · Exploración visual, logo y wireframes: base provisional
 El usuario aprobó como base provisional la comparación A+C, las 5 direcciones de logo y los wireframes de Inicio y Cotizar. No se tocan hasta que se cierre DC-001. **Estado: aprobado (provisional).**
 
+## D-012 · 2026-09-24 · Shortlist de naming: Bisagra · Pivote · Holgura
+Elegida por el usuario de la ronda 3. Comparación aplicada en Figma (01b) con 2 direcciones por nombre y 3 descriptores sin «Arquitectura». **Sin ganador; DC-001 sigue abierto.** Vértice Studio se mantiene como decisión aprobada hasta nueva aprobación.
+
 ## D-010 · 2026-09-24 · Fotos: interiores reales de terceros
 Las fotos de Unsplash muestran obras reales de otros diseñadores; una de ellas es de la arquitecta Érica Rodrigues. Se usan como ilustración de ambiente, con créditos, y no se presentan como obra propia. Se descartaron las fotos con marcas visibles (Aesop, «DEFFA WEAR», «Gods», «U.S. NAVY», «VINTAGE WATCH Co», rótulos de una joyería). **Estado: aprobado como criterio.**

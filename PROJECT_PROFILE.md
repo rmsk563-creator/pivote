@@ -53,7 +53,7 @@ Figma «Nexo Arquitectura — Web» (páginas 00–06) + estos documentos. El c�
 Último checkpoint aprobado: exploración visual, logo y wireframes de Inicio y Cotizar como base provisional (2026-09-24). **Blocker: naming abierto (DC-001).** Después viene el Brand Gate (variante de color + dirección de logo).
 
 ## Siguiente paso
-El usuario elige un nombre de la ronda 3 (8 opciones), mantiene Vértice Studio asumiendo el riesgo o pide otra ronda.
+El usuario elige entre Bisagra, Pivote y Holgura (comparación en Figma › 01b, ver NAMING.md) y un descriptor, mantiene Vértice Studio o pide otra ronda.
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ
