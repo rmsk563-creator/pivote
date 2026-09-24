@@ -1,7 +1,7 @@
 # Project Profile — Pivote
 
 ## Identidad
-**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: **Brand Gate aprobado**, **CONTENT v1.0 cerrado**, UI Kit v1.0 para revisión (2026-09-24).
+**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **High Fidelity de Inicio y Cotizar + prototipo en revisión** (2026-09-24).
 
 ## Objetivo
 Presentar un estudio de diseño de espacios comerciales para negocios pequeños y medianos, y convertir visitas en **solicitudes de cotización**. Para Matías funciona como proyecto de portafolio, muestra de UX/UI y posible referencia para captar clientes reales.
@@ -65,17 +65,17 @@ Ninguno. Hosting: GitHub Pages. Formulario simulado del lado del cliente. Contac
 Historial completo en `DECISIONS.md`.
 
 ## Fuente de verdad
-- Figma `bwWtTTnJSTklYl240LVNEZ`. Su nombre visible sigue siendo «Nexo Arquitectura — Web»: renombrarlo a mano, porque la API no lo permite.
-- Páginas: 00 Portada · 01 Identidad (Pivote, logo, favicon) · 01b Naming (cerrado) · 01c Color (comparación; se eligió V4) · 02 Arquitectura · 03 Wireframes · 04 UI Kit · 99 Archivo (exploración Nexo).
+- Figma «Pivote — Estudio de espacios comerciales» (`bwWtTTnJSTklYl240LVNEZ`).
+- Páginas: 00 Portada · 01 Identidad (Pivote, logo, favicon) · 01b Naming (cerrado) · 01c Color (comparación; se eligió V4) · 02 Arquitectura · 03 Wireframes · 04 UI Kit · 05 High Fidelity (con el prototipo) · 06 Prototipo (instrucciones) · 99 Archivo (exploración Nexo).
 
 ## Estado actual
-- Último checkpoint aprobado: Brand Gate y cierre de contenido (2026-09-24).
-- **Listo para revisión:** UI Kit v1.0 (Figma › 04) y revisión de consistencia (`QA.md`).
-- Siguiente gate: aprobación del UI Kit, y después **High Fidelity** (no iniciado).
-- Único pendiente de datos: URL de autoría.
+- Último checkpoint aprobado: contenido, UI Kit, fotos y consistencia (2026-09-24).
+- **En revisión:** High Fidelity de Inicio (1440, 834, 390) y Cotizar (1440, 390) y el prototipo con variables (Figma › 05). QA en `QA.md`.
+- **Abierto:** DC-002 (¿estado del local obligatorio?).
+- Siguiente gate: aprobación del High Fidelity y del prototipo, y después el handoff a código.
 
 ## Siguiente paso
-El usuario revisa el UI Kit v1.0 y el informe de consistencia. Con su aprobación se abre High Fidelity de Inicio y Cotizar.
+El usuario prueba el prototipo en Present (lista en `QA.md`), decide DC-002 y aprueba o pide ajustes. Sin aprobación no se pasa a código.
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ

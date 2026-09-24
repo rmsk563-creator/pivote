@@ -191,3 +191,46 @@ Revisadas ampliadas: sin marcas comerciales legibles. Se usan como fotografía d
 - Más Ícono y Logo.
 
 **Verificado:** ninguna pintura suelta sin variable en los componentes del kit. **Estado: diseñado, pendiente de revisión del usuario.**
+
+## DC-002 · 2026-09-24 · Decision Conflict — ¿«Estado del local» es obligatorio?
+**Decisión previa:** el flujo de Cotizar está congelado (D-016, CONTENT §7.2). En el paso 2, CONTENT solo define errores para el área y el distrito.
+
+**Conflicto detectado en High Fidelity:** la fórmula del estimador (CONTENT §8) necesita el estado del local (factor 1.10 o 1.00, o la referencia por m² si «Aún no tengo local»). Si el estado queda vacío no se puede mostrar un rango, y CONTENT §7.5 no contempla ese caso.
+
+**Aplicado de forma provisional (reversible con un cambio de una condición):** el estado es obligatorio para continuar desde el paso 2.
+- Resumen de errores: «Completa el área, el distrito y el estado del local para continuar.»
+- Mensaje propuesto para CONTENT §7.2: «Elige el estado del local: cambia el cálculo del rango.»
+
+**Alternativa:** dejarlo opcional y mostrar en el resumen «Para calcular un rango necesitamos el estado del local». Esa salida ya existe como bloque final del estimador.
+
+**Estado: abierto, espera decisión del usuario.** No se modificó CONTENT.md.
+
+## D-029 · 2026-09-24 · High Fidelity de Inicio y Cotizar: decisiones menores
+Ninguna toca una decisión congelada (salvo DC-002, abierto aparte).
+
+1. **Anchos:** Inicio en escritorio 1440, tablet 834 y móvil 390. Cotizar en escritorio y móvil.
+   - Cotizar no tiene frame de tablet: su diseño a dos columnas necesita ≥ 1160 px. Entre 600 y 1159 px se usa la composición móvil de una columna (máximo 640 px, resumen plegable). Se documenta para el código.
+2. **Ritmo de fondos:** el CTA final va en verde yeso, no en verde botella, para no juntar dos bloques verdes con el pie. Respeta los roles de D-018.
+3. **Mini-planos:** nuevo componente `Mini-plano` (5 variantes, línea en tinta, sin azul), conectado a la Fila de problema mediante intercambio de instancia. Cubre la nota de CONTENT §2.3.
+4. **Centro comercial:** «No» viene preseleccionado (la mayoría de los comercios de calle). No es obligatorio.
+5. **Contacto conceptual:** en el prototipo, todos los puntos de contacto abren el mismo aviso breve como overlay abajo al centro, que se cierra solo a los 6 s. La variante «Aviso» en línea del componente Contacto queda en el kit como alternativa.
+6. **Overlays a pantalla completa con fondo atenuado incluido:** la API no permite configurar la posición ni el fondo del overlay (limitación técnica).
+7. **Simplificaciones del prototipo** (no del producto):
+   - los campos se completan al tocarlos con valores de ejemplo (48 m², Miraflores, Marzo 2027, Ana Quispe, 999 000 000);
+   - el estimador usa A = 48 m² fijo;
+   - «Otro» no abre un campo de texto;
+   - los enlaces a páginas fuera de alcance (casos, Estudio, Sobre, Privacidad) no navegan.
+8. **Ajustes en el UI Kit por problemas reales:**
+   - pie de la Tarjeta de proyecto con separación y salto de línea;
+   - pregunta del Acordeón con salto de línea;
+   - Botón Enlace con objetivo de 28 px (WCAG 2.5.8);
+   - pie con la columna «Contacto» sin «(concepto)», según CONTENT §1.
+9. **Figma Professional usado:**
+   - variables con lógica: `SET_VARIABLE`, condicionales, expresiones de concatenación y comparación;
+   - variantes y propiedades enlazadas a variables;
+   - modo tipográfico por frame;
+   - componente interactivo (acordeón);
+   - anotaciones de Dev Mode;
+   - secciones y flujos.
+
+**Estado: aplicado, pendiente de revisión del usuario.**
