@@ -18,6 +18,7 @@
 | Prototipo Inicio → Cotizar (variables y lógica) | ✅ Ronda 1 probada por el usuario en Present |
 | **HIGH-FI UX REFINEMENT** (D-031): Cotizar responsive, cabecera fija, selectores, nuevo final, datos de prueba, tamaños, movimiento, estimador corregido | 🟡 Aplicado y verificado en estructura; **falta la nueva prueba del usuario en Present** (`QA.md`) |
 | Especificación de movimiento para el código | ✅ `MOVIMIENTO.md` |
+| Ajuste de selectores contextuales (D-032) | 🟡 Aplicado y verificado en estructura; falta la comprobación rápida del usuario |
 | High-Fi Freeze y handoff a código | ⏳ Después de aprobar la ronda de refinamiento |
 | DC-002 (estado del local obligatorio) | ✅ Resuelto: obligatorio con ayuda breve |
 | Código | ⏳ No empezar sin aprobación del prototipo |

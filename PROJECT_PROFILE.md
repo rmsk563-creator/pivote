@@ -80,7 +80,8 @@ Historial completo en `DECISIONS.md`.
   - escala tipográfica y controles más grandes;
   - movimiento (`MOVIMIENTO.md`);
   - estimador corregido.
-- Siguiente gate: nueva prueba manual del usuario en Present → High-Fi Freeze → handoff a código.
+- **Ajuste de selectores (D-032):** distrito, fecha y área usan una lista desplegable pegada al campo; nombre y teléfono se «escriben» al tocarlos. Los diálogos quedan solo para interrupciones reales.
+- Siguiente gate: comprobación rápida del usuario en Present → High-Fi Freeze → handoff a código.
 
 ## Siguiente paso
 El usuario vuelve a probar el prototipo en Present con la lista «HIGH-FI UX REFINEMENT» de `QA.md`. Sin su confirmación no hay freeze, handoff ni código.

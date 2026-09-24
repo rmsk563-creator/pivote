@@ -191,12 +191,7 @@ Abre Present desde **05 High Fidelity** a 100 %. Haz la prueba en escritorio (ve
 6. Etiquetas, ayudas, opciones y botones se leen sin acercarte a la pantalla.
 7. Las opciones tienen el mismo alto; al seleccionar una, nada salta de tamaño.
 
-**C. Simulación de campos**
-8. Paso 2 · Área: se abre un selector con 30, 48, 60 y 90 m². Elige uno y el campo se completa. Vuelve a abrirlo y elige «8 m²»: aparece el error del área y no puedes continuar.
-9. Paso 2 · Distrito: el selector ofrece Miraflores, Barranco, Surco, San Isidro y Otro. Prueba «Cancelar» y tocar fuera del diálogo.
-10. Paso 3 · Fecha: hay 4 meses. Elegir «Aún no tengo fecha» vacía el campo.
-11. Paso 4 · Nombre: Rosa, Jorge, Lucía o «Dejar vacío» (muestra el error).
-12. Paso 4 · Teléfono: «Número de prueba» se completa como «9•• ••• •••»; «Número incompleto» muestra el error.
+**C. Simulación de campos** (actualizada en D-032: ver la comprobación rápida más abajo)
 
 **D. Validación y persistencia**
 13. Continuar sin completar muestra el resumen de errores y los mensajes por campo, incluido «Elige el estado del local para continuar.».
@@ -223,11 +218,56 @@ Abre Present desde **05 High Fidelity** a 100 %. Haz la prueba en escritorio (ve
 
 **F. Solo en móvil**
 22. La cabecera y la barra de acciones quedan fijas y no tapan el contenido al final del scroll.
-23. Los selectores aparecen como hoja inferior y se leen bien a 390 px.
+23. Las listas desplegables se abren bajo el campo, se leen bien a 390 px y no las tapa la barra fija.
 24. «Tu solicitud» se abre y se cierra.
 25. El menú ☰ entra desde arriba; prueba ✕ y los enlaces.
 26. El aviso de contacto entra desde abajo y se cierra solo a los ~6 s.
 27. Revisa a ojo los frames de revisión de 360, 768, 834 y 1024 (sección «Cotizar · Revisión responsive»): nada cortado, sin scroll horizontal y sin textos diminutos.
 
 ### Estado
-🟡 **Esperando la nueva prueba manual del usuario en Present.** No hay High-Fi Freeze ni handoff hasta su aprobación.
+Probada por el usuario: todo funcionó. Pidió cambiar los diálogos de selección por selectores contextuales (D-032).
+
+---
+
+## Ajuste de selectores · 2026-09-24 (D-032)
+**Cambio:** los 10 diálogos de selección se sustituyen por listas desplegables pegadas al campo. Nombre y teléfono pasan a «tocar para escribir». Nada más cambia.
+
+### Qué se verificó (leído desde el archivo)
+| Comprobación | Resultado |
+|---|---|
+| Frames en 05 | 28 (se retiraron 10 overlays de selección) |
+| Nodos con interacción · acciones | 248 · 5362 |
+| Destinos rotos (incluidos los que apuntaban a los overlays retirados) | **0** |
+| Variables inexistentes · condicionales sin condición | **0 · 0** |
+| Controles de Cotizar sin clic (incluidas las 28 opciones de lista) | **0** |
+| Listas desplegables | 6 (área, distrito y fecha × escritorio y móvil). Visibilidad enlazada a `dd/<campo>`; cada opción, enlazada a `lista/<campo>/<valor>` |
+| Reinicios | 17 listas incluyen `dd/*` = false y `lista/*` = Default |
+| Estimador | Sin cambios; sigue usando `val/area` |
+| Layout | Corregido: en escritorio, el campo Área envuelto quedaba con alto fijo y su ayuda de dos líneas pisaba «Estado del local». Ahora se adapta al contenido. Capturas con las listas abiertas en 1440 y 390: la lista queda sobre el contenido siguiente, sin cortes |
+
+### Limitaciones
+- La lista se abre sin animación en Figma: los cambios por variable son instantáneos. La animación de 150 ms está en `MOVIMIENTO.md`.
+- «Tocar fuera» cierra la lista en casi toda la pantalla. Sobre la cabecera fija y sobre el título del paso, el toque no cierra la lista, porque esas capas quedan por encima de la capa de cierre.
+- El teclado (↑ ↓ Enter Esc) no se puede simular en Present: está especificado para el código.
+
+### Comprobación rápida en Present (usuario)
+1. **Paso 2 · Distrito:**
+   - la lista se abre justo debajo, con anillo de foco en el campo;
+   - el hover marca la opción;
+   - al elegir, se cierra y el campo muestra el valor;
+   - al reabrir, la opción elegida lleva ✓.
+2. **Paso 2 · Área:**
+   - aparecen los valores de ejemplo bajo el campo;
+   - «8 m²» muestra el error y no deja continuar;
+   - otro valor lo corrige.
+3. **Cerrar sin elegir:** tocar fuera y tocar el propio campo otra vez.
+4. **Paso 3 · Fecha:** misma lista. «Aún no tengo fecha» sigue como opción visible y vacía la fecha.
+5. **Paso 4 · Nombre y teléfono:**
+   - un toque escribe «Rosa» y «9•• ••• •••»; otro toque los borra;
+   - con los campos vacíos, «Revisar solicitud» muestra los errores.
+6. **Opciones visibles:** rubro, servicio, estado, centro comercial, cierre, presupuesto y preferencia de contacto siguen como opciones visibles.
+7. **Flujo completo:** resumen con el rango correcto → Enviar → Enviando → Confirmación.
+8. **Móvil:** repetir 1, 2 y 4; ninguna lista queda tapada por la barra fija.
+
+### Estado
+🟡 **Esperando la comprobación rápida del usuario.** Si pasa, el siguiente paso es su aprobación del High-Fi Freeze.

@@ -269,7 +269,7 @@ Si solo contratas el proyecto de diseño, el proceso termina en la fase 03.
   - < 10: «El área parece muy pequeña. Revisa el número (en m²).»
   - > 1,000: «Para más de 1,000 m² preferimos conversarlo. Puedes seguir sin rango.»
 - **Distrito** (lista de los 43 distritos de Lima + «Callao» + «Otro») · error: «Elige el distrito: cambia traslados y trámites.»
-  - En el prototipo de Figma el selector muestra solo Miraflores, Barranco, Surco, San Isidro y Otro (D-031).
+  - En el prototipo de Figma la lista desplegable muestra solo Miraflores, Barranco, Surco, San Isidro y Otro (D-032).
 - **Estado del local (obligatorio, DC-002):** Local vacío · En funcionamiento · Aún no tengo local
   - ayuda, debajo del título: «El estado actual del local influye en el alcance y el costo estimado de la intervención.»
   - error, si se intenta continuar sin elegir: «Elige el estado del local para continuar.»

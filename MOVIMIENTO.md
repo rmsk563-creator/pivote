@@ -67,7 +67,10 @@ Con reducción activa:
 | Resumen plegable (móvil y tablet) | se despliega con `grid-template-rows: 0fr → 1fr`; el chevron gira 180° | 200 ms | instantáneo (variable) |
 | Acordeón (FAQ) | lo mismo que el resumen plegable, con `<details>/<summary>` o `aria-expanded` | 200 ms | ✅ Smart Animate 200 ms |
 | Menú móvil | el panel baja desde arriba y el fondo se atenúa. El foco queda atrapado; se cierra con Esc | 250 ms | ✅ Move in desde arriba |
-| Selectores y diálogos | escritorio: el fondo aparece y el diálogo pasa de `scale(.98)` a 1 con opacidad. Móvil: la hoja sube desde abajo (`translateY(100%)` → 0). Cierre en 150 ms con `--ease-entrada` | 200 ms | ✅ fundido 200 ms |
+| Lista desplegable (distrito, fecha; área solo en el prototipo) | se abre pegada al campo (4 px debajo, mismo ancho): opacidad 0 → 1 y `translateY(-4px)` → 0. El campo muestra el anillo de foco y el chevron gira 180°. Cierre en 100 ms al elegir, al tocar fuera o con Esc; el foco vuelve al campo | 150 ms | apertura instantánea (cambio por variable) |
+| Opción de lista | hover: fondo `--fondo-superficie-alt`; seleccionada: check azul y peso medio; foco de teclado: anillo interior de 2 px | 120 ms | ✅ variantes Hover (Smart Animate 120 ms), Seleccionada y Foco |
+| Diálogos (solo «Salir sin enviar» y errores excepcionales) | el fondo aparece y el diálogo pasa de `scale(.98)` a 1 con opacidad. Cierre en 150 ms con `--ease-entrada` | 200 ms | ✅ fundido 200 ms |
+| Hoja inferior (móvil, solo para listas largas; hoy ninguna) | sube desde abajo (`translateY(100%)` → 0) y el fondo se atenúa | 240 ms | — |
 | Aviso de contacto | entra desde abajo y se cierra solo a los 6 s o con ✕ | 200 ms | ✅ Move in desde abajo |
 | Enviar solicitud | el botón pasa a «Enviando…», queda deshabilitado con `aria-busy="true"` y muestra un indicador lineal discreto. Luego se reemplaza la vista por la confirmación | 1000 ms | ✅ variable `btn/enviar` + espera de 1000 ms |
 | Confirmación | la marca de verificación y el título entran con opacidad y `translateY(8px)`. El foco va al H1 | 250 ms | ✅ fundido 300 ms |
@@ -77,5 +80,9 @@ Con reducción activa:
 
 ## 5. Reglas para el formulario (Cotizar)
 - Los campos son reales: `inputmode="numeric"` en área y teléfono; `<select>` nativo para el distrito (43 distritos + Callao + Otro); `<input type="month">` para la fecha; `autocomplete="name"`, `tel-national` y `email`.
+- **Selector personalizado** (solo si se estiliza en lugar del `<select>` nativo): patrón *combobox / listbox* de WAI-ARIA con `aria-expanded`, `aria-activedescendant` y `aria-selected`.
+  - **Teclado:** ↑ ↓ mueven la opción activa, Inicio y Fin van a los extremos, Enter o Espacio eligen, Esc cierra sin cambiar y Tab cierra y sigue.
+  - **Uso:** el foco vuelve al campo al cerrar. Clic o toque fuera cierra. En móvil se prefiere el `<select>` nativo.
+- **Modales solo para interrupciones reales** (salir sin enviar, confirmaciones importantes, errores excepcionales). Nunca para elegir un valor.
 - El estado vive en memoria y en `sessionStorage` (Atrás y Editar conservan las respuestas). No se envía nada (D-005).
 - El doble envío se bloquea desde el primer toque de «Enviar solicitud».

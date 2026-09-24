@@ -262,7 +262,7 @@ El usuario probó el prototipo y **no aprobó todavía el High-Fi Freeze**. Auto
    - Al tocarlo, el mismo botón pasa a «Enviando…» (variable `btn/enviar`) durante 1000 ms, con una capa transparente que bloquea el doble toque.
    - Después aparece la **pantalla de confirmación** independiente, con el copy de CONTENT §7.6–7.7: «Volver al inicio» y «Nueva cotización».
    - Se eliminaron los frames «6 Enviando».
-4. **Simulación de campos** (sustituye D-029 §7, primer punto): área, distrito, fecha, nombre y teléfono abren un selector con varias respuestas (diálogo en escritorio, hoja inferior en móvil). Área, nombre y teléfono incluyen una respuesta que muestra el error. En código son campos reales.
+4. **Simulación de campos** (sustituye D-029 §7, primer punto; **sustituido a su vez por D-032**): área, distrito, fecha, nombre y teléfono abren un selector con varias respuestas (diálogo en escritorio, hoja inferior en móvil). Área, nombre y teléfono incluyen una respuesta que muestra el error. En código son campos reales.
 5. **Datos de prueba:** se retiran «Ana Quispe», «999 000 000», `ana@ejemplo.com` y `tu@correo.com` (en HF, wireframes y modos de revisión).
    - Nombres de pila de ejemplo: Rosa, Jorge, Lucía.
    - Teléfono enmascarado: «9•• ••• •••».
@@ -284,3 +284,25 @@ El usuario probó el prototipo y **no aprobó todavía el High-Fi Freeze**. Auto
    Todo lo demás, y `prefers-reduced-motion`, en `MOVIMIENTO.md`.
 
 **Estado: aplicado; pendiente de la nueva prueba del usuario en Present. No es el High-Fi Freeze.**
+
+## D-032 · 2026-09-24 · Selectores contextuales en lugar de diálogos
+Pedido del usuario tras la segunda prueba: el diálogo grande interrumpía la pantalla para selecciones sencillas. Sustituye el punto 4 de D-031. No cambia nada más de lo aprobado.
+
+| Campo | Patrón en Figma | En código |
+|---|---|---|
+| Distrito | Lista desplegable pegada al campo (4 px debajo, mismo ancho) | `<select>` nativo con los 43 distritos + Callao + Otro |
+| Fecha de apertura | Lista desplegable (4 meses); «Aún no tengo fecha» sigue como opción visible | `<input type="month">` |
+| Área | Lista desplegable de **valores de ejemplo** con la nota «En la web se escribe»; «8 m²» muestra el error | `<input inputmode="numeric">`: la fórmula necesita el número exacto, así que no pasa a rangos |
+| Nombre, teléfono | Sin lista: un toque «escribe» un valor de prueba (Rosa, «9•• ••• •••») y otro lo borra | inputs reales con `autocomplete` |
+| Rubro, servicio, estado del local, centro comercial, cierre, presupuesto, preferencia de contacto | **Siguen como opciones visibles** (radio cards): son decisiones que conviene comparar | `radiogroup` |
+
+- **Móvil:** las listas tienen 4–5 opciones (≤ 260 px) y caben bajo el campo, así que también son desplegables contextuales. Una hoja inferior queda solo para listas largas; hoy no hay ninguna.
+- **Modales:** solo para «Salir sin enviar», confirmaciones importantes y errores excepcionales. Se eliminaron los 10 overlays de selección.
+- **Implementación en Figma:** la API no permite anclar un overlay a un campo (su posición es de solo lectura). Por eso la lista es una capa dentro del formulario, visible con la variable `dd/<campo>`. Tiene:
+  - anillo de foco sobre el campo;
+  - capa transparente para cerrar al tocar fuera;
+  - la opción elegida marcada con `lista/<campo>/<valor>`.
+  El orden de apilado del formulario está invertido (`itemReverseZIndex`) para que la lista quede por encima de lo que tiene debajo.
+- **UI Kit:** componentes nuevos «Opción de lista» (Default, Hover, Seleccionada, Foco) y «Lista desplegable».
+
+**Estado: aplicado; falta la comprobación rápida del usuario antes del High-Fi Freeze.**
