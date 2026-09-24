@@ -70,8 +70,9 @@
 | 4 | Enlaces con un objetivo de 20 px | Accesibilidad | Relleno de 4 px, objetivo de 28 px |
 | 5 | El pie decía «Contacto (concepto)», que no coincide con CONTENT §1 | Contenido | «Contacto» |
 | 6 | El resumen de errores del paso 2 no mencionaba el estado del local, que es obligatorio | Contenido | Texto corregido. Abierto DC-002 para confirmar si debe ser obligatorio |
-| 7 | Los tarjetones de servicio tenían alturas desiguales | Visual | Altura igualada (445 px) |
+| 7 | Las tarjetas de servicio tenían alturas desiguales | Visual | Altura igualada (445 px) |
 | 8 | Mini-planos en gris de wireframe | Visual | Componente `Mini-plano` con 5 plantas de línea |
+| 9 | «Después de un tiempo» configurado en segundos (1.2 / 6), pero Figma lo guarda en **milisegundos**: «Enviando…» y el aviso de contacto se habrían cerrado al instante | Interacción | Corregido a 1200 ms y 6000 ms. Verificado en la documentación de `Trigger`. Las transiciones sí van en segundos |
 
 ### Limitaciones conocidas del prototipo (no son defectos del diseño)
 - Los campos de texto no aceptan escritura en Figma: se completan con un valor de ejemplo al tocarlos.
