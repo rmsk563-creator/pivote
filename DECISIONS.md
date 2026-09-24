@@ -124,15 +124,70 @@ Cierre técnico:
 **Estado: aprobado y congelado.**
 
 ## D-019 · 2026-09-24 · Capa técnica en neutro (consecuencia de D-018)
-Hasta ahora, cotas, anotaciones y antetítulos en monoespaciada usaban el azul. Con la jerarquía estricta, el azul queda solo para acción y pilar, así que la capa técnica pasa a neutro: `tecnico/linea` = `#5A6066` sobre claro y `#A8B8B0` sobre verde. El lenguaje técnico se sostiene con la monoespaciada, las líneas de cota y las anotaciones, no con el color. Esto modifica un detalle de D-007 (el azul como capa técnica) por instrucción explícita del usuario. **Estado: aplicado.**
+Hasta ahora, cotas, anotaciones y antetítulos en monoespaciada usaban el azul. Con la jerarquía estricta, el azul queda solo para acción y pilar, así que la capa técnica pasa a neutro: `tecnico/linea` = `#5A6066` sobre claro y `#A8B8B0` sobre verde. El lenguaje técnico se sostiene con la monoespaciada, las líneas de cota y las anotaciones, no con el color. Esto modifica un detalle de D-007 (el azul como capa técnica) por instrucción explícita del usuario. El azul queda para acciones, enlaces funcionales, estados interactivos cuando corresponda y el pilar del logo. La capa técnica se expresa con IBM Plex Mono, líneas de cota, anotaciones, retícula y composición. **Estado: aprobado por el usuario (2026-09-24) y congelado bajo D-020.**
 
 ## D-020 · 2026-09-24 · Congelamiento del Brand Gate
 Quedan **congelados**: el naming (D-013), el concepto y la construcción del logo (D-017), las tipografías (Archivo + IBM Plex Mono, D-008 pasa a aprobada) y los roles cromáticos (D-018 y D-019). Cualquier cambio importante en estos elementos exige abrir un **Decision Conflict** antes de modificarlos. **Estado: vigente.**
 
-## D-021 · 2026-09-24 · UI Kit v0.1 (Figma › 04, pendiente de revisión)
+## D-021 · 2026-09-24 · UI Kit v0.1 (Figma › 04) — sustituido por D-028
 Construido sobre las variables `Color`, `Espaciado` (4–128) y `Radio` (0 / 2 / 4) y los estilos de texto. Componentes:
 - **Acción y formulario:** Botón (4 tipos × 5 estados), Campo (texto o selector × 5 estados), Opción, Casilla, Progreso.
 - **Contenido:** Antetítulo, Etiqueta, Cota, Anotación, Rango orientativo, Tarjeta de proyecto (3 estados), Paso de proceso, Acordeón, Aviso (errores, presupuesto, concepto).
 - **Estructura:** Cabecera (4 variantes), Pie (2 variantes).
 
 Reglas incorporadas: foco visible de 3 px; seleccionado en azul (es acción); la anotación usa un cuadrado hueco en tinta, porque el cuadrado lleno azul es exclusivo del logo. **Estado: diseñado, falta revisión del usuario.**
+
+## D-022 · 2026-09-24 · Titular del hero
+- **H1:** «Locales pensados para que la gente entre y compre.»
+- **Antetítulo:** «Estudio de espacios comerciales · Lima». El antetítulo explica qué somos; el H1 comunica el beneficio.
+
+«Arquitectura interior para negocios de calle» no vuelve a usarse como titular principal. Puede aparecer adaptada en contenido secundario. **Estado: aprobado.**
+
+## D-023 · 2026-09-24 · Contacto y WhatsApp en modo concepto
+La experiencia visual de contacto (WhatsApp, correo, Instagram) se conserva porque forma parte de la propuesta comercial.
+
+No se inventan números, correos, direcciones, horarios ni datos de contacto. Toda acción que requeriría contacto real:
+- no envía ni guarda datos;
+- muestra un estado discreto: «El contacto directo no está activo en esta versión del sitio», con enlace a «Sobre este proyecto».
+
+Sin etiquetas «demo» en la interfaz. Técnicamente, cada punto de contacto lee de una sola fuente de configuración (`contacto` con `activo: false`), así que pasar a Client o Production es completar esos datos y cambiar el indicador, sin tocar componentes. **Estado: aprobado.**
+
+## D-024 · 2026-09-24 · Diagnóstico descontable (política comercial del negocio conceptual)
+Si el cliente contrata después el proyecto de diseño o diseño + obra, el valor del diagnóstico se descuenta del proyecto. Es una política permanente del modelo de negocio ficticio de Pivote, no una promoción temporal ni un dato externo. **Estado: aprobado.**
+
+## D-025 · 2026-09-24 · Página Estudio sin personas inventadas
+No hay personas, nombres, cargos con nombre ni fotos de equipo. La página presenta capacidades (roles del estudio), el enfoque de trabajo y un enlace discreto a «Sobre este proyecto». **Estado: aprobado.**
+
+## D-026 · 2026-09-24 · Autoría separada de la marca
+- **Pivote** = marca conceptual.
+- **Matías** = creador real (diseño y desarrollo).
+
+«Sobre este proyecto» lo indica de forma discreta. El enlace de autoría queda como campo preparado y **vacío** hasta que el usuario defina la URL. **Estado: aprobado; URL pendiente.**
+
+## D-027 · 2026-09-24 · Fotos de los casos Botica y Cafetería
+- **Botica:** `botica-estante.jpg` (National Cancer Institute, Unsplash).
+- **Cafetería:** `cafeteria-barra.jpg` (Palina Kharlanovich, Unsplash).
+
+Revisadas ampliadas: sin marcas comerciales legibles. Se usan como fotografía de contexto, con crédito, no como obra de Pivote. Se descartaron 11 candidatas (ver `assets/fotos/CREDITOS.md`). **Estado: aprobado.**
+
+## D-028 · 2026-09-24 · UI Kit v1.0 (sustituye a D-021)
+**Fundamentos:** variables `Color` (27 tokens), `Espaciado`, `Radio` y **`Tipografía` con modos Escritorio / Tablet / Móvil** enlazados a los 11 estilos de texto. Así un frame móvil cambia toda la escala con un solo modo.
+
+**Funciones de Figma Professional usadas porque aportan valor, no por usarlas:**
+- modos de variables → responsive;
+- sintaxis de código web en 43 variables (`var(--color-accion-primaria)`, etc.) → handoff;
+- estilo de efecto `Elevación/Diálogo` → consistencia;
+- propiedades de intercambio de instancia y booleanas → mantenimiento;
+- `minWidth` y `maxWidth` en tarjetas → responsive.
+
+**Íconos:** Lucide 1.48 (ISC), un solo set, capa «Trazo» única para que el color se conserve al intercambiar. Sin logos de marca: WhatsApp usa el ícono de mensaje; Instagram va solo como texto.
+
+**Componentes (27):**
+- **Acción y formulario:** Botón (4 × 5 + ícono opcional), Campo, Opción, Casilla, Progreso.
+- **Estados y utilidades:** Aviso breve, Contacto (en concepto), Chip de filtro, Carga de archivo, Diálogo.
+- **Composición:** Tarjeta de servicio, Tarjeta de rubro, Fila de problema, Fila de resumen, Panel «Tu solicitud», Menú móvil, Comparador antes/después.
+- **Contenido:** Antetítulo, Etiqueta, Cota, Anotación, Rango orientativo, Tarjeta de proyecto, Paso de proceso, Acordeón, Aviso.
+- **Estructura:** Cabecera, Pie.
+- Más Ícono y Logo.
+
+**Verificado:** ninguna pintura suelta sin variable en los componentes del kit. **Estado: diseñado, pendiente de revisión del usuario.**

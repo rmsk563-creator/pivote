@@ -1,9 +1,9 @@
-# CONTENT.md — Pivote (v0.1 · para revisión antes de High Fidelity)
+# CONTENT.md — Pivote (v1.0 · cerrado el 2026-09-24)
 
-**Estado:** 🟡 borrador completo, pendiente de revisión del usuario.
+**Estado:** ✅ aprobado para High Fidelity: tono, copy, CTA, FAQ, mensajes del formulario, casos, aviso de concepto, precios y fórmula (con fuentes y supuestos en §8.1). Los cambios posteriores se registran en `DECISIONS.md`.
 - Tono según `MARCA.md` §5 (claro, preciso, cercano; tuteo; oraciones en minúscula; sin «¡»).
 - Todo lo que figura como estudio, casos, precios y plazos es **ficticio** (Concept / Portfolio, D-003), con aviso global en el pie, en «Sobre este proyecto» y en la confirmación del formulario.
-- Marcas: **[REVISAR]** = decisión tuya · **[PENDIENTE]** = dato que falta.
+- Marcas: **[PENDIENTE]** = dato que aún falta (solo queda la URL de autoría).
 
 ---
 
@@ -26,8 +26,27 @@ Servicios · Proyectos · Cómo trabajamos · Estudio · **[Cotizar mi local]**
 ### Pie
 - Marca: logotipo + descriptor · «Lima, Perú».
 - Sitio: Servicios · Proyectos · Cómo trabajamos · Estudio · Cotizar.
-- Contacto: WhatsApp · Correo · Instagram **[REVISAR: en concepto, estos enlaces ¿llevan a «Sobre este proyecto» o se muestran sin enlace? Propuesta: sin enlace, con el texto «(concepto)» en el título de la columna.]**
+- Contacto: WhatsApp · Correo · Instagram (sin números ni direcciones visibles; comportamiento en §1.1).
 - Este sitio: «Proyecto conceptual de portafolio · Sobre este proyecto · Privacidad».
+
+### 1.1 Contacto en modo concepto (D-023)
+**Qué se ve:**
+- el botón «Escríbenos por WhatsApp» (sección de preguntas frecuentes y Servicios);
+- el pie con WhatsApp, Correo e Instagram;
+- en Cotizar, la preferencia de contacto.
+
+Se ven como en un sitio real, **sin números, correos, direcciones ni horarios**.
+
+**Al activarlos** (clic o Enter) no se abre WhatsApp ni el cliente de correo y no se envía nada. Junto al control aparece un aviso breve, sin la palabra «demo»:
+- **Texto:** «El contacto directo no está activo en esta versión del sitio. Sobre este proyecto →»
+- **Comportamiento:** se anuncia con `role="status"` y se cierra solo a los 6 s o con Esc. El foco se queda en el control.
+
+**Preparado para producción:** todos los puntos leen de una sola configuración:
+- `contacto.whatsapp`, `contacto.correo`, `contacto.instagram` = `null`;
+- `contacto.activo` = `false`;
+- `contacto.mensajePrellenado` = «Hola, quiero cotizar mi local ({rubro}, {m²} m²)».
+
+Para pasar a producción basta completar esos valores y activar el indicador.
 
 ### Aviso de proyecto conceptual (solo 3 lugares)
 1. **Pie** (discreto, siempre): «Pivote es un proyecto conceptual de portafolio. El estudio, los casos y los precios son ficticios.»
@@ -52,10 +71,8 @@ No se repite en tarjetas, precios ni casos (D-003).
 
 ### 2.1 Hero
 - **Antetítulo** (mono + barra de latón): `Estudio de espacios comerciales · Lima`
-- **H1 [REVISAR]:**
-  - **Propuesto:** «Locales pensados para que la gente entre y compre.»
-  - Alternativa: «Tu local, pensado para vender desde la vereda.»
-  - El wireframe aún dice «Arquitectura interior para negocios de calle.». Propongo reemplazarlo: coincide con el descriptor sin «Arquitectura».
+- **H1 (aprobado, D-022):** «Locales pensados para que la gente entre y compre.» El antetítulo dice qué somos y el H1 dice el beneficio.
+- «Arquitectura interior para negocios de calle» ya no se usa como titular. Adaptada, puede aparecer en contenido secundario (por ejemplo, en la meta descripción de Estudio).
 - **Bajada:** «Diseñamos cafeterías, tiendas, boticas y salones con presupuesto por partidas y obra por fases, para que cierres el menor tiempo posible.»
 - **CTA primario:** «Cotizar mi local» · **secundario:** «Ver proyectos»
 - **Rubros (mono):** `Cafeterías · Tiendas · Boticas · Salones`
@@ -102,7 +119,7 @@ No se repite en tarjetas, precios ni casos (D-003).
 
 ### 2.7 Preguntas frecuentes (6 en Inicio; el resto en Cómo trabajamos)
 - **Antetítulo:** `Preguntas frecuentes` · **H2:** «Lo que todos preguntan antes de empezar»
-- **Enlace:** «¿Otra duda? Escríbenos por WhatsApp →» **[REVISAR: en concepto, el enlace lleva a «Sobre este proyecto»]**
+- **Enlace:** «¿Otra duda? Escríbenos por WhatsApp →» (se comporta según §1.1).
 - **Preguntas:** 1 a 6 de §5.3.
 
 ### 2.8 CTA final (bloque verde)
@@ -124,7 +141,7 @@ No se repite en tarjetas, precios ni casos (D-003).
   - un plano de distribución propuesto.
 - **Plazo:** 1–2 semanas.
 - **No incluye:** planos de obra ni presupuesto de ejecución.
-- **Nota:** si después contratas el proyecto, descontamos el diagnóstico. **[REVISAR: ¿se mantiene este beneficio ficticio?]**
+- **Nota (política permanente del estudio, D-024):** «Si después contratas el proyecto de diseño o diseño + obra, descontamos el valor del diagnóstico.» No es una promoción: siempre se muestra sin fechas ni urgencia.
 
 ### 3.2 Proyecto de diseño · desde S/ 3,500
 - **Para quién:** «Vas a abrir o renovar, y ya tienes quién ejecute la obra.»
@@ -162,10 +179,12 @@ No se repite en tarjetas, precios ni casos (D-003).
 
 | Caso | Datos (mono) | Problema | Decisiones clave | Servicio · plazo | Foto |
 |---|---|---|---|---|---|
-| **Botica de barrio** | Botica · 48 m² · Surquillo | La cola de caja tapaba la góndola de cuidado personal y el cliente no la recorría. | Mostrador en L que separa dispensación y caja; circulación en U; góndolas bajas al frente para que se vea todo desde la puerta. | Diseño + obra · 9 semanas, de noche | [PENDIENTE: foto libre sin marcas de farmacia] |
+| **Botica de barrio** | Botica · 48 m² · Surquillo | La cola de caja tapaba la góndola de cuidado personal y el cliente no la recorría. | Mostrador en L que separa dispensación y caja; circulación en U; góndolas bajas al frente para que se vea todo desde la puerta. | Diseño + obra · 9 semanas, de noche | `botica-estante.jpg` |
 | **Florería en Barranco** | Tienda · 32 m² · Barranco | Se vendía desde la vereda, pero adentro no cabían ni el taller ni la exhibición. | Mostrador corrido que funciona como mesa de armado; exhibición a la altura de la vista; almacén frío detrás de un panel corredizo. | Diseño + obra · 5 semanas | `floreria-mostrador.jpg` |
 | **Barbería con espera a la vista** | Salón · 60 m² · San Borja | La espera estaba escondida y los clientes se iban al ver el local «lleno». | Espera junto a la vitrina; puestos en línea con lavado al fondo; iluminación puntual por puesto. | Proyecto de diseño · 4 semanas | `barberia-salon.jpg` |
-| **Cafetería de paso** | Cafetería · 40 m² · Lince | Pedidos y recojo en el mismo punto: la barra se colapsaba a las 8 a. m. | Barra partida (pedido / recojo), repisa de pie hacia la ventana y mesas solo al fondo. | Diseño + obra · 11 semanas | [PENDIENTE: foto libre] |
+| **Cafetería de paso** | Cafetería · 40 m² · Lince | Pedidos y recojo en el mismo punto: la barra se colapsaba a las 8 a. m. | Barra partida (pedido / recojo), repisa de pie hacia la ventana y mesas solo al fondo. | Diseño + obra · 11 semanas | `cafeteria-barra.jpg` |
+
+Las fotos son de contexto (Unsplash, con crédito en «Sobre este proyecto»); no son obras de Pivote. El pie de foto de cada caso dice «Foto de referencia».
 
 **Estructura de cada caso:** datos · problema · 3 decisiones con plano anotado · antes/después (comparador) · materiales · «Qué haríamos distinto» (una línea honesta) · CTA «Cotizar un local parecido».
 
@@ -209,7 +228,15 @@ Si solo contratas el proyecto de diseño, el proceso termina en la fase 03.
   4. **Materiales que aguantan el uso.** Un local se limpia todos los días.
   5. **Todo queda documentado.** Planos finales y lista de materiales para cuando necesites mantener o ampliar.
 - **Lo que no hacemos:** «No diseñamos viviendas ni oficinas corporativas. No vendemos mobiliario de catálogo.»
-- **Equipo:** no se inventan personas ni trayectorias. **[REVISAR]** Propuesta: roles sin nombres («Diseño · Obra · Presupuesto») o una sola línea que lleve a «Sobre este proyecto».
+- **Capacidades (D-025, sin personas):**
+  | Capacidad | Qué cubre |
+  |---|---|
+  | Distribución y diseño | Planta, circulación, mostradores, mobiliario a medida, iluminación. |
+  | Presupuesto y compras | Partidas, alternativas de material, cotizaciones a proveedores. |
+  | Obra y supervisión | Coordinación de especialidades, fases, control de calidad y entrega. |
+  | Documentación | Planos finales, memoria técnica para trámites, fichas de mantenimiento. |
+- **Cómo abordamos un proyecto:** «Una persona de contacto de principio a fin, visitas programadas y un avance por escrito cada semana.»
+- **Enlace discreto al final:** «Sobre este proyecto →»
 
 ---
 
@@ -315,7 +342,28 @@ Si solo contratas el proyecto de diseño, el proceso termina en la fase 03.
 
 **Validez:** 10 ≤ A ≤ 1,000. Fuera de ese rango no se muestra cifra (§7.5).
 
-**Base de mercado** (Lima, 2025–2026): remodelación con acabado comercial S/ 1,000–1,500 por m²; honorarios de diseño S/ 50–150 por m². La tarifa del estudio ficticio se ubica dentro de esos rangos.
+### 8.1 Fuentes y supuestos (antes de congelar)
+**Datos de mercado** (consultados el 2026-09-24; son referencias, no cotizaciones):
+
+| Dato | Valor publicado | Fuente | Cómo se usa |
+|---|---|---|---|
+| Remodelación en Lima por m² | S/ 600–1,500 (básico 600–800 · medio 900–1,200 · integral 1,300–1,500+) | Priser Perú, «Precio m2 de remodelación 2026» (06-05-2026) — priserperu.com/blog/cual-es-el-precio-de-remodelacion-por-metro-cuadrado/ | Tarifa de obra S/ 950–1,450 por m²: dentro de los tramos medio e integral |
+| Remodelación y rehabilitación por m² | S/ 600–2,000; variación de ±20–40 % según la obra | OneMake, «Costo de construcción por m² en Perú 2026» — onemake.ai/blog/costo-construccion-por-m2-peru | Confirma el rango y justifica presentar un **rango** y no una cifra |
+| Honorarios de diseño de interiores | S/ 50–150 por m²; S/ 2,000–10,000 por proyecto | Business Empresarial, «Cómo cobra un diseñador de interiores» (19-07-2024) — businessempresarial.com.pe/como-cobra-un-disenador-interiores/ | Honorarios S/ 70–110 por m² y mínimo S/ 3,500–5,000: dentro de ambos rangos |
+| Honorarios de diseño (fuente discrepante) | S/ 200–1,000 por m² | Patapam, «Costo por m² de diseño de interiores en Perú» (2025) | No se usa: probablemente incluye implementación; se registra la discrepancia |
+| Cifra no verificada | «Acabado comercial S/ 1,000–1,500 por m²» (Habitar 360º) | habitar.com.pe (la página dio error 500) | No se cita como fuente |
+
+**Supuestos del proyecto** (decisiones del negocio conceptual, **no** datos de mercado):
+- Diagnóstico: S/ 20–28 por m², mínimo S/ 900–1,300.
+- Factores de rubro: cafetería 1.30, salón 1.15, botica y otro 1.10, tienda 1.00. Razón cualitativa: instalaciones sanitarias, eléctricas y de extracción.
+- Estado del local: vacío 1.10.
+- Horario de obra: de noche 1.12; abierto 1.20. Coincide con el «12 a 20 %» de las FAQ.
+- Recargo de centro comercial: 1.08.
+- Redondeo a S/ 100, 500 o 1,000.
+- Plazos por fase (semanas), incluido «40–60 m² → 4–7 semanas de obra».
+- Descuento del diagnóstico (D-024).
+
+Cualquier cifra de la web que venga de esta lista se presenta como «orientativa» y nunca como dato de mercado.
 
 **Casos de prueba** (verificados con script):
 | Entrada | Rango |
@@ -339,7 +387,8 @@ Si solo contratas el proyecto de diseño, el proceso termina en la fase 03.
   - el estudio, los casos, los precios, los plazos y los contactos son ficticios;
   - el formulario no envía ni guarda datos.
 - **Fotos:** créditos de Unsplash por foto (autor + enlace). Son interiores reales de otros autores y se usan como ilustración, no como obra del estudio.
-- **Autoría [PENDIENTE]:** «Diseño y desarrollo: {nombre}» + enlace a portafolio o GitHub.
+- **Autoría (D-026):** «Pivote es una marca conceptual. Diseño y desarrollo: Matías.»
+  - Enlace «Ver portafolio →» **[PENDIENTE: URL]**. No se muestra mientras el campo `autor.url` esté vacío; no se inventa.
 
 ## 10. Privacidad (versión para el concepto)
 «Este sitio no usa cookies de seguimiento ni analítica. El formulario de cotización es una simulación: lo que escribes solo existe en esta pestaña y se borra al cerrarla o al salir del formulario. No se envía a ningún servidor.»
@@ -351,11 +400,13 @@ Si solo contratas el proyecto de diseño, el proceso termina en la fase 03.
 
 ---
 
-## Pendiente de revisión (resumen)
-1. H1 del hero (§2.1).
-2. Contactos del pie y enlace de WhatsApp en concepto (§1, §2.7).
-3. Descuento del diagnóstico (§3.1).
-4. Equipo en «Estudio» (§6).
-5. Autoría en «Sobre este proyecto» (§9).
-6. Fotos que faltan: botica y cafetería (§4).
-7. Tarifas y factores del estimador (§8).
+## Estado de cierre
+- ✅ **Resuelto:**
+  - H1 (D-022);
+  - contacto en modo concepto (D-023);
+  - diagnóstico descontable (D-024);
+  - Estudio sin personas (D-025);
+  - autoría (D-026);
+  - fotos de botica y cafetería (D-027);
+  - fuentes y supuestos del estimador (§8.1).
+- ⏳ **Único pendiente:** URL de autoría (`autor.url`).

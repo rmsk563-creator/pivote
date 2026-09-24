@@ -1,7 +1,7 @@
 # Project Profile — Pivote
 
 ## Identidad
-**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: **Brand Gate aprobado** (2026-09-24), contenido y UI Kit en revisión.
+**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: **Brand Gate aprobado**, **CONTENT v1.0 cerrado**, UI Kit v1.0 para revisión (2026-09-24).
 
 ## Objetivo
 Presentar un estudio de diseño de espacios comerciales para negocios pequeños y medianos, y convertir visitas en **solicitudes de cotización**. Para Matías funciona como proyecto de portafolio, muestra de UX/UI y posible referencia para captar clientes reales.
@@ -34,15 +34,17 @@ Ver `MARCA.md`.
 ## Funciones principales
 - Cotización en 4 pasos con validación, estados, resumen y rango orientativo → **simulada** (no envía ni guarda).
 - Filtro de proyectos por rubro, comparador antes/después, plano con puntos anotados → planificados (Should).
-- WhatsApp con mensaje prellenado → Could.
+- Contacto (WhatsApp, correo, Instagram) → **visible y deshabilitado en modo concepto**: al usarlo muestra un aviso discreto y no envía nada; se conecta a datos reales cambiando una configuración (D-023).
 
 ## Backend e integraciones
-Ninguno. Hosting: GitHub Pages. Formulario simulado del lado del cliente. No hay analítica (diferida).
+Ninguno. Hosting: GitHub Pages. Formulario simulado del lado del cliente. Contacto desactivado mediante la configuración `contacto.activo = false` (D-023). No hay analítica (diferida).
 
 ## Datos y realidad
 - Estudio, casos, precios «desde» y plazos: **ficticios**, declarados en el pie y en «Sobre este proyecto».
 - Fotos: Unsplash con créditos en `assets/fotos/CREDITOS.md`. Son interiores reales de terceros y se presentan como ilustración, nunca como obra propia.
-- Rango orientativo: fórmula reproducible (m² × tipo de intervención × estado del local), se define en CONTENT.md.
+- Rango orientativo: fórmula reproducible (`CONTENT.md` §8). Las tarifas de obra y diseño están dentro de rangos de mercado con fuente; los factores son supuestos del proyecto (§8.1).
+- Contacto: sin números, correos, direcciones ni horarios inventados (D-023).
+- Autoría: Pivote es una marca conceptual; diseño y desarrollo, Matías (D-026). URL pendiente.
 - Nada de testimonios, logos de clientes, métricas de ventas ni «más vendido».
 
 ## Restricciones
@@ -57,7 +59,8 @@ Ninguno. Hosting: GitHub Pages. Formulario simulado del lado del cliente. No hay
 - Formulario simulado; el aviso de concepto solo aparece en la confirmación (D-005).
 - Figma antes del código (D-006).
 - Dirección A + C (D-007); logo D2 aprobado (D-017); paleta V4 con roles estrictos (D-018, D-019); Brand Gate congelado (D-020).
-- Wireframes de Inicio y Cotizar aprobados como base (D-016).
+- Wireframes de Inicio y Cotizar aprobados como base (D-016); H1 aprobado (D-022).
+- Contacto en concepto (D-023) · diagnóstico descontable (D-024) · Estudio sin personas (D-025) · autoría (D-026).
 
 Historial completo en `DECISIONS.md`.
 
@@ -66,13 +69,13 @@ Historial completo en `DECISIONS.md`.
 - Páginas: 00 Portada · 01 Identidad (Pivote, logo, favicon) · 01b Naming (cerrado) · 01c Color (comparación; se eligió V4) · 02 Arquitectura · 03 Wireframes · 04 UI Kit · 99 Archivo (exploración Nexo).
 
 ## Estado actual
-- Último checkpoint aprobado: **Brand Gate** (2026-09-24).
-- Borradores listos para revisión: tono de voz (`MARCA.md` §5), `CONTENT.md` (copy completo, precios, fórmula del estimador, FAQ, mensajes del formulario, aviso de concepto) y UI Kit en Figma (04).
-- Siguiente gate: revisión de contenido, y después High Fidelity.
-- Sin blockers.
+- Último checkpoint aprobado: Brand Gate y cierre de contenido (2026-09-24).
+- **Listo para revisión:** UI Kit v1.0 (Figma › 04) y revisión de consistencia (`QA.md`).
+- Siguiente gate: aprobación del UI Kit, y después **High Fidelity** (no iniciado).
+- Único pendiente de datos: URL de autoría.
 
 ## Siguiente paso
-El usuario revisa tono, contenido, precios y rangos, fórmula del estimador, CTAs, FAQ, mensajes del formulario y aviso de concepto (lista «Pendiente de revisión» en `CONTENT.md`). No pasar a High Fidelity sin esa revisión.
+El usuario revisa el UI Kit v1.0 y el informe de consistencia. Con su aprobación se abre High Fidelity de Inicio y Cotizar.
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ

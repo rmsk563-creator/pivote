@@ -1,5 +1,7 @@
 # Alcance v1.0 — Pivote
 
+Contenido de cada página: `CONTENT.md` v1.0.
+
 ## Páginas
 | Página | Contenido | Estado del diseño |
 |---|---|---|
@@ -7,9 +9,9 @@
 | Servicios | Diagnóstico / Proyecto de diseño / Diseño + obra: para quién, qué incluye, plazo, «desde» | ⏳ |
 | Proyectos | Índice filtrable por rubro + 4 casos (cafetería, tienda, botica, salón/barbería) | ⏳ |
 | Cómo trabajamos | 5 fases con semanas + FAQ | ⏳ |
-| Estudio | Enfoque y método (sin equipo ni trayectoria inventados) | ⏳ |
+| Estudio | Capacidades del estudio y cómo se aborda un proyecto; sin personas (D-025); enlace a «Sobre este proyecto» | ⏳ |
 | Cotizar | 4 pasos (Rubro · Tu local · Plazo y presupuesto · Contacto) → Resumen con rango → Confirmación | Wireframe escritorio (6) + móvil (4) |
-| Sobre este proyecto | Aviso de concepto, créditos de fotos y autoría | ⏳ |
+| Sobre este proyecto | Aviso de concepto, créditos de fotos y autoría: Pivote = marca conceptual, Matías = autor (D-026) | ⏳ |
 | Privacidad · 404 | — | ⏳ |
 
 ## Must
@@ -25,13 +27,13 @@
 - Filtro de proyectos por rubro.
 
 ## Could
-- WhatsApp con mensaje prellenado según el rubro.
+- Mensaje prellenado de WhatsApp según el rubro: **preparado pero inactivo** en concepto (D-023).
 - Páginas por rubro para SEO local.
 
 ## Deferred
 - CMS, blog, inglés.
 - Analítica con banner de cookies.
-- Envío real del formulario (Formspree/Web3Forms).
+- Envío real del formulario (Formspree/Web3Forms) y contacto real: se activan al pasar a Client/Production (D-023).
 
 ## Fuera de alcance
 - Testimonios, logos de clientes, métricas de ventas, «más vendido».
