@@ -1,4 +1,4 @@
-# Alcance v1.0 — Nexo Arquitectura
+# Alcance v1.0 — Pivote
 
 ## Páginas
 | Página | Contenido | Estado del diseño |
