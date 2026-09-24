@@ -14,8 +14,9 @@
 | UI Kit v1.0 (Figma › 04) | ✅ Aprobado; ajustes de QA (D-029 §8) |
 | Revisión de consistencia (docs ↔ Figma) | ✅ Hecha, ver `QA.md` |
 | Wireframes Servicios, Proyectos, Caso, Cómo trabajamos, Estudio, Sobre, 404 | ⏳ |
-| High Fidelity Inicio (escritorio, tablet, móvil) y Cotizar (escritorio, móvil) | 🟡 Diseñado y revisado en QA, falta aprobación del usuario |
-| Prototipo Inicio → Cotizar (variables y lógica) | 🟡 Conectado y verificado en estructura (192 interacciones, 0 rotas); falta la prueba manual en Present |
-| DC-002 (estado del local obligatorio) | ⏳ Espera decisión |
+| High Fidelity Inicio (escritorio, tablet, móvil) y Cotizar (escritorio, móvil) | ✅ Aprobado como base para la prueba manual (D-030) |
+| Prototipo Inicio → Cotizar (variables y lógica) | 🟡 Verificado en estructura; **falta la prueba manual del usuario en Present** |
+| High-Fi Freeze y handoff a código | ⏳ Después de la prueba manual |
+| DC-002 (estado del local obligatorio) | ✅ Resuelto: obligatorio con ayuda breve |
 | Código | ⏳ No empezar sin aprobación del prototipo |
 | Publicación GitHub Pages | ⏳ |

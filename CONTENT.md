@@ -269,10 +269,14 @@ Si solo contratas el proyecto de diseño, el proceso termina en la fase 03.
   - < 10: «El área parece muy pequeña. Revisa el número (en m²).»
   - > 1,000: «Para más de 1,000 m² preferimos conversarlo. Puedes seguir sin rango.»
 - **Distrito** (lista de los 43 distritos de Lima + «Callao» + «Otro») · error: «Elige el distrito: cambia traslados y trámites.»
-- **Estado del local:** Local vacío · En funcionamiento · Aún no tengo local
+- **Estado del local (obligatorio, DC-002):** Local vacío · En funcionamiento · Aún no tengo local
+  - ayuda, debajo del título: «El estado actual del local influye en el alcance y el costo estimado de la intervención.»
+  - error, si se intenta continuar sin elegir: «Elige el estado del local para continuar.»
 - **¿Está dentro de un centro comercial?** Sí · No
 - **Fotos o planos (opcional)** · «Arrastra fotos o planos · JPG, PNG o PDF» · al elegir, se muestra solo el nombre del archivo: «plano-local.pdf · se adjuntaría a tu solicitud».
 - **Resumen de errores** (arriba, con enlace a cada campo): «Revisa 1 campo antes de continuar» / «Revisa 2 campos antes de continuar»
+  - Texto del resumen en el paso 2: «Completa el área, el distrito y el estado del local para continuar.»
+- **Obligatorios del paso 2:** área, distrito y estado del local. Centro comercial viene con «No» preseleccionado; fotos o planos son opcionales.
 - **Botones:** «← Atrás» · «Continuar»
 
 ### 7.3 Paso 3 · Plazo y presupuesto

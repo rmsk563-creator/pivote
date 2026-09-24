@@ -1,7 +1,7 @@
 # Project Profile — Pivote
 
 ## Identidad
-**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **High Fidelity de Inicio y Cotizar + prototipo en revisión** (2026-09-24).
+**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **High Fidelity aprobado como base; prueba manual en Present pendiente** (2026-09-24).
 
 ## Objetivo
 Presentar un estudio de diseño de espacios comerciales para negocios pequeños y medianos, y convertir visitas en **solicitudes de cotización**. Para Matías funciona como proyecto de portafolio, muestra de UX/UI y posible referencia para captar clientes reales.
@@ -70,12 +70,11 @@ Historial completo en `DECISIONS.md`.
 
 ## Estado actual
 - Último checkpoint aprobado: contenido, UI Kit, fotos y consistencia (2026-09-24).
-- **En revisión:** High Fidelity de Inicio (1440, 834, 390) y Cotizar (1440, 390) y el prototipo con variables (Figma › 05). QA en `QA.md`.
-- **Abierto:** DC-002 (¿estado del local obligatorio?).
-- Siguiente gate: aprobación del High Fidelity y del prototipo, y después el handoff a código.
+- **Aprobado como base (D-030):** High Fidelity de Inicio (1440, 834, 390) y Cotizar (1440, 390) con prototipo de variables (Figma › 05). DC-002 cerrado (estado del local obligatorio).
+- Siguiente gate: prueba manual del usuario en Present → High-Fi Freeze → handoff a código.
 
 ## Siguiente paso
-El usuario prueba el prototipo en Present (lista en `QA.md`), decide DC-002 y aprueba o pide ajustes. Sin aprobación no se pasa a código.
+El usuario prueba el prototipo en Present (lista en `QA.md`). Solo se corrigen bugs de interacción o presentación. Sin su confirmación no hay freeze ni handoff.
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ

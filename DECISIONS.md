@@ -203,10 +203,16 @@ Revisadas ampliadas: sin marcas comerciales legibles. Se usan como fotografía d
 
 **Alternativa:** dejarlo opcional y mostrar en el resumen «Para calcular un rango necesitamos el estado del local». Esa salida ya existe como bloque final del estimador.
 
-**Estado: abierto, espera decisión del usuario.** No se modificó CONTENT.md.
+**Resolución (2026-09-24, aprobada por el usuario):** el estado del local es **obligatorio**. Motivo del usuario: la fórmula del rango depende de este dato, y es mejor pedirlo antes de avanzar que avisar al final que falta información.
+- Opciones sin cambios: Local vacío · En funcionamiento · Aún no tengo local.
+- Ayuda breve: «El estado actual del local influye en el alcance y el costo estimado de la intervención.»
+- Error: «Elige el estado del local para continuar.»
+- Actualizado en CONTENT §7.2 y en Figma (paso 2, escritorio y móvil): ayuda, mensaje de error enlazado a la variable `err/estado` y validación del prototipo.
+
+**Estado: cerrado.**
 
 ## D-029 · 2026-09-24 · High Fidelity de Inicio y Cotizar: decisiones menores
-Ninguna toca una decisión congelada (salvo DC-002, abierto aparte).
+Ninguna toca una decisión congelada (DC-002 se resolvió aparte).
 
 1. **Anchos:** Inicio en escritorio 1440, tablet 834 y móvil 390. Cotizar en escritorio y móvil.
    - Cotizar no tiene frame de tablet: su diseño a dos columnas necesita ≥ 1160 px. Entre 600 y 1159 px se usa la composición móvil de una columna (máximo 640 px, resumen plegable). Se documenta para el código.
@@ -234,3 +240,10 @@ Ninguna toca una decisión congelada (salvo DC-002, abierto aparte).
    - secciones y flujos.
 
 **Estado: aplicado, pendiente de revisión del usuario.**
+
+## D-030 · 2026-09-24 · High Fidelity aprobado como base para la prueba manual
+Inicio y Cotizar (Figma › 05) quedan aprobados como base. El usuario hará la prueba en Present antes del High-Fi Freeze y el handoff a código.
+
+Siguen congelados: arquitectura, contenido, identidad, UI Kit, flujo del formulario, fórmula del estimador y decisiones responsive.
+
+Durante la prueba solo se corrigen bugs de interacción o presentación. Un rediseño solo procede ante un problema real de UX, y abre un Decision Conflict. **Estado: vigente.**

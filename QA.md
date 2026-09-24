@@ -69,7 +69,7 @@
 | 3 | La pregunta larga del acordeón («…ITSE?») se cortaba en móvil | Responsive / legibilidad | Texto a ancho completo con alto automático en el componente |
 | 4 | Enlaces con un objetivo de 20 px | Accesibilidad | Relleno de 4 px, objetivo de 28 px |
 | 5 | El pie decía «Contacto (concepto)», que no coincide con CONTENT §1 | Contenido | «Contacto» |
-| 6 | El resumen de errores del paso 2 no mencionaba el estado del local, que es obligatorio | Contenido | Texto corregido. Abierto DC-002 para confirmar si debe ser obligatorio |
+| 6 | El resumen de errores del paso 2 no mencionaba el estado del local, que es obligatorio | Contenido | Texto corregido. DC-002 resuelto: obligatorio, con ayuda breve y mensaje de error propio del grupo (variable `err/estado`) |
 | 7 | Las tarjetas de servicio tenían alturas desiguales | Visual | Altura igualada (445 px) |
 | 8 | Mini-planos en gris de wireframe | Visual | Componente `Mini-plano` con 5 plantas de línea |
 | 9 | «Después de un tiempo» configurado en segundos (1.2 / 6), pero Figma lo guarda en **milisegundos**: «Enviando…» y el aviso de contacto se habrían cerrado al instante | Interacción | Corregido a 1200 ms y 6000 ms. Verificado en la documentación de `Trigger`. Las transiciones sí van en segundos |
@@ -90,7 +90,7 @@
 4. Abrir y cerrar varias preguntas frecuentes.
 5. «Cotizar este servicio» en *Diseño + obra* abre el paso 1 con ese servicio ya marcado.
 6. Paso 1: pulsar Continuar sin elegir → aparece el resumen de errores. Elegir rubro y servicio → el panel «Tu solicitud» se actualiza → Continuar.
-7. Paso 2: Continuar sin nada → los campos se marcan en rojo con su mensaje. Tocar área y distrito, elegir estado → «Local» se actualiza en el panel → Continuar.
+7. Paso 2: Continuar sin nada → área y distrito en rojo y «Elige el estado del local para continuar.» bajo sus opciones. Tocar área y distrito, elegir estado (el mensaje desaparece) → «Local» se actualiza en el panel → Continuar.
 8. Paso 2: tocar la zona de archivos → aparece «plano-local.pdf»; tocar otra vez → vuelve.
 9. Paso 3: elegir fecha o «Aún no tengo fecha», un horario de obra y un presupuesto de S/ 20,000 – 50,000.
 10. Paso 4: Revisar sin datos → errores en nombre, celular y privacidad. Completar y marcar → Resumen.
@@ -103,3 +103,11 @@
     - comprobar que la barra de acciones queda fija al hacer scroll;
     - abrir el menú ☰, probar ✕ y los enlaces;
     - deslizar el carrusel de casos.
+
+### Verificación tras DC-002 (2026-09-24)
+- ✅ Paso 2 (escritorio y móvil): ayuda visible bajo «Estado del local»; el error aparece solo si se intenta continuar sin elegir y desaparece al elegir una opción.
+- ✅ 13 listas de reinicio (entradas a Cotizar desde Inicio, servicios, CTA final y menú móvil) incluyen `err/estado = false`.
+- ✅ 192 interacciones, 0 destinos rotos, ningún modo de revisión aplicado a los frames.
+
+### Estado
+🟡 **Esperando la prueba manual del usuario en Present** (D-030). Los bugs que salgan se registran aquí.
