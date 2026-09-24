@@ -39,7 +39,7 @@ Ninguno. Hosting: GitHub Pages. Formulario simulado del lado del cliente. No hay
 Publicable en GitHub Pages (sin build, rutas relativas). Todo en español. No debe parecer plantilla ni caer en el beige minimalista, en la estética de cafetería ni en clichés de arquitectura. Si algún día se usa con clientes reales: el nombre contiene «Arquitectura», y ofrecer servicios de arquitectura en Perú requiere un arquitecto colegiado (CAP).
 
 ## Decisiones relevantes
-- Nombre: Nexo Arquitectura (D-001, D-002).
+- Nombre: **abierto** (DC-001). Vértice Studio aprobado pero en conflicto; Nexo provisional (D-002); shortlist Bisagra · Pivote · Holgura (D-012).
 - Reality Mode: Concept / Portfolio (D-003).
 - Formulario simulado con aviso solo en la confirmación (D-005).
 - Figma antes del código, flujo completo (D-006).
