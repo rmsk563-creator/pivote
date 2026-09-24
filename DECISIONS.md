@@ -128,3 +128,11 @@ Hasta ahora, cotas, anotaciones y antetítulos en monoespaciada usaban el azul. 
 
 ## D-020 · 2026-09-24 · Congelamiento del Brand Gate
 Quedan **congelados**: el naming (D-013), el concepto y la construcción del logo (D-017), las tipografías (Archivo + IBM Plex Mono, D-008 pasa a aprobada) y los roles cromáticos (D-018 y D-019). Cualquier cambio importante en estos elementos exige abrir un **Decision Conflict** antes de modificarlos. **Estado: vigente.**
+
+## D-021 · 2026-09-24 · UI Kit v0.1 (Figma › 04, pendiente de revisión)
+Construido sobre las variables `Color`, `Espaciado` (4–128) y `Radio` (0 / 2 / 4) y los estilos de texto. Componentes:
+- **Acción y formulario:** Botón (4 tipos × 5 estados), Campo (texto o selector × 5 estados), Opción, Casilla, Progreso.
+- **Contenido:** Antetítulo, Etiqueta, Cota, Anotación, Rango orientativo, Tarjeta de proyecto (3 estados), Paso de proceso, Acordeón, Aviso (errores, presupuesto, concepto).
+- **Estructura:** Cabecera (4 variantes), Pie (2 variantes).
+
+Reglas incorporadas: foco visible de 3 px; seleccionado en azul (es acción); la anotación usa un cuadrado hueco en tinta, porque el cuadrado lleno azul es exclusivo del logo. **Estado: diseñado, falta revisión del usuario.**
