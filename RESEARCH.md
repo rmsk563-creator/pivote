@@ -18,7 +18,7 @@
 - La prueba social son logos y testimonios.
 - En Lima, el foco es corporativo y de malls.
 
-## Oportunidades para Nexo
+## Oportunidades para Pivote
 1. Transparencia: rangos «desde», qué incluye cada servicio y plazos por fase.
 2. Hablar de los riesgos del dueño: costo, días cerrado, trámites y ventas.
 3. Casos como decisiones (problema → decisión → plano), sin métricas inventadas.

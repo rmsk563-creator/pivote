@@ -64,3 +64,10 @@ Figma › página «01b Naming · comparación»: 3 tableros con el mismo sistem
 - **Estudio de diseño comercial:** el más corto, pero «diseño comercial» se confunde con diseño gráfico, publicidad o packaging.
 - Quitar «Arquitectura» reduce la cuestión de profesión regulada (CAP) que aparecía con Nexo. Si hubiera obra real, igual se necesitarían profesionales habilitados.
 - Holgura es el nombre que más depende del descriptor, porque por sí solo no dice «comercio». Bisagra y Pivote dependen menos.
+
+## Cierre · 2026-09-24
+**Nombre definitivo: Pivote** · descriptor principal: **Estudio de espacios comerciales**. Aprobado por el usuario; cierra DC-001 (ver D-013).
+- Vértice Studio queda sustituida por esta aprobación explícita.
+- Nexo Arquitectura queda descartada; su exploración está en Figma › 99 Archivo.
+- Bisagra y Holgura quedan como alternativas descartadas.
+- Dominio candidato: `pivote.pe` (libre según whois el 2026-09-24, **no reservado**).

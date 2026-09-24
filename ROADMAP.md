@@ -1,16 +1,17 @@
-# Roadmap — Nexo Arquitectura
+# Roadmap — Pivote
 
 | Fase | Estado |
 |---|---|
 | Research | ✅ Hecho y aprobado (2026-09-24) |
-| Naming | ✅ Nexo Arquitectura (2026-09-24) |
+| Naming | ✅ **Pivote** · «Estudio de espacios comerciales» (D-013, 2026-09-24) |
 | Arquitectura y alcance | ✅ Aprobados (2026-09-24) |
-| Identidad: comparación de color A+C | 🟡 Diseñada en Figma, falta elegir variante |
-| Identidad: exploración de logo | 🟡 5 bocetos en Figma, falta elegir dirección |
-| Wireframe Inicio (escritorio + móvil) | 🟡 Diseñado, falta aprobación |
-| Wireframe Cotizar (6 escritorio + 4 móvil) | 🟡 Diseñado, falta aprobación |
+| Wireframe Inicio (escritorio + móvil) | ✅ Aprobado como base (D-016); referencias de marca actualizadas |
+| Wireframe Cotizar (6 escritorio + 4 móvil) | ✅ Aprobado como base (D-016); referencias de marca actualizadas |
+| Logo Pivote D2 como sistema | 🟡 Diseñado en Figma (01 Identidad), falta aprobación |
+| Comparación cromática final (V1–V4) | 🟡 Diseñada en Figma (01c), falta elegir |
+| Brand Gate | ⏳ |
+| CONTENT.md (copy, H1, precios «desde», fórmula del rango) | ⏳ (no empezar hasta que lo pida el usuario) |
 | Wireframes Servicios, Proyectos, Caso, Cómo trabajamos, Estudio, Sobre, 404 | ⏳ |
-| CONTENT.md (copy, precios «desde», fórmula del rango) | ⏳ |
 | UI Kit | ⏳ (después del Brand Gate) |
 | High fidelity | ⏳ |
 | Prototipo | ⏳ |
