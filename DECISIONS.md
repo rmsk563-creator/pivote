@@ -44,10 +44,10 @@ Flujo: research → identidad → arquitectura → wireframes → UI Kit → hig
 - Se mantiene: precisión, cotas y anotaciones, azul cianotipo funcional, fotografía cálida y materialidad.
 - Se evita: lo frío o corporativo, la estética de cafetería, el beige minimalista, la plantilla y los clichés de arquitectura.
 
-En comparación final con el sistema de Pivote: V1 Piedra, V2 Fachada, V3 Latón y V4 Fachada + Latón (combinación controlada), en Figma › 01c. **Estado: dirección aprobada, variante pendiente de elección del usuario.**
+En comparación final con el sistema de Pivote: V1 Piedra, V2 Fachada, V3 Latón y V4 Fachada + Latón (combinación controlada), en Figma › 01c. **Estado: dirección aprobada; variante elegida: V4 (D-018).**
 
 ## D-008 · 2026-09-24 · Tipografía de exploración: Archivo + IBM Plex Mono
-Archivo para títulos y cuerpo, IBM Plex Mono para cotas, anotaciones y descriptor. El logotipo Pivote se construye sobre Archivo SemiBold. **Estado: propuesta, se confirma en el Brand Gate.**
+Archivo para títulos y cuerpo, IBM Plex Mono para cotas, anotaciones y descriptor. El logotipo Pivote se construye sobre Archivo SemiBold. **Estado: aprobado y congelado (D-020).**
 
 ## D-009 · 2026-09-24 · Carpeta del proyecto con el nombre anterior
 Renombrada de `~/Downloads/vertice-studio` a **`~/Downloads/pivote`** a pedido del usuario (2026-09-24). Antes se comprobó que el destino no existía y que el árbol de Git estaba limpio. Después se verificó: `git status` limpio, historial completo, `git fsck` sin errores. No había remoto que actualizar. **Estado: hecho.**
@@ -79,7 +79,7 @@ Concepto aprobado: el punto de la «i» es el eje, y en reducción una P gira al
 - **sin contenedor redondeado** (evita la lectura de icono de app);
 - **nunca P clara sobre un recuadro azul** (se lee como señal de estacionamiento).
 
-Sistema: componente `Logo / Pivote` en Figma › 01 Identidad (4 versiones × 4 tonos, colores enlazados a tokens). **Estado: en desarrollo.**
+Sistema: componente `Logo / Pivote` en Figma › 01 Identidad (4 versiones × 4 tonos, colores enlazados a tokens). **Estado: aprobado en el Brand Gate (D-017).**
 
 ## D-015 · 2026-09-24 · Acento material: barra, no cuadrado
 Como el cuadrado pasa a ser el pilar del logo, el acento material (piedra, verde o latón según la variante) se dibuja como una barra corta de 14 × 3. Así no compite con la marca. **Estado: aplicado en la comparación 01c; se confirma en el UI Kit.**
@@ -91,3 +91,40 @@ Aprobados por el usuario como base. Actualización de identidad sin cambios de a
 - aviso de concepto de la confirmación con el nombre nuevo.
 
 No se detectaron problemas de usabilidad que justifiquen abrir un conflicto. **Estado: aprobado.**
+
+## BRAND GATE · 2026-09-24 · aprobado por el usuario
+
+## D-017 · 2026-09-24 · Logo Pivote D2 aprobado y cerrado
+Construcción congelada:
+- pilar cuadrado como eje;
+- P concéntrica con ese eje;
+- sin arco de giro, sin inclinación, sin contenedor de app;
+- azul solo en el pilar.
+
+Cierre técnico:
+- **Favicon ajustado a la cuadrícula de píxeles:** 16 px dibujado píxel a píxel (fuste de 3 px, bandas de 2 px, pilar de 2 × 2); 24 y 32 px con rectas en píxeles enteros.
+- **Legibilidad comprobada a tamaño real** en pestañas claras y oscuras (captura con Chrome headless).
+- **Problema técnico detectado y corregido:** el favicon transparente desaparecía sobre pestañas oscuras, y el SVG adaptativo sigue el esquema del sistema operativo y no el de la pestaña. Solución: el favicon siempre lleva fondo propio, un cuadrado de esquinas rectas (papel en claro, verde botella en oscuro). El concepto no cambia.
+- **Exportado** en `assets/logos/`: 16 SVG, 8 PNG, `favicon.ico` (16/24/32), `favicon.svg`, íconos de 180, 192, 512 y maskable, y `site.webmanifest`.
+
+**Estado: aprobado y congelado.**
+
+## D-018 · 2026-09-24 · Paleta V4 Fachada + Latón con jerarquía estricta
+| Color | Uso exclusivo |
+|---|---|
+| **Azul cianotipo** `#2A3FD6` (hover `#1F31B0`; claro `#C7D2FF` sobre oscuro) | Acción principal, enlaces funcionales, estado seleccionado y pilar del logo |
+| **Verde botella** `#1E4B3E` | Bloques de peso, superficies oscuras, elementos de fachada y materialidad |
+| **Latón** `#C98A2B` | Solo barras cortas decorativas (14 × 3). Nunca texto, nunca cuadrados, nunca fondos |
+| **Neutros** (papel `#F3F2EE`, blanco, tinta `#16191C` / `#5A6066`, `#E3E8E2`, `#CBD0C9`) | Fondos, superficies, texto y estructura |
+
+- **Pesos:** neutros la mayor parte de la superficie, luego verde, azul en puntos de acción y latón testimonial. Los tres colores nunca van con el mismo peso en una vista.
+- **Evitar:** lo bancario (azul y verde grandes a la vez), lo startup (degradados, azul dominante), el exceso de color, la cafetería (latón o crema como fondo) y la decoración gratuita.
+- **En Figma:** colección nueva `Color` de un solo modo («Pivote») con 27 tokens. La colección «Color · Exploración A+C» queda solo como historial.
+
+**Estado: aprobado y congelado.**
+
+## D-019 · 2026-09-24 · Capa técnica en neutro (consecuencia de D-018)
+Hasta ahora, cotas, anotaciones y antetítulos en monoespaciada usaban el azul. Con la jerarquía estricta, el azul queda solo para acción y pilar, así que la capa técnica pasa a neutro: `tecnico/linea` = `#5A6066` sobre claro y `#A8B8B0` sobre verde. El lenguaje técnico se sostiene con la monoespaciada, las líneas de cota y las anotaciones, no con el color. Esto modifica un detalle de D-007 (el azul como capa técnica) por instrucción explícita del usuario. **Estado: aplicado.**
+
+## D-020 · 2026-09-24 · Congelamiento del Brand Gate
+Quedan **congelados**: el naming (D-013), el concepto y la construcción del logo (D-017), las tipografías (Archivo + IBM Plex Mono, D-008 pasa a aprobada) y los roles cromáticos (D-018 y D-019). Cualquier cambio importante en estos elementos exige abrir un **Decision Conflict** antes de modificarlos. **Estado: vigente.**

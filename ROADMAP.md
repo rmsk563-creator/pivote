@@ -2,18 +2,17 @@
 
 | Fase | Estado |
 |---|---|
-| Research | ✅ Hecho y aprobado (2026-09-24) |
-| Naming | ✅ **Pivote** · «Estudio de espacios comerciales» (D-013, 2026-09-24) |
-| Arquitectura y alcance | ✅ Aprobados (2026-09-24) |
-| Wireframe Inicio (escritorio + móvil) | ✅ Aprobado como base (D-016); referencias de marca actualizadas |
-| Wireframe Cotizar (6 escritorio + 4 móvil) | ✅ Aprobado como base (D-016); referencias de marca actualizadas |
-| Logo Pivote D2 como sistema | 🟡 Diseñado en Figma (01 Identidad), falta aprobación |
-| Comparación cromática final (V1–V4) | 🟡 Diseñada en Figma (01c), falta elegir |
-| Brand Gate | ⏳ |
-| CONTENT.md (copy, H1, precios «desde», fórmula del rango) | ⏳ (no empezar hasta que lo pida el usuario) |
+| Research | ✅ Aprobado (2026-09-24) |
+| Naming | ✅ **Pivote** · «Estudio de espacios comerciales» (D-013) |
+| Arquitectura y alcance | ✅ Aprobados |
+| Wireframes Inicio y Cotizar | ✅ Aprobados como base (D-016) |
+| **Brand Gate** (logo D2, paleta V4, tipografías, roles) | ✅ Aprobado y congelado (D-017 a D-020, 2026-09-24) |
+| Exportación del logo (SVG, PNG, ICO, favicon, manifest) | ✅ Hecho y verificado a 16, 24 y 32 px (`assets/logos/`) |
+| Tono de voz | 🟡 Escrito (`MARCA.md` §5), falta revisión del usuario |
+| CONTENT.md (copy, precios, estimador, FAQ, formulario, aviso) | 🟡 Borrador completo, falta revisión del usuario |
+| UI Kit (Figma › 04) | 🟡 Diseñado, falta revisión del usuario |
 | Wireframes Servicios, Proyectos, Caso, Cómo trabajamos, Estudio, Sobre, 404 | ⏳ |
-| UI Kit | ⏳ (después del Brand Gate) |
-| High fidelity | ⏳ |
+| High Fidelity | ⏳ Bloqueado hasta la revisión de contenido |
 | Prototipo | ⏳ |
-| Código | ⏳ (no empezar sin aprobación del prototipo) |
+| Código | ⏳ No empezar sin aprobación del prototipo |
 | Publicación GitHub Pages | ⏳ |

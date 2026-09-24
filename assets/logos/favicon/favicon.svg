@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .f{fill:#F3F2EE}.t{fill:#16191C}.p{fill:#2A3FD6}
+    @media (prefers-color-scheme: dark){.f{fill:#1E4B3E}.t{fill:#F3F2EE}.p{fill:#C7D2FF}}
+  </style>
+  <rect class="f" width="32" height="32"/>
+  <path class="t" d="M5 2H11V30H5Z"/>
+  <path class="t" fill-rule="evenodd" d="M11 2H17A10 10 0 0 1 17 22H11ZM11 8H17A4 4 0 0 1 17 16H11Z"/>
+  <rect class="p" x="15" y="10" width="4" height="4"/>
+</svg>

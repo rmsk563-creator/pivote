@@ -1,7 +1,7 @@
 # Project Profile — Pivote
 
 ## Identidad
-**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño (identidad en desarrollo, wireframes base aprobados).
+**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: **Brand Gate aprobado** (2026-09-24), contenido y UI Kit en revisión.
 
 ## Objetivo
 Presentar un estudio de diseño de espacios comerciales para negocios pequeños y medianos, y convertir visitas en **solicitudes de cotización**. Para Matías funciona como proyecto de portafolio, muestra de UX/UI y posible referencia para captar clientes reales.
@@ -19,10 +19,15 @@ Locales pensados para que la gente entre, se quede y compre, con presupuesto por
 Inicio · Servicios · Proyectos (índice + 4 casos) · Cómo trabajamos (+ FAQ) · Estudio · Cotizar · Sobre este proyecto · Privacidad · 404. Detalle en `SCOPE.md`.
 
 ## Dirección visual
-- **Dirección:** A · Plano + la calidez de C · Barrio.
-- **Logo:** Pivote D2, en desarrollo. El punto de la «i» es un pilar cuadrado (el eje); el monograma es una P concéntrica con ese pilar.
-- **Color:** paleta en comparación final (V1 Piedra, V2 Fachada, V3 Latón, V4 Fachada + Latón).
-- **Tipografía:** Archivo + IBM Plex Mono.
+- **Dirección:** A · Plano + calidez de C · Barrio.
+- **Logo D2, aprobado y cerrado:** el pilar cuadrado es el eje y la P es concéntrica con él (archivos en `assets/logos/`).
+- **Paleta V4 Fachada + Latón con jerarquía estricta:**
+  - azul: acción y pilar;
+  - verde botella: bloques de peso;
+  - latón: solo barras de acento;
+  - neutros: todo lo demás;
+  - capa técnica en neutro.
+- **Tipografía:** Archivo + IBM Plex Mono. Todo congelado (D-020).
 
 Ver `MARCA.md`.
 
@@ -51,22 +56,23 @@ Ninguno. Hosting: GitHub Pages. Formulario simulado del lado del cliente. No hay
 - Reality Mode: Concept / Portfolio (D-003).
 - Formulario simulado; el aviso de concepto solo aparece en la confirmación (D-005).
 - Figma antes del código (D-006).
-- Dirección A + C (D-007); logo D2 en desarrollo (D-014).
+- Dirección A + C (D-007); logo D2 aprobado (D-017); paleta V4 con roles estrictos (D-018, D-019); Brand Gate congelado (D-020).
 - Wireframes de Inicio y Cotizar aprobados como base (D-016).
 
 Historial completo en `DECISIONS.md`.
 
 ## Fuente de verdad
 - Figma `bwWtTTnJSTklYl240LVNEZ`. Su nombre visible sigue siendo «Nexo Arquitectura — Web»: renombrarlo a mano, porque la API no lo permite.
-- Páginas: 00 Portada · 01 Identidad (Pivote) · 01b Naming (cerrado) · 01c Color · 02 Arquitectura · 03 Wireframes · 99 Archivo (exploración Nexo).
+- Páginas: 00 Portada · 01 Identidad (Pivote, logo, favicon) · 01b Naming (cerrado) · 01c Color (comparación; se eligió V4) · 02 Arquitectura · 03 Wireframes · 04 UI Kit · 99 Archivo (exploración Nexo).
 
 ## Estado actual
-- Último checkpoint aprobado: nombre Pivote y descriptor; wireframes como base (2026-09-24).
-- Siguiente gate: **Brand Gate** (aprobar el logo D2 y elegir la paleta).
+- Último checkpoint aprobado: **Brand Gate** (2026-09-24).
+- Borradores listos para revisión: tono de voz (`MARCA.md` §5), `CONTENT.md` (copy completo, precios, fórmula del estimador, FAQ, mensajes del formulario, aviso de concepto) y UI Kit en Figma (04).
+- Siguiente gate: revisión de contenido, y después High Fidelity.
 - Sin blockers.
 
 ## Siguiente paso
-El usuario revisa la identidad D2 (01 Identidad) y la comparación cromática (01c), y elige la paleta. Después vienen CONTENT.md y el UI Kit.
+El usuario revisa tono, contenido, precios y rangos, fórmula del estimador, CTAs, FAQ, mensajes del formulario y aviso de concepto (lista «Pendiente de revisión» en `CONTENT.md`). No pasar a High Fidelity sin esa revisión.
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ
