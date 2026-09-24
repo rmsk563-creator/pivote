@@ -2,17 +2,29 @@
 
 Formato: ID · fecha · decisión · motivo · estado.
 
-## D-001 · 2026-09-24 · «Vértice Studio» descartado
-El usuario eligió «Vértice Studio». La comprobación encontró **Vértice Arquitectos** en Lima (Miraflores, desde 2000): arquitectura e interiorismo, incluidos edificios comerciales. Es el mismo mercado y casi el mismo nombre. Además, `verticestudio.com` y `.pe` ya están registrados. Se habló con el usuario y lo cambió. Antes también se descartaron Planta Baja, Mostrador, Calle Adentro, Umbral, Vano, Cota y Frente. **Estado: cerrado.**
+## D-001 · 2026-09-24 · Nombre: Vértice Studio
+Aprobado por el usuario. Descartó Planta Baja, Mostrador y Calle Adentro (primera ronda). **Estado: aprobado, en conflicto (ver DC-001).**
 
-## D-002 · 2026-09-24 · Nombre: Nexo Arquitectura
-Elegido por el usuario. Comprobado:
+## DC-001 · 2026-09-24 · Decision Conflict — naming
+**Decisión previa:** Vértice Studio (D-001, aprobada).
+
+**Conflicto detectado:** es muy parecido a **Vértice Arquitectos**, una firma que ya existe en Lima (Miraflores, desde 2000) y hace arquitectura e interiorismo, incluidos edificios comerciales. Mismo mercado y casi el mismo nombre. Además, `verticestudio.com` y `verticestudio.pe` ya están registrados.
+
+**Error de proceso corregido:** en la sesión anterior, D-002 registró «Nexo Arquitectura» como aprobado y reemplazó a D-001 sin abrir un conflicto. Eso fue incorrecto. Una decisión aprobada no se sustituye automáticamente.
+
+**Resultado:** el naming queda reabierto. **Ninguna alternativa sustituye a Vértice Studio hasta una nueva aprobación explícita.** Mientras tanto, la identidad visual, el logo, los wireframes y el archivo de Figma se conservan como exploración provisional. No se modifican.
+
+**Criterios de la ronda nueva:** evitar nombres parecidos a marcas existentes de arquitectura, ingeniería o sector inmobiliario; evitar «Studio + palabra técnica»; evitar nombres muy usados, difíciles de pronunciar en Perú o asociados a inmobiliarias y constructoras.
+
+**Estado: abierto, esperando elección del usuario (ronda 3, 2026-09-24).**
+
+## D-002 · 2026-09-24 · Nexo Arquitectura — alternativa provisional
+Propuesto por el usuario durante el conflicto. **No es el nombre definitivo.** Se usa solo como etiqueta de trabajo en Figma y en la documentación. Comprobado:
 - No hay un estudio con ese nombre en Lima. Los homónimos están en Sevilla (`nexoarquitectura.com`), Madrid y Colombia.
-- En Perú existen Nexo Inmobiliario (portal inmobiliario, rubro vecino) y Nexo Ingeniería (Surco). Hay riesgo de confusión bajo, que se asume.
-- Dominios libres: `nexoarquitectura.pe`, `nexoarquitectura.com.pe` (`.com` ocupado).
-- Si pasara a uso comercial real: el nombre contiene «Arquitectura», y ofrecer servicios de arquitectura en Perú requiere un arquitecto colegiado (CAP).
+- En Perú existen **Nexo Inmobiliario** (portal inmobiliario) y **Nexo Ingeniería** (Surco). Esto choca con el criterio nuevo del usuario de evitar la cercanía a marcas de ingeniería o inmobiliarias.
+- `nexoarquitectura.pe` y `.com.pe` libres; el `.com` está ocupado.
 
-**Estado: aprobado.**
+**Estado: provisional, sujeto a DC-001.**
 
 ## D-003 · 2026-09-24 · Reality Mode: Concept / Portfolio
 El estudio, los casos, los precios y los plazos son ficticios, con un disclosure global discreto (pie + «Sobre este proyecto»). Es un rubro de bajo riesgo, así que no lleva etiquetas «demo» por bloque. **Estado: aprobado.**
@@ -37,6 +49,9 @@ Archivo para títulos y cuerpo, IBM Plex Mono para cotas y anotaciones. Se mantu
 
 ## D-009 · 2026-09-24 · Carpeta del proyecto con el nombre anterior
 La carpeta sigue en `~/Downloads/vertice-studio` porque el usuario indicó esa ruta. Se puede renombrar a `nexo-arquitectura` sin impacto: aún no hay código ni un remoto. **Estado: pendiente de que el usuario decida.**
+
+## D-011 · 2026-09-24 · Exploración visual, logo y wireframes: base provisional
+El usuario aprobó como base provisional la comparación A+C, las 5 direcciones de logo y los wireframes de Inicio y Cotizar. No se tocan hasta que se cierre DC-001. **Estado: aprobado (provisional).**
 
 ## D-010 · 2026-09-24 · Fotos: interiores reales de terceros
 Las fotos de Unsplash muestran obras reales de otros diseñadores; una de ellas es de la arquitecta Érica Rodrigues. Se usan como ilustración de ambiente, con créditos, y no se presentan como obra propia. Se descartaron las fotos con marcas visibles (Aesop, «DEFFA WEAR», «Gods», «U.S. NAVY», «VINTAGE WATCH Co», rótulos de una joyería). **Estado: aprobado como criterio.**

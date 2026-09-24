@@ -1,7 +1,7 @@
 # Project Profile — Nexo Arquitectura
 
 ## Identidad
-**Nexo Arquitectura** · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño (identidad en exploración + wireframes).
+**Nombre en conflicto (DC-001).** Vértice Studio era la decisión aprobada, pero se detectó un conflicto. «Nexo Arquitectura» es solo una etiqueta de trabajo provisional. Hay una ronda nueva de naming abierta. · Web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño (identidad y wireframes aprobados como base provisional).
 
 ## Objetivo
 Presentar un estudio de arquitectura interior especializado en locales comerciales y convertir visitas en **solicitudes de cotización**. Para Matías funciona como proyecto de portafolio, muestra de UX/UI y posible referencia para captar clientes reales.
@@ -50,10 +50,10 @@ Historial completo en `DECISIONS.md`.
 Figma «Nexo Arquitectura — Web» (páginas 00–06) + estos documentos. El código aún no existe.
 
 ## Estado actual
-Último checkpoint aprobado: research, arquitectura y alcance (2026-09-24). Siguiente gate: **Brand Gate** (elegir variante de color + dirección de logo), después aprobación de wireframes. Sin blockers.
+Último checkpoint aprobado: exploración visual, logo y wireframes de Inicio y Cotizar como base provisional (2026-09-24). **Blocker: naming abierto (DC-001).** Después viene el Brand Gate (variante de color + dirección de logo).
 
 ## Siguiente paso
-Elegir la variante de color (V1/V2/V3) y 1–2 direcciones de logo para desarrollar.
+El usuario elige un nombre de la ronda 3 (8 opciones), mantiene Vértice Studio asumiendo el riesgo o pide otra ronda.
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ

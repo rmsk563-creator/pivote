@@ -1,7 +1,7 @@
-# Marca — Nexo Arquitectura (EN EXPLORACIÓN, sin aprobar)
+# Marca — (nombre abierto, DC-001) · EXPLORACIÓN PROVISIONAL
 
 ## Nombre
-**Nexo Arquitectura.** Nexo significa unión o encuentro: entre la calle y el local, entre el dueño y su espacio, entre el diseño y la obra. Ver D-002.
+**Abierto.** La decisión aprobada era Vértice Studio y está en conflicto con Vértice Arquitectos (Lima). «Nexo Arquitectura» es una etiqueta de trabajo provisional (D-002). El análisis del nombre y los bocetos de logo de abajo se hicieron para «Nexo»: si cambia el nombre, las tipologías y el sistema de color se mantienen, pero los bocetos se rehacen.
 
 ## Dirección
 A · Plano con la calidez de C · Barrio.
