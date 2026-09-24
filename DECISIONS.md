@@ -247,3 +247,40 @@ Inicio y Cotizar (Figma › 05) quedan aprobados como base. El usuario hará la 
 Siguen congelados: arquitectura, contenido, identidad, UI Kit, flujo del formulario, fórmula del estimador y decisiones responsive.
 
 Durante la prueba solo se corrigen bugs de interacción o presentación. Un rediseño solo procede ante un problema real de UX, y abre un Decision Conflict. **Estado: vigente.**
+
+## D-031 · 2026-09-24 · HIGH-FI UX REFINEMENT (ronda posterior a la prueba en Present)
+El usuario probó el prototipo y **no aprobó todavía el High-Fi Freeze**. Autorizó modificar layout, responsive, estados e interacciones; siguen congelados naming, identidad, paleta, tipografías, arquitectura, contenido aprobado, UI Kit y fórmula del estimador.
+
+1. **Cotizar responsive** (sustituye D-029 §1):
+   - **≥ 1024 px:** contenedor de 1200 px como máximo, centrado. Tarjeta del formulario (768 px en 1440; flexible en 1024) y panel «Tu solicitud» (400 px; 320 px en 1024) alineados arriba. Padding de la tarjeta 48 px (40 en 1024). Opciones en cuadrícula de 1, 2 o 3 columnas según el largo de la etiqueta. Acciones separadas por una línea: «Atrás» a la izquierda y la acción principal a la derecha.
+   - **600–1023 px:** una columna de 640 px como máximo, centrada, con el resumen plegable y la barra de acciones fija.
+   - **< 600 px:** composición móvil.
+   - Frames de revisión en 1024, 834, 768 y 360 (Figma › 05, sección «Cotizar · Revisión responsive»).
+2. **Cabecera fija:** variantes `Scroll = Arriba / Desplazada` en el componente. La versión desplazada es más baja (12 px menos en escritorio y 8 px en móvil), fondo al 94 % con desenfoque de 16 px y una sombra suave. En Figma la cabecera queda fija en todas las pantallas; el cambio de estado se ve en el flujo «Demo · Cabecera al desplazar» (Figma no puede cambiar la cabecera según la posición del scroll). Especificación para código en `MOVIMIENTO.md`.
+3. **Final de la cotización:**
+   - Resumen con «Enviar solicitud» normal.
+   - Al tocarlo, el mismo botón pasa a «Enviando…» (variable `btn/enviar`) durante 1000 ms, con una capa transparente que bloquea el doble toque.
+   - Después aparece la **pantalla de confirmación** independiente, con el copy de CONTENT §7.6–7.7: «Volver al inicio» y «Nueva cotización».
+   - Se eliminaron los frames «6 Enviando».
+4. **Simulación de campos** (sustituye D-029 §7, primer punto): área, distrito, fecha, nombre y teléfono abren un selector con varias respuestas (diálogo en escritorio, hoja inferior en móvil). Área, nombre y teléfono incluyen una respuesta que muestra el error. En código son campos reales.
+5. **Datos de prueba:** se retiran «Ana Quispe», «999 000 000», `ana@ejemplo.com` y `tu@correo.com` (en HF, wireframes y modos de revisión).
+   - Nombres de pila de ejemplo: Rosa, Jorge, Lucía.
+   - Teléfono enmascarado: «9•• ••• •••».
+   - Correo: `nombre@example.com` (dominio reservado).
+   - Corrige el hallazgo 3 del Consistency Gate: `ejemplo.com` **no** es un dominio reservado.
+6. **Estimador con área variable:** 30, 48, 60 y 90 m² (y 8 m² para ver el error).
+   - Fórmula sin cambios (CONTENT §8).
+   - Bug corregido: Figma solo admite condicionales «si / si no», así que los bloques extra del estimador anterior se habían descartado sin aviso y *Diseño + obra* mostraba el rango del proyecto de diseño. Ahora son 375 acciones planas por botón «Revisar».
+7. **Legibilidad y tamaños:**
+   - **Texto:** Body/S 15, Label/M 16, Label/S 14, Mono/S 13, Mono/XS 12. Las etiquetas de campo pasan a Label/M.
+   - **Controles:** Botón 48 px, Enlace 34 px, Opción 52 px (radio de 20 px, sin salto de tamaño al seleccionar), Campo de 52 px, Casilla con fila de 44 px y caja de 22 px.
+8. **Movimiento:**
+   - hovers definidos en los componentes (ahora se heredan también en las instancias con clic);
+   - Smart Animate de 250 ms entre pasos;
+   - menú móvil que entra desde arriba;
+   - aviso de contacto que entra desde abajo;
+   - acordeón con Smart Animate de 200 ms;
+   - selectores con fundido de 200 ms.
+   Todo lo demás, y `prefers-reduced-motion`, en `MOVIMIENTO.md`.
+
+**Estado: aplicado; pendiente de la nueva prueba del usuario en Present. No es el High-Fi Freeze.**

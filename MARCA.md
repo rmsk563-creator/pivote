@@ -95,7 +95,8 @@ El latón sobre papel da 2.62: solo es decorativo.
 | **IBM Plex Mono** | 400 · 500 | Cotas, anotaciones, antetítulos, datos técnicos (m², semanas), descriptor |
 
 - **Enlace:** `https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap`
-- **Escala** (estilos de texto en Figma): Display/L 56/60 · Heading/L 36/42 · M 28/34 · S 20/26 · Body/L 18/28 · M 16/24 · S 14/20 · Label/M 15/20 · S 13/16 · Mono/S 12/16 (mayúsculas) · Mono/XS 11/14.
+- **Escala** (estilos de texto en Figma, escritorio): Display/L 56/60 · Heading/L 36/42 · M 28/34 · S 20/26 · Body/L 18/28 · M 16/24 · S 15/22 · Label/M 16/22 · S 14/20 · Mono/S 13/18 (mayúsculas) · Mono/XS 12/16.
+- **Mínimos de legibilidad (D-031):** cuerpo ≥ 15 px; etiquetas de campo 16 px; ayudas y errores 15 px; antetítulos en mono 13 px; ningún texto funcional por debajo de 12 px. Las familias y los pesos siguen congelados (D-020); solo se subieron los tamaños pequeños tras la prueba al 100 %.
 
 ## 5. Tono de voz
 **Tres adjetivos: claro, preciso, cercano.** Hablamos como la persona del estudio que mide tu local contigo, no como una agencia.

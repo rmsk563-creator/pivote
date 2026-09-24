@@ -15,8 +15,10 @@
 | Revisión de consistencia (docs ↔ Figma) | ✅ Hecha, ver `QA.md` |
 | Wireframes Servicios, Proyectos, Caso, Cómo trabajamos, Estudio, Sobre, 404 | ⏳ |
 | High Fidelity Inicio (escritorio, tablet, móvil) y Cotizar (escritorio, móvil) | ✅ Aprobado como base para la prueba manual (D-030) |
-| Prototipo Inicio → Cotizar (variables y lógica) | 🟡 Verificado en estructura; **falta la prueba manual del usuario en Present** |
-| High-Fi Freeze y handoff a código | ⏳ Después de la prueba manual |
+| Prototipo Inicio → Cotizar (variables y lógica) | ✅ Ronda 1 probada por el usuario en Present |
+| **HIGH-FI UX REFINEMENT** (D-031): Cotizar responsive, cabecera fija, selectores, nuevo final, datos de prueba, tamaños, movimiento, estimador corregido | 🟡 Aplicado y verificado en estructura; **falta la nueva prueba del usuario en Present** (`QA.md`) |
+| Especificación de movimiento para el código | ✅ `MOVIMIENTO.md` |
+| High-Fi Freeze y handoff a código | ⏳ Después de aprobar la ronda de refinamiento |
 | DC-002 (estado del local obligatorio) | ✅ Resuelto: obligatorio con ayuda breve |
 | Código | ⏳ No empezar sin aprobación del prototipo |
 | Publicación GitHub Pages | ⏳ |

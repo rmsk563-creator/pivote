@@ -269,6 +269,7 @@ Si solo contratas el proyecto de diseño, el proceso termina en la fase 03.
   - < 10: «El área parece muy pequeña. Revisa el número (en m²).»
   - > 1,000: «Para más de 1,000 m² preferimos conversarlo. Puedes seguir sin rango.»
 - **Distrito** (lista de los 43 distritos de Lima + «Callao» + «Otro») · error: «Elige el distrito: cambia traslados y trámites.»
+  - En el prototipo de Figma el selector muestra solo Miraflores, Barranco, Surco, San Isidro y Otro (D-031).
 - **Estado del local (obligatorio, DC-002):** Local vacío · En funcionamiento · Aún no tengo local
   - ayuda, debajo del título: «El estado actual del local influye en el alcance y el costo estimado de la intervención.»
   - error, si se intenta continuar sin elegir: «Elige el estado del local para continuar.»
@@ -294,7 +295,7 @@ Si solo contratas el proyecto de diseño, el proceso termina en la fase 03.
 - **Tu nombre** · error: «Escribe tu nombre.»
 - **Nombre del negocio (opcional)**
 - **WhatsApp o teléfono** (prefijo +51) · error: «Escribe un celular de 9 dígitos que empiece con 9.»
-- **Correo** (opcional; obligatorio si eliges «Correo» como preferencia) · error: «Revisa el correo: falta la @ o el dominio.»
+- **Correo** (opcional; obligatorio si eliges «Correo» como preferencia) · placeholder: «nombre@example.com» (dominio reservado para ejemplos, RFC 2606) · error: «Revisa el correo: falta la @ o el dominio.»
 - **¿Cómo prefieres que te contactemos?** WhatsApp · Llamada · Correo
 - **☐ Acepto la política de privacidad** (enlace) · error: «Acepta la política de privacidad para revisar tu solicitud.»
 - **Botones:** «← Atrás» · «Revisar solicitud»
@@ -313,16 +314,19 @@ Si solo contratas el proyecto de diseño, el proceso termina en la fase 03.
   - «Aún no lo sé» (servicio): se muestran dos rangos, «Si solo es el proyecto» y «Si incluye la obra».
 - **Filas editables:** Rubro y servicio · Tu local · Plazo y presupuesto · Contacto, cada una con «Editar».
 - **Botones:** «← Atrás» · «Enviar solicitud»
-- **Cargando:** botón «Enviando…» deshabilitado (~1 s, simulado).
+- **Botón:** «Enviar solicitud» en su estado normal. Solo al tocarlo pasa a **«Enviando…»** (deshabilitado, ~1 s, simulado) y después a la confirmación, que es una pantalla aparte (D-031).
 - **Error inesperado:** «No pudimos preparar tu solicitud. Inténtalo otra vez.» · [Reintentar]
 
-### 7.6 Confirmación
-- **H1:** «Solicitud completa»
-- **Texto:** «Este es el resumen con el que el estudio prepararía tu visita: {rubro} de {m²} m² en {distrito}, {servicio}{, apertura en {mes año}}.»
-- **Botones:** «Ver proyectos» (primario) · «Volver al inicio»
+### 7.6 Confirmación (actualizada en D-031)
+- **Antetítulo:** `Cotización · Confirmación`
+- **H1:** «Solicitud preparada correctamente»
+- **Texto:** «Gracias por contarnos sobre tu local.»
+- **Resumen corto** (bloque neutro): `Tu solicitud` · «{rubro} · {m²} m² · {distrito} · {servicio}» · «Rango orientativo» · {rango}
+- **Botones:** «Volver al inicio» (primario) · «Nueva cotización» (secundario)
+- Tono de éxito: marca de verificación en verde de estado. Nada de rojo ni de lenguaje de error.
 
 ### 7.7 Aviso de concepto (solo aquí, tono informativo)
-«Pivote es un proyecto conceptual de portafolio: esta solicitud no se envió ni se guardó en ningún lugar. Sobre este proyecto →»
+«Como Pivote es un proyecto conceptual de portafolio, esta solicitud no se envió ni se almacenó.»
 
 ---
 

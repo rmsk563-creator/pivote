@@ -1,7 +1,7 @@
 # Project Profile — Pivote
 
 ## Identidad
-**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **High Fidelity aprobado como base; prueba manual en Present pendiente** (2026-09-24).
+**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **High Fidelity en ronda de refinamiento (D-031); nueva prueba en Present pendiente** (2026-09-24).
 
 ## Objetivo
 Presentar un estudio de diseño de espacios comerciales para negocios pequeños y medianos, y convertir visitas en **solicitudes de cotización**. Para Matías funciona como proyecto de portafolio, muestra de UX/UI y posible referencia para captar clientes reales.
@@ -27,7 +27,7 @@ Inicio · Servicios · Proyectos (índice + 4 casos) · Cómo trabajamos (+ FAQ)
   - latón: solo barras de acento;
   - neutros: todo lo demás;
   - capa técnica en neutro.
-- **Tipografía:** Archivo + IBM Plex Mono. Todo congelado (D-020).
+- **Tipografía:** Archivo + IBM Plex Mono. Todo congelado (D-020); los tamaños mínimos se subieron en D-031.
 
 Ver `MARCA.md`.
 
@@ -71,10 +71,19 @@ Historial completo en `DECISIONS.md`.
 ## Estado actual
 - Último checkpoint aprobado: contenido, UI Kit, fotos y consistencia (2026-09-24).
 - **Aprobado como base (D-030):** High Fidelity de Inicio (1440, 834, 390) y Cotizar (1440, 390) con prototipo de variables (Figma › 05). DC-002 cerrado (estado del local obligatorio).
-- Siguiente gate: prueba manual del usuario en Present → High-Fi Freeze → handoff a código.
+- **Ronda HIGH-FI UX REFINEMENT aplicada (D-031):**
+  - Cotizar responsive (1200 máx., revisado en 1440, 1024, 834, 768, 390 y 360);
+  - cabecera fija;
+  - selectores con varias respuestas;
+  - Enviar → Enviando → Confirmación;
+  - datos de prueba sin apariencia real;
+  - escala tipográfica y controles más grandes;
+  - movimiento (`MOVIMIENTO.md`);
+  - estimador corregido.
+- Siguiente gate: nueva prueba manual del usuario en Present → High-Fi Freeze → handoff a código.
 
 ## Siguiente paso
-El usuario prueba el prototipo en Present (lista en `QA.md`). Solo se corrigen bugs de interacción o presentación. Sin su confirmación no hay freeze ni handoff.
+El usuario vuelve a probar el prototipo en Present con la lista «HIGH-FI UX REFINEMENT» de `QA.md`. Sin su confirmación no hay freeze, handoff ni código.
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ
