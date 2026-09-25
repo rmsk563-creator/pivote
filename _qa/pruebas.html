@@ -427,6 +427,20 @@ prueba('Teclado', 'Primer foco = «Saltar al contenido», sin tabindex positivos
   });
 });
 
+prueba('Teclado y toque', 'Enlaces del pie: área de toque de 44 px sin solaparse ni cambiar el texto', function () {
+  return cargar('../index.html').then(function (w) {
+    var d = w.document, enl = d.querySelectorAll('.pie__lista a, .pie__lista button');
+    cierto(enl.length >= 10, 'enlaces del pie');
+    enl.forEach(function (a) {
+      var antes = w.getComputedStyle(a, '::before'), cs = w.getComputedStyle(a);
+      igual(cs.fontSize + ' ' + cs.lineHeight, '15px 22px', 'tipografía de ' + a.textContent.trim());
+      igual(antes.position + ' ' + antes.top + ' ' + antes.bottom, 'absolute -10px -10px', 'área ampliada de ' + a.textContent.trim());
+      cierto(a.getBoundingClientRect().height + 20 >= 44, 'alto total de ' + a.textContent.trim());
+    });
+    d.querySelectorAll('.pie__lista').forEach(function (l) { cierto(parseFloat(w.getComputedStyle(l).rowGap) >= 20, 'row-gap que evita el solape'); });
+  });
+});
+
 /* ---- 5. Movimiento (MOVIMIENTO.md) ---------------------------------------- */
 function duracionesMaximas(w) {
   var max = 0, peor = '';

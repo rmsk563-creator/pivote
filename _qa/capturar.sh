@@ -16,9 +16,11 @@ for p in $PAGINAS; do
     nombre="$(echo "$p" | tr '/' '_' | sed 's/.html$//')-$w"
     ventana=$(( w < 500 ? 500 : w ))
     # 1) informe de desbordes (DOM tras ejecutar el marco)
-    "$CH" --headless=new --disable-gpu --hide-scrollbars --window-size=$ventana,900 --virtual-time-budget=6000 \
+    ( "$CH" --headless=new --disable-gpu --hide-scrollbars --window-size=$ventana,900 --virtual-time-budget=6000 \
       --dump-dom "$BASE/_qa/marco.html?pagina=$p&ancho=$w" 2>/dev/null \
-      | sed -n 's/.*<div id="informe">\(.*\)<\/div>.*/\1/p' | head -1 >> _qa/capturas/informe.txt
+      | python3 -c 'import re,sys; m=re.search(r"<div id=.informe.>(.*?)</div>", sys.stdin.read(), re.S); print(" | ".join(m.group(1).split("\n")) if m and m.group(1).strip() else "")' \
+      | grep . || echo "pagina=$p ancho=$w SIN-INFORME desbordes=?"
+    ) >> _qa/capturas/informe.txt
     # 2) captura de página completa (ventana alta; el marco ajusta su alto al contenido)
     if [ "${CAPTURAS:-1}" = "1" ]; then
       "$CH" --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=$ventana,9000 \

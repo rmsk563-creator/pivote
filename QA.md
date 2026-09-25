@@ -462,3 +462,41 @@ Se describe en el mensaje de cierre del Build. Incluye el recorrido real con tec
 
 ### Estado
 🟡 **Build local terminado y verificado.** Falta la prueba del usuario. No publicado.
+
+---
+
+## Ajuste previo al Release · Área clicable del pie · 2026-09-25
+**Pedido del usuario:** enlaces del pie con un área de toque de ~44 px de alto, sin cambiar la tipografía, la apariencia, el espaciado general ni la jerarquía (resuelve D-043, desviación 1).
+
+**Solución (`css/estilos.css`):**
+- `.pie__lista a::before` y `.pie__lista button::before`: pseudo-elemento transparente con `inset: -10px 0`. El enlace sigue midiendo 24 px y su área de toque mide 44 px.
+- `.pie__lista { row-gap: 20px; }`: cuando una lista pasa a dos líneas, las áreas de líneas contiguas no se solapan.
+- No cambian el tamaño ni el interlineado del texto (15/22), ni los colores, ni el anillo de foco, que sigue ajustado a la palabra.
+
+**Verificación** (`_qa/medir-pie.html`: recorre cada enlace con `elementFromPoint` a partir de su centro):
+| Ancho | Toque mínimo | Alto del pie antes → después | Filas de las listas |
+|---|---|---|---|
+| 390 (móvil) | 24 → **44 px** | 572 → 592 (+20, +3.5 %) | «Sitio» en 2 líneas: distancia entre líneas 24 → 44 |
+| 768 / 834 (tablet) | 24 → **44 px** | 526 → 526 (sin cambio) | todas en 1 línea |
+| 1024 | 24 → **44 px** | 353 → 353 (sin cambio; manda la columna del logo) | 3 / 2 / 2 líneas, a 44 px |
+| 1440 | 24 → **44 px** | 353 → 353 (sin cambio) | «Sitio» en 2 líneas, a 44 px |
+- Ningún toque cae en el enlace equivocado: el área de cada enlace termina donde empieza la de la línea vecina.
+- Foco por teclado: capturas a 390, 834 y 1440 con «Estudio» enfocado. El anillo claro de 3 px sigue ajustado al texto.
+- Único cambio visible: cuando una lista del pie se parte en dos líneas, la segunda queda 20 px más abajo.
+- Prueba de regresión nueva en `_qa/pruebas.html` («Enlaces del pie: área de toque de 44 px…»).
+
+**Bug encontrado durante la verificación (ya existía; corregido):**
+- En Servicios a 1024 px, la lista «No incluye» (`repeat(3, 360px)`) desbordaba 144 px, porque el contenedor solo tiene 944 px.
+- Corrección: `repeat(3, minmax(0, 360px))`. En 1280 y 1440 mide lo mismo que antes (360 px por columna).
+- Causa de que no se detectara: `capturar.sh` descartaba los informes de desborde de varias líneas. En el cierre del Build se contaron 129 de 130 informes y la línea que faltaba era justo esta.
+- Arnés corregido: ahora lee el informe completo y escribe `SIN-INFORME` si falta alguno.
+
+**Regresión completa tras el ajuste:**
+- Pruebas: **73/73**, en modo normal y con movimiento reducido.
+- axe: **0 violaciones** en 17 vistas, a 1280 y a 390 px.
+- Desbordes: **130/130 informes con 0 desbordes** (13 páginas × 10 anchos).
+- Detector Impeccable con las excepciones activas:
+  - `index.html` y `css/estilos.css`: **0 hallazgos**.
+  - Todo el sitio: 72 hallazgos, **idénticos archivo por archivo a los de antes del ajuste**, sin ninguno nuevo. Son los mismos patrones de las excepciones (color, etiqueta, transición, secciones a sangre), repetidos en páginas que las excepciones no cubren. Por decisión del usuario, las excepciones siguen limitadas a esos dos archivos.
+
+**Estado:** ✅ D-043.1 resuelta. Sin publicar; falta la prueba local del usuario.

@@ -483,7 +483,7 @@ El usuario aprobó `PLAN_BUILD.md` (orden 0 → 11) y:
 
 ## D-043 · 2026-09-25 · Build local: desviaciones técnicas respecto de HANDOFF
 Detectadas durante el Build; ninguna cambia el diseño aprobado. Detalle y evidencia en `QA.md` (Build local · QA completa).
-1. **Enlaces del pie con área táctil de 24 px** (WCAG 2.5.8 AA), no 44 px como pedía HANDOFF §9: llegar a 44 exigiría separar las filas del pie congelado. **Pendiente de confirmación del usuario.**
+1. **Enlaces del pie con área táctil de 24 px** (WCAG 2.5.8 AA), no 44 px como pedía HANDOFF §9: llegar a 44 exigiría separar las filas del pie congelado. → **Resuelta el 2026-09-25 por decisión del usuario:** área de toque de 44 px con un pseudo-elemento y `row-gap` de 20 px, sin cambiar el texto (ver QA.md, «Área clicable del pie»).
 2. **Área > 1,000 m² en el resumen:** se muestra «Para más de 1,000 m² preferimos conversarlo.» (texto aprobado de CONTENT §7.2), en lugar del de §7.5, que es para cuando falta el área.
 3. **Metadatos derivados** para los 4 casos, Sobre, Privacidad y 404: H1 + «— Pivote» y una frase aprobada como descripción.
 4. **«Atrás»** sin flecha en el texto, como en el HF.

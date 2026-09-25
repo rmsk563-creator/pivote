@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><title>QA · pie</title>
+<pre id="r">…</pre><iframe id="f" title="Página bajo prueba" style="height:900px;border:0"></iframe>
+<script>
+/* Mide el pie de index.html a un ancho exacto: alto, distancia entre filas de enlaces y
+   si cada enlace recibe el toque en un área de 44 px de alto sin robar el de otro (elementFromPoint). */
+var ancho = +(new URLSearchParams(location.search).get('ancho') || 1440), f = document.getElementById('f');
+f.style.width = ancho + 'px';
+f.onload = function () { setTimeout(function () {
+  var d = f.contentDocument, pie = d.querySelector('.pie'); d.documentElement.style.scrollBehavior = 'auto'; pie.scrollIntoView({ behavior: 'instant', block: 'end' });
+  var enl = [].slice.call(d.querySelectorAll('.pie__lista a, .pie__lista button')), malos = [], altoMin = 99, tops = {};
+  enl.forEach(function (a) {
+    var r = a.getBoundingClientRect(), x = r.left + r.width / 2, arriba = 0, abajo = 0;
+    for (var y = r.top + r.height / 2; y > r.top - 40 && d.elementFromPoint(x, y) && a.contains(d.elementFromPoint(x, y)); y--) arriba++;
+    for (y = r.top + r.height / 2; y < r.bottom + 40 && d.elementFromPoint(x, y) && a.contains(d.elementFromPoint(x, y)); y++) abajo++;
+    var h = arriba + abajo - 1; altoMin = Math.min(altoMin, h); if (h < 43) malos.push(a.textContent.trim() + '=' + h);
+    var l = a.closest('ul'); (tops[l.parentNode.querySelector('.pie__titulo').textContent] = tops[l.parentNode.querySelector('.pie__titulo').textContent] || {})[Math.round(r.top)] = 1;
+  });
+  var filas = Object.keys(tops).map(function (k) { var t = Object.keys(tops[k]).map(Number).sort(function (a, b) { return a - b; }); return k + ':' + t.length + (t.length > 1 ? '(' + (t[1] - t[0]) + 'px)' : ''); }).join(' ');
+  var foco = new URLSearchParams(location.search).get('foco'); if (foco) { enl.filter(function (a) { return a.textContent.trim() === foco; })[0].focus({ focusVisible: true }); document.getElementById('r').hidden = true; }
+  document.getElementById('r').textContent = 'ancho=' + ancho + ' altoPie=' + Math.round(pie.getBoundingClientRect().height) + ' toqueMin=' + altoMin + ' filas ' + filas + (malos.length ? ' <44: ' + malos.join(',') : '');
+}, 500); };
+f.src = '../index.html?m=' + Math.random();
+</script>
