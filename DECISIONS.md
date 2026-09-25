@@ -239,7 +239,7 @@ Ninguna toca una decisión congelada (DC-002 se resolvió aparte).
    - anotaciones de Dev Mode;
    - secciones y flujos.
 
-**Estado: aplicado, pendiente de revisión del usuario.**
+**Estado: aplicado; §1 y §7 sustituidos por D-031 y D-032; congelado con D-033.**
 
 ## D-030 · 2026-09-24 · High Fidelity aprobado como base para la prueba manual
 Inicio y Cotizar (Figma › 05) quedan aprobados como base. El usuario hará la prueba en Present antes del High-Fi Freeze y el handoff a código.
@@ -283,7 +283,7 @@ El usuario probó el prototipo y **no aprobó todavía el High-Fi Freeze**. Auto
    - selectores con fundido de 200 ms.
    Todo lo demás, y `prefers-reduced-motion`, en `MOVIMIENTO.md`.
 
-**Estado: aplicado; pendiente de la nueva prueba del usuario en Present. No es el High-Fi Freeze.**
+**Estado: aprobado por el usuario tras la prueba en Present (2026-09-24); punto 4 sustituido por D-032.**
 
 ## D-032 · 2026-09-24 · Selectores contextuales en lugar de diálogos
 Pedido del usuario tras la segunda prueba: el diálogo grande interrumpía la pantalla para selecciones sencillas. Sustituye el punto 4 de D-031. No cambia nada más de lo aprobado.
@@ -305,4 +305,22 @@ Pedido del usuario tras la segunda prueba: el diálogo grande interrumpía la pa
   El orden de apilado del formulario está invertido (`itemReverseZIndex`) para que la lista quede por encima de lo que tiene debajo.
 - **UI Kit:** componentes nuevos «Opción de lista» (Default, Hover, Seleccionada, Foco) y «Lista desplegable».
 
-**Estado: aplicado; falta la comprobación rápida del usuario antes del High-Fi Freeze.**
+**Estado: aprobado por el usuario tras la comprobación final en Present (2026-09-24).**
+
+## D-033 · 2026-09-24 · HIGH-FI FREEZE aprobado
+El usuario hizo la comprobación final en Present y aprobó:
+- D-032 y la corrección de los selectores;
+- el flujo completo Inicio → Cotizar → Resumen → Enviar → Enviando → Confirmación;
+- el responsive (1440, 1024, 834, 768, 390, 360), los errores, la confirmación y la versión móvil;
+- la regla de modales: solo para salir sin enviar, confirmaciones importantes y errores excepcionales.
+
+**Queda congelado:**
+- Figma › 04 UI Kit y 05 High Fidelity (Inicio 1440/834/390, Cotizar escritorio y móvil, overlays, listas desplegables, demo de la cabecera y frames de revisión);
+- `CONTENT.md` v1.0 con los cambios de D-031 y D-032;
+- `MARCA.md`, `MOVIMIENTO.md` y la fórmula del estimador (CONTENT §8).
+
+**Regla desde ahora (Architecture Freeze entre HF y código):** el código no cambia en silencio pantallas, flujo, jerarquía, componentes ni copy aprobados. Un cambio necesario se justifica, se registra aquí como Decision Conflict y espera aprobación. Las diferencias previstas entre prototipo y producto (campos reales, lista completa de distritos, cabecera por scroll, animaciones) están documentadas en `HANDOFF.md` y no cuentan como cambios.
+
+**Siguiente gate:** revisión del Design Handoff (`HANDOFF.md`) por el usuario. Sin su aprobación no empieza el Build.
+
+**Estado: aprobado.**

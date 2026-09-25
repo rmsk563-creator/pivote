@@ -16,10 +16,11 @@
 | Wireframes Servicios, Proyectos, Caso, Cómo trabajamos, Estudio, Sobre, 404 | ⏳ |
 | High Fidelity Inicio (escritorio, tablet, móvil) y Cotizar (escritorio, móvil) | ✅ Aprobado como base para la prueba manual (D-030) |
 | Prototipo Inicio → Cotizar (variables y lógica) | ✅ Ronda 1 probada por el usuario en Present |
-| **HIGH-FI UX REFINEMENT** (D-031): Cotizar responsive, cabecera fija, selectores, nuevo final, datos de prueba, tamaños, movimiento, estimador corregido | 🟡 Aplicado y verificado en estructura; **falta la nueva prueba del usuario en Present** (`QA.md`) |
+| **HIGH-FI UX REFINEMENT** (D-031): Cotizar responsive, cabecera fija, selectores, nuevo final, datos de prueba, tamaños, movimiento, estimador corregido | ✅ Aprobado tras la prueba en Present |
 | Especificación de movimiento para el código | ✅ `MOVIMIENTO.md` |
-| Ajuste de selectores contextuales (D-032) | 🟡 Aplicado y verificado en estructura; falta la comprobación rápida del usuario |
-| High-Fi Freeze y handoff a código | ⏳ Después de aprobar la ronda de refinamiento |
+| Ajuste de selectores contextuales (D-032) | ✅ Aprobado tras la comprobación en Present |
+| **High-Fi Freeze** | ✅ Aprobado (D-033, 2026-09-24) |
+| Design Handoff (`HANDOFF.md`) | 🟡 Preparado; **pendiente de la revisión del usuario** |
 | DC-002 (estado del local obligatorio) | ✅ Resuelto: obligatorio con ayuda breve |
-| Código | ⏳ No empezar sin aprobación del prototipo |
+| Código (Build) | ⏳ No empezar hasta que el usuario apruebe el handoff |
 | Publicación GitHub Pages | ⏳ |

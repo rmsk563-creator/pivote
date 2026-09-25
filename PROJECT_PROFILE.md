@@ -1,7 +1,7 @@
 # Project Profile — Pivote
 
 ## Identidad
-**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **High Fidelity en ronda de refinamiento (D-031); nueva prueba en Present pendiente** (2026-09-24).
+**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **High-Fi Freeze aprobado (D-033); Design Handoff en revisión** (2026-09-24).
 
 ## Objetivo
 Presentar un estudio de diseño de espacios comerciales para negocios pequeños y medianos, y convertir visitas en **solicitudes de cotización**. Para Matías funciona como proyecto de portafolio, muestra de UX/UI y posible referencia para captar clientes reales.
@@ -69,7 +69,7 @@ Historial completo en `DECISIONS.md`.
 - Páginas: 00 Portada · 01 Identidad (Pivote, logo, favicon) · 01b Naming (cerrado) · 01c Color (comparación; se eligió V4) · 02 Arquitectura · 03 Wireframes · 04 UI Kit · 05 High Fidelity (con el prototipo) · 06 Prototipo (instrucciones) · 99 Archivo (exploración Nexo).
 
 ## Estado actual
-- Último checkpoint aprobado: contenido, UI Kit, fotos y consistencia (2026-09-24).
+- Último checkpoint aprobado: **High-Fi Freeze** (D-033, 2026-09-24).
 - **Aprobado como base (D-030):** High Fidelity de Inicio (1440, 834, 390) y Cotizar (1440, 390) con prototipo de variables (Figma › 05). DC-002 cerrado (estado del local obligatorio).
 - **Ronda HIGH-FI UX REFINEMENT aplicada (D-031):**
   - Cotizar responsive (1200 máx., revisado en 1440, 1024, 834, 768, 390 y 360);
@@ -81,10 +81,11 @@ Historial completo en `DECISIONS.md`.
   - movimiento (`MOVIMIENTO.md`);
   - estimador corregido.
 - **Ajuste de selectores (D-032):** distrito, fecha y área usan una lista desplegable pegada al campo; nombre y teléfono se «escriben» al tocarlos. Los diálogos quedan solo para interrupciones reales.
-- Siguiente gate: comprobación rápida del usuario en Present → High-Fi Freeze → handoff a código.
+- **High-Fi Freeze aprobado (D-033, 2026-09-24)** tras la comprobación final en Present.
+- Siguiente gate: revisión del Design Handoff (`HANDOFF.md`) → autorización del Build.
 
 ## Siguiente paso
-El usuario vuelve a probar el prototipo en Present con la lista «HIGH-FI UX REFINEMENT» de `QA.md`. Sin su confirmación no hay freeze, handoff ni código.
+El usuario revisa `HANDOFF.md` y decide las cuestiones abiertas de su §14. Sin su aprobación no empieza el Build.
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ

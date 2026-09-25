@@ -269,5 +269,17 @@ Probada por el usuario: todo funcionó. Pidió cambiar los diálogos de selecci�
 7. **Flujo completo:** resumen con el rango correcto → Enviar → Enviando → Confirmación.
 8. **Móvil:** repetir 1, 2 y 4; ninguna lista queda tapada por la barra fija.
 
+### Resultado de la comprobación final (usuario, 2026-09-24)
+| # | Prueba | Resultado |
+|---|---|---|
+| 1 | Dropdown de Distrito | ✅ |
+| 2 | Área con valor inválido y válido | ✅ |
+| 3 | Fecha y «Aún no tengo fecha» | ✅ |
+| 4 | Nombre y teléfono | ✅ |
+| 5 | Errores al intentar continuar | ✅ |
+| 6 | Flujo completo hasta la confirmación | ✅ |
+| 7 | Versión móvil | ✅ |
+| 8 | Ninguna lista tapada por la barra fija | ✅ |
+
 ### Estado
-🟡 **Esperando la comprobación rápida del usuario.** Si pasa, el siguiente paso es su aprobación del High-Fi Freeze.
+✅ **HIGH-FI FREEZE aprobado por el usuario (D-033).** Esta sección queda como referencia de la última comprobación del diseño. La QA del código se hará contra `HANDOFF.md` §12.
