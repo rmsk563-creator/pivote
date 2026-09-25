@@ -534,3 +534,40 @@ El usuario completó la prueba local completa y no encontró errores pendientes 
 **Pendiente del usuario:** prueba en un teléfono real (lista en el mensaje de entrega).
 
 **Estado:** ✅ **v1.0 publicada** (etiqueta `v1.0`).
+
+---
+
+## v1.0.1 · `/pivote/proyectos/` · 2026-09-25
+**Pedido del usuario:** que `/pivote/proyectos` y `/pivote/proyectos/` lleven a la misma página, sin duplicar Proyectos y sin cambiar diseño ni contenido.
+
+**Solución:** `proyectos/index.html` es solo una ruta de compatibilidad, de 19 líneas y sin contenido propio.
+- Redirige con `location.replace` a la página única `proyectos.html`. El destino se calcula a partir de la ruta actual y conserva `?rubro=` y `#`.
+- Sin JavaScript, usa un `meta refresh` dentro de `<noscript>`.
+- Mantiene `lang`, `title`, `noindex, nofollow`, favicon y un enlace visible a Proyectos por si la redirección no ocurre.
+- `proyectos.html` sigue siendo la única página de Proyectos y no cambia.
+
+**URLs probadas en producción** (`_qa/rutas-proyectos.mjs`, Chrome por CDP sobre el dominio real): **16/16**
+| URL | Resultado |
+|---|---|
+| `/pivote/proyectos` | 200: Pages sirve `proyectos.html` directamente |
+| `/pivote/proyectos/` | 200 → `/pivote/proyectos.html` |
+| `/pivote/proyectos/?rubro=botica` | → `proyectos.html?rubro=botica`; el filtro muestra solo Botica |
+| `/pivote/proyectos/index.html` | → `/pivote/proyectos.html` |
+| `/pivote/proyectos/botica.html` (no existe; el caso real es `botica-de-barrio.html`) | 404 con estilos y `<base href="/pivote/">`; «Volver al inicio» → `/pivote/index.html` |
+| `/pivote/proyectos/no-existe/otra` | 404 con estilos; «Volver al inicio» → `/pivote/index.html` |
+| `/pivote/proyectos/botica-de-barrio.html` | 200 |
+- **Regresión:**
+  - el filtro «Tiendas» muestra solo tiendas;
+  - las 4 tarjetas llevan a su caso (200);
+  - «Siguiente caso» recorre Botica → Florería → Barbería → Cafetería → Botica;
+  - la cabecera marca «Proyectos».
+
+**Smoke test afectado, repetido en producción:**
+- Dominio real por CDP: 85/85 (17 rutas × 5 anchos: imágenes, CSS, fuente, sin desborde).
+- Assets: 83/83.
+- `noindex` y favicon en las 13 páginas.
+- `_qa/`, `.impeccable/` y los `.md` siguen dando 404.
+
+**En local:** pruebas 73/73 y axe con 0 violaciones en 17 vistas.
+
+**Estado:** ✅ **v1.0.1 publicada** (etiqueta `v1.0.1`).
