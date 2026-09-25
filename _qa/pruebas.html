@@ -387,6 +387,37 @@ prueba('Contacto conceptual', 'CONFIG.contacto.activo = false y sin números ni 
   });
 });
 
+/* ---- 5. Movimiento (MOVIMIENTO.md) ---------------------------------------- */
+function duracionesMaximas(w) {
+  var max = 0, peor = '';
+  w.document.querySelectorAll('*').forEach(function (el) {
+    var cs = w.getComputedStyle(el);
+    (cs.transitionDuration + ',' + cs.animationDuration).split(',').forEach(function (d) {
+      var s = parseFloat(d) * (d.indexOf('ms') >= 0 ? 0.001 : 1);
+      if (s > max) { max = s; peor = el.tagName.toLowerCase() + '.' + (typeof el.className === 'string' ? el.className.split(' ')[0] : ''); }
+    });
+  });
+  return { max: max, peor: peor };
+}
+var reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+['index.html', 'cotizar.html?nueva=1'].forEach(function (p) {
+  prueba('Movimiento', (reducido ? 'Con reducción de movimiento: todo ≤ 1 ms en ' : 'Ninguna animación > 400 ms en ') + p, function () {
+    return cargar('../' + p).then(function (w) {
+      var r = duracionesMaximas(w);
+      if (reducido) cierto(r.max <= 0.0011, 'máximo ' + r.max + ' s en ' + r.peor);
+      else cierto(r.max <= 0.4, 'máximo ' + r.max + ' s en ' + r.peor);
+      if (reducido) igual(w.document.querySelectorAll('.aparece:not(.visible)').length, 0, 'contenido oculto por la aparición');
+    });
+  });
+});
+prueba('Movimiento', 'La barra de «Enviando…» es la única de 1000 ms y solo existe mientras se envía', function () {
+  return fetch('../css/estilos.css').then(function (r) { return r.text(); }).then(function (css) {
+    var largas = css.match(/\b(\d{3,4})ms\b/g).filter(function (m) { return parseInt(m, 10) > 400; });
+    igual(largas, ['1000ms'], 'duraciones > 400 ms en estilos.css');
+    cierto(/\.boton\[aria-busy="true"\]::after[^}]*1000ms/.test(css), 'la de 1000 ms es la del botón ocupado');
+  });
+});
+
 /* ---- Ejecución ---------------------------------------------------------- */
 (function () {
   var res = document.getElementById('resultados'), ok = 0, fallos = 0, grupoActual = null;

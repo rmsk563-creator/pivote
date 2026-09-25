@@ -88,7 +88,12 @@
   /* ---------- Panel «Tu solicitud» y resumen plegable ---------- */
   function pintarPanel() {
     var p = L.panel(estado);
-    ['rubro', 'servicio', 'local'].forEach(function (k) { form.querySelector('[data-panel="' + k + '"]').textContent = p[k]; });
+    ['rubro', 'servicio', 'local'].forEach(function (k) {
+      var el = form.querySelector('[data-panel="' + k + '"]');
+      if (el.textContent === p[k]) return;
+      el.textContent = p[k];
+      el.classList.remove('cambia'); void el.offsetWidth; el.classList.add('cambia');
+    });
     form.querySelector('[data-plegable-rubro]').textContent = p.rubro;
   }
   var plegable = form.querySelector('[data-plegable]'), panelEl = form.querySelector('#panel-solicitud');
@@ -176,7 +181,12 @@
     document.querySelector('[data-accion="salir"]').hidden = v === 'confirmacion';
     if (v === 'resumen') pintarResumen();
     if (v === 'confirmacion') pintarConfirmacion();
-    if (enPasos) { var n = parseInt(v.split('-')[1], 10); if (intentado[n]) pintarValidacion(n, false); }
+    if (enPasos) {
+      var n = parseInt(v.split('-')[1], 10);
+      if (intentado[n]) pintarValidacion(n, false);
+      var barras = form.querySelectorAll('[data-vista="' + v + '"] .progreso__barra li');
+      barras.forEach(function (b, i) { b.classList.toggle('actual', i === n - 1); });
+    }
     document.title = NOMBRES[v] + ' — ' + TITULO_BASE;
     var cambio = vistaActual !== null && vistaActual !== v;
     vistaActual = v;

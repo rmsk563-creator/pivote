@@ -884,7 +884,6 @@ select.campo__control:invalid, select.campo__control.vacio { color: var(--color-
 .plegable[aria-expanded="true"] .icono { transform: rotate(180deg); }
 .plegable[aria-expanded="true"] { border-radius: var(--radio-tarjeta) var(--radio-tarjeta) 0 0; }
 .plegable[aria-expanded="true"] + .panel { border-radius: 0 0 var(--radio-tarjeta) var(--radio-tarjeta); padding-top: 8px; }
-@media (max-width: 1023px) { .cotizar__panel-zona .panel:not(.abierto) { display: none; } }
 @media (min-width: 1024px) {
   .plegable { display: none; }
   .cotizar__panel-zona { position: sticky; top: 88px; }
@@ -956,6 +955,28 @@ select.campo__control:invalid, select.campo__control.vacio { color: var(--color-
 .acordeon[open] .acordeon__respuesta { animation: fundido var(--dur-base) var(--ease-salida); }
 .aparece { opacity: 0; transform: translateY(12px); transition: opacity var(--dur-lenta) var(--ease-salida), transform var(--dur-lenta) var(--ease-salida); }
 .aparece.visible { opacity: 1; transform: none; }
+
+/* Movimiento: transiciones de MOVIMIENTO.md §4 que dependen de varios componentes */
+:root { interpolate-size: allow-keywords; }
+@supports selector(::details-content) {
+  .acordeon::details-content { block-size: 0; overflow: hidden; transition: block-size var(--dur-base) var(--ease-salida), content-visibility var(--dur-base) allow-discrete; }
+  .acordeon[open]::details-content { block-size: auto; }
+}
+@media (max-width: 1023px) {
+  .cotizar__panel-zona .panel { display: grid; max-height: 0; padding-block: 0; overflow: hidden; visibility: hidden; transition: max-height var(--dur-base) var(--ease-salida), padding var(--dur-base) var(--ease-salida), visibility var(--dur-base); }
+  .cotizar__panel-zona .panel.abierto { max-height: 640px; padding-block: 8px 24px; visibility: visible; }
+}
+@keyframes crece { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.progreso__barra li.actual::after { animation: crece var(--dur-media) var(--ease-salida); }
+.campo__error:not([hidden]), .campo__aviso:not([hidden]), [data-resumen-errores]:not([hidden]), [data-aviso-presupuesto]:not([hidden]) { animation: fundido 150ms var(--ease-salida); }
+.cambia { animation: fundido 150ms var(--ease-salida); }
+@keyframes avance { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.boton[aria-busy="true"] { position: relative; overflow: hidden; }
+.boton[aria-busy="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: currentColor; opacity: .6; transform-origin: left; animation: avance 1000ms linear forwards; }
+.menu-movil, .dialogo { transition: opacity 150ms var(--ease-entrada), display 150ms allow-discrete, overlay 150ms allow-discrete; }
+.menu-movil:not([open]), .dialogo:not([open]) { opacity: 0; }
+.menu-movil::backdrop, .dialogo::backdrop { transition: opacity 150ms var(--ease-entrada), display 150ms allow-discrete, overlay 150ms allow-discrete; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 1ms !important;
