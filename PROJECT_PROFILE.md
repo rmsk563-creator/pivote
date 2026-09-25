@@ -82,11 +82,11 @@ Historial completo en `DECISIONS.md`.
   - estimador corregido.
 - **Ajuste de selectores (D-032):** distrito, fecha y área usan una lista desplegable pegada al campo; nombre y teléfono se «escriben» al tocarlos. Los diálogos quedan solo para interrupciones reales.
 - **High-Fi Freeze aprobado (D-033, 2026-09-24)** tras la comprobación final en Present.
-- **Cobertura completa del diseño en curso (D-034):** wireframes y HF de 7 de las 8 plantillas, OG e indexación `noindex, nofollow` (D-035). Los 4 casos están bloqueados por contenido.
-- Siguiente gate: decisión de contenido de los casos → HF de los casos → QA → freeze completo → handoff final → Build.
+- **Cobertura completa del diseño (D-034, D-040):** todo el sitemap tiene HF en escritorio y móvil (revisión en tablet donde hacía falta), con navegación completa, OG e indexación `noindex, nofollow` (D-035). `HANDOFF.md` está en versión completa.
+- Siguiente gate: Design Coverage Gate y Freeze final del usuario → Build.
 
 ## Siguiente paso
-El usuario decide el contenido de los casos y revisa las páginas nuevas. `HANDOFF.md` es preliminar (D-034).
+El usuario prueba el sitio completo en Present (lista en `QA.md`) y decide si aprueba el Design Coverage Gate y el Freeze final.
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ

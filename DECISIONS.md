@@ -340,9 +340,15 @@ Flujo: arquitectura → wireframes → High Fidelity → prototipo y QA → free
 
 **Cambio en el UI Kit por necesidad real:** en el componente **Pie**, los enlaces eran un solo texto por columna («Servicios · Proyectos · …»), así que no se podía enlazar cada destino. Ahora cada enlace es un texto propio con separadores «·», con el mismo aspecto. Esto también corresponde a lo que será el HTML (un `<a>` por destino).
 
-**Bloqueado por contenido:** las 4 páginas de caso. CONTENT §4 pide materiales, «Qué haríamos distinto» y un antes/después que no están definidos, y no existen imágenes «antes». Pendiente de decisión del usuario.
+**Contenido de los casos:** faltaban materiales, «Qué haríamos distinto» y un antes/después sin imágenes «antes». Lo resolvió el usuario en D-040.
 
-**Estado: en curso.**
+**Cierre de cobertura (2026-09-24):**
+- HF en escritorio y móvil de los 4 casos.
+- Revisión en tablet 834 de Servicios, Proyectos, Caso y Cómo trabajamos.
+- Todo el sitemap diseñado y enlazado (QA en `QA.md`).
+- `HANDOFF.md` pasa a versión completa.
+
+**Estado: cobertura completa; pendiente del Design Coverage Gate y del Freeze final del usuario.**
 
 ## D-035 · 2026-09-24 · Indexación: `noindex, nofollow` mientras sea Concept / Portfolio
 Pivote no debe aparecer en buscadores como si fuera un estudio operativo.
@@ -390,3 +396,27 @@ Las fotos que repiten lo que ya dice el texto vecino (tarjetas con título) llev
 - El repositorio puede prepararse durante el Build; **no se publica** hasta el Release y su aprobación.
 
 **Estado: aprobado como plan.**
+
+## D-040 · 2026-09-24 · Contenido y estructura de los 4 casos
+Aprobado por el usuario:
+1. **Antes y después = opción A:** dos planos esquemáticos neutros, sin fotos falsas de «antes».
+   - El «Después» lleva los 3 puntos numerados de las decisiones.
+   - Cada plano lleva «Esquema conceptual · no es un plano de obra».
+   - Como no hay fotos, se muestran uno junto al otro (uno debajo del otro en móvil), en lugar del comparador de fotos.
+2. **Materiales:** los 4 de cada caso (CONTENT §4), presentados como «Materiales propuestos», decisiones conceptuales y no una especificación ejecutada.
+3. **«Qué haríamos distinto»:** aprobadas las cuatro ideas. A pedido del usuario, se reescribieron en condicional o como escenario para no implicar que Pivote construyó esos locales. Textos finales en CONTENT §4.
+4. **Cierre del caso:** H2 «¿Tu local se parece a este?» sobre «Cotizar un local parecido». El botón abre Cotizar con el rubro del caso ya marcado (consecuencia lógica, sin copy nuevo).
+5. **«Siguiente caso →»** circular entre los cuatro. No se añade más navegación.
+6. **Estado activo en la cabecera:** subrayado azul discreto (2 px, `accion/primaria`, contraste 7.55:1 sobre blanco) bajo el enlace de la página actual. No cambia la altura.
+   - En escritorio, con propiedades booleanas del componente Cabecera.
+   - En el menú móvil, el mismo subrayado, activado por variables `nav/*` que fija cada navegación.
+   - Los casos marcan «Proyectos».
+
+**Componentes nuevos:**
+- 8 «Esquema / Caso / Antes-Después» (reutilizados en escritorio, móvil y tablet);
+- propiedades booleanas «Activo · <página>» en la Cabecera (variantes de escritorio) y en el Menú móvil;
+- variables `nav/servicios`, `nav/proyectos`, `nav/como` y `nav/estudio`, que fijan todas las navegaciones del prototipo para el menú móvil.
+
+No se creó un componente contenedor para los planos ni para los materiales: son composiciones sencillas y un componente no aportaba reutilización real.
+
+**Estado: aplicado; pendiente de la revisión del usuario.**

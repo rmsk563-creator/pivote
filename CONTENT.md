@@ -186,7 +186,35 @@ No se repite en tarjetas, precios ni casos (D-003).
 
 Las fotos son de contexto (Unsplash, con crédito en «Sobre este proyecto»); no son obras de Pivote. El pie de foto de cada caso dice «Foto de referencia».
 
-**Estructura de cada caso:** datos · problema · 3 decisiones con plano anotado · antes/después (comparador) · materiales · «Qué haríamos distinto» (una línea honesta) · CTA «Cotizar un local parecido».
+**Estructura de cada caso (actualizada en D-040):**
+1. «← Todos los proyectos».
+2. Datos, título y servicio · plazo.
+3. Foto con el pie «Foto de referencia».
+4. El problema.
+5. **Lo que decidimos:** plano esquemático «Antes» y «Después». El «Después» lleva 3 puntos numerados, explicados debajo.
+6. Materiales propuestos.
+7. Qué haríamos distinto.
+8. Cierre «¿Tu local se parece a este?» + «Cotizar un local parecido».
+9. «Siguiente caso →».
+
+**Planos esquemáticos (D-040):**
+- Dibujos neutros hechos para el caso, no fotos ni planos de obra.
+- Cada uno lleva la etiqueta «Esquema conceptual · no es un plano de obra».
+- Se comparan uno junto al otro, en escritorio, o uno debajo del otro, en móvil. No se usa el comparador de fotos, porque no existen imágenes «antes» (no se simulan).
+
+**Contenido por caso (D-040)** — las decisiones son las de la tabla de arriba, numeradas 01–03:
+
+| Caso | Materiales propuestos | Qué haríamos distinto |
+|---|---|---|
+| Botica de barrio | Melamina de alto tránsito en góndolas · Mostrador con tablero de cuarzo · Piso vinílico en rollo · Luz LED lineal de 4000 K | «Dejaríamos más espacio para el stock de temporada: en un local así, el almacén suele llenarse antes de lo previsto.» |
+| Florería en Barranco | Mostrador de pino tratado · Cemento pulido con sellador · Panel corredizo de policarbonato · Repisas de acero negro | «Pondríamos un segundo punto de agua cerca de la vitrina: con uno solo, todo el armado depende de ese punto.» |
+| Barbería con espera a la vista | Espejos con luz perimetral · Porcelanato antideslizante · Tapiz vinílico lavable en la espera · Luminarias dirigibles por puesto | «Separaríamos antes los circuitos de luz: con uno compartido, apagar la espera también apagaría un puesto.» |
+| Cafetería de paso | Frente de barra en ladrillo · Tablero de granito en pedidos · Repisa de madera maciza hacia la ventana · Luz cálida de 3000 K | «Haríamos la repisa de la ventana 10 cm más profunda: en una cafetería de paso, la gente también la usa para trabajar.» |
+
+- **Materiales:** se presentan como «Materiales propuestos» (decisiones del proyecto conceptual), no como especificación ejecutada.
+- **Qué haríamos distinto:** redactado como reflexión de diseño en condicional (D-040). No afirma que el local se construyó.
+- **Cierre:** H2 «¿Tu local se parece a este?» + botón «Cotizar un local parecido» (abre Cotizar con el rubro del caso ya marcado).
+- **Siguiente caso →** (circular): Botica → Florería → Barbería → Cafetería → Botica.
 
 ---
 

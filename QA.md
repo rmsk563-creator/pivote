@@ -341,3 +341,65 @@ Flujos **Escritorio · Inicio → Cotizar** y **Móvil · Inicio → Cotizar** (
 - la decisión de contenido de los casos;
 - el HF de los 4 casos;
 - la revisión del usuario de estas páginas.
+
+---
+
+## Cobertura completa del diseño · QA final · 2026-09-24 (D-034, D-040)
+### Cobertura del sitemap
+| Página | Escritorio 1440 | Móvil 390 | Tablet |
+|---|---|---|---|
+| Inicio | ✅ | ✅ | ✅ 834 (HF) |
+| Servicios | ✅ | ✅ | ✅ revisión 834 |
+| Proyectos | ✅ | ✅ | ✅ revisión 834 |
+| Caso · Botica de barrio | ✅ | ✅ | ✅ revisión 834 (plantilla de los 4 casos) |
+| Caso · Florería en Barranco | ✅ | ✅ | misma plantilla |
+| Caso · Barbería con espera a la vista | ✅ | ✅ | misma plantilla |
+| Caso · Cafetería de paso | ✅ | ✅ | misma plantilla |
+| Cómo trabajamos | ✅ | ✅ | ✅ revisión 834 |
+| Estudio | ✅ | ✅ | regla de una columna con márgenes de 40 px (§4 del handoff) |
+| Cotizar (7 vistas) | ✅ | ✅ | ✅ revisión 1024 / 834 / 768 / 360 |
+| Sobre este proyecto · Privacidad · 404 | ✅ | ✅ | regla de una columna (páginas de texto) |
+
+**Sin diseño: ninguna página del sitemap** (SCOPE).
+
+### Revisión técnica (leída desde el archivo)
+| Comprobación | Resultado |
+|---|---|
+| Frames en 05 | 55 |
+| Nodos con interacción · acciones | 668 · 14,071 |
+| Destinos rotos · variables inexistentes · condicionales vacíos | **0 · 0 · 0** |
+| «Siguiente caso» | Botica → Florería → Barbería → Cafetería → Botica, en escritorio y en móvil |
+| Tarjetas de Proyectos → caso | 8/8 correctas |
+| Inicio → casos | «Ver el caso» del caso destacado → Botica; las 3 tarjetas, a su caso (título verificado) |
+| «← Todos los proyectos» | → Proyectos, con el filtro en «Todos» |
+| «Cotizar un local parecido» | → paso 1, con el rubro del caso ya marcado y el resto del estado vacío |
+| Página activa (escritorio) | Servicios, Proyectos (también en los 4 casos), Cómo trabajamos y Estudio subrayados; Inicio, Sobre, Privacidad y 404, ninguno. La altura de la cabecera no cambia (81 / 69 px) |
+| Página activa (menú móvil) | 371 navegaciones fijan `nav/*` antes de navegar |
+| Controles sin clic | Solo el enlace a la página actual (Figma no permite navegar a sí mismo) y la tablet de Inicio, que es referencia estática desde D-029 |
+| Planos | «Esquema conceptual · no es un plano de obra» en cada plano, sin fotos «antes». Se corrigieron 4 solapes de marcadores y etiquetas antes de usarlos |
+| Textos | Cada frase de un caso sale de CONTENT §4 (D-040). «Qué haríamos distinto» está en condicional; los materiales se presentan como «propuestos» |
+| Tablet | Se corrigieron 2 desbordes al crear las revisiones de 834 (cuadrícula de Proyectos y planos lado a lado) |
+
+### Prueba manual en Present (usuario)
+Flujos **Escritorio · Inicio → Cotizar** y **Móvil · Inicio → Cotizar** (recorren todo el sitio).
+
+1. **Cabecera activa:**
+   - al entrar en Servicios, Proyectos, Cómo trabajamos y Estudio, su enlace aparece subrayado en azul, sin que la cabecera cambie de alto;
+   - en un caso, se subraya «Proyectos»;
+   - en Inicio, ninguno.
+2. **Menú móvil:** abre ☰ en Servicios, Proyectos (o un caso), Cómo trabajamos y Estudio. El enlace de esa página está subrayado; en Inicio, ninguno.
+3. **Proyectos → casos:** cada tarjeta abre su caso; en cada caso, «← Todos los proyectos» vuelve con el filtro en «Todos».
+4. **Siguiente caso →:** desde Botica, recorre Florería, Barbería, Cafetería y vuelve a Botica, en escritorio y en móvil.
+5. **Planos:**
+   - «Antes» y «Después» se leen claramente como esquemas (con la etiqueta de esquema conceptual);
+   - los puntos 01–03 del «Después» coinciden con las 3 decisiones de debajo.
+6. **Textos del caso:** los materiales dicen «Materiales propuestos» y «Qué haríamos distinto» se lee como reflexión, no como una obra real.
+7. **Cierre del caso:** «¿Tu local se parece a este?» + «Cotizar un local parecido» abre el paso 1 con el rubro del caso marcado (p. ej., Botica en la Botica). El panel «Tu solicitud» lo muestra.
+8. **Desde Inicio:**
+   - el caso destacado y las 3 tarjetas de proyecto abren su caso;
+   - las tarjetas de rubro abren Proyectos filtrado.
+9. **Regresión de lo ya aprobado:** un recorrido completo de Cotizar hasta la confirmación sigue funcionando (selectores, errores, rango, Enviar → Enviando → Confirmación).
+10. **A ojo:** los frames de revisión de 834 («Páginas · Revisión tablet 834») no tienen cortes ni desbordes.
+
+### Estado
+🟡 **Cobertura completa. Pendiente de la prueba del usuario y de su aprobación del Design Coverage Gate y del Freeze final.**

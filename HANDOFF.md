@@ -1,6 +1,6 @@
 # Design Handoff — Pivote
 
-**Estado: VERSIÓN PRELIMINAR (D-034).** Cubre Inicio y Cotizar. Se completará cuando las páginas restantes estén diseñadas, revisadas, aprobadas y congeladas. Ya están decididas las cuestiones §14.1–§14.6 (D-034 a D-039); ver `DECISIONS.md`. No es base para el Build todavía.
+**Estado: VERSIÓN COMPLETA — cubre todo el sitemap (D-034, D-040).** Pendiente del **Freeze final** del usuario. Hasta esa aprobación no es base para el Build.
 
 **Para quién es:** quien construya el sitio (la sesión de Build) y el usuario, que lo revisa antes de autorizar el código.
 
@@ -25,12 +25,20 @@ Una web estática y responsive de un estudio conceptual (Reality Mode **Concept 
 
 | Página | Diseño aprobado | Fuente del copy |
 |---|---|---|
-| Inicio | ✅ HF 1440 / 834 / 390 | CONTENT §2 |
-| Cotizar (4 pasos + resumen + confirmación) | ✅ HF escritorio y móvil + revisión 1024 / 834 / 768 / 360 | CONTENT §7, §8 |
-| Sobre este proyecto · Privacidad · 404 | ⚠️ Sin frames: son páginas de texto que se arman con componentes del kit | CONTENT §9, §10, §11 |
-| Servicios · Proyectos (índice + 4 casos) · Cómo trabajamos · Estudio | ❌ **Sin wireframe ni HF** | CONTENT §3–§6 |
+| Página | Archivo | Diseño (Figma › 05) | Copy |
+|---|---|---|---|
+| Inicio | `index.html` | HF 1440 / 834 / 390 | CONTENT §2 |
+| Servicios | `servicios.html` | HF 1440 / 390 + revisión 834 | CONTENT §3, §11b |
+| Proyectos (índice con filtro) | `proyectos.html` | HF 1440 / 390 + revisión 834 | CONTENT §4, §11b |
+| Casos ×4 | `proyectos/botica-de-barrio.html` · `proyectos/floreria-en-barranco.html` · `proyectos/barberia-con-espera-a-la-vista.html` · `proyectos/cafeteria-de-paso.html` | HF 1440 / 390 cada uno + revisión 834 (Botica) | CONTENT §4 (D-040) |
+| Cómo trabajamos | `como-trabajamos.html` | HF 1440 / 390 + revisión 834 | CONTENT §5 |
+| Estudio | `estudio.html` | HF 1440 / 390 | CONTENT §6 |
+| Cotizar | `cotizar.html` | HF escritorio y móvil + revisión 1024 / 834 / 768 / 360 | CONTENT §7, §8 |
+| Sobre este proyecto | `sobre.html` | HF 1440 / 390 | CONTENT §9, §11b |
+| Privacidad | `privacidad.html` | HF 1440 / 390 | CONTENT §10 |
+| 404 | `404.html` | HF 1440 / 390 | CONTENT §11 |
 
-**Qué hacer con las páginas sin diseño → decisión abierta (§14.1).**
+En tablet (600–1023), las páginas sin frame propio usan la composición móvil a una columna con márgenes de 40 px (§4). Así se comprobó en los frames de revisión de 834.
 
 ---
 
@@ -45,14 +53,15 @@ Una web estática y responsive de un estudio conceptual (Reality Mode **Concept 
 ### Estructura propuesta
 ```text
 pivote/
-├── index.html · cotizar.html · sobre.html · privacidad.html · 404.html
-├── (según §14.1) servicios.html · proyectos.html · proyectos/<caso>.html · como-trabajamos.html · estudio.html
+├── index.html · servicios.html · proyectos.html · como-trabajamos.html · estudio.html
+├── cotizar.html · sobre.html · privacidad.html · 404.html
+├── proyectos/<caso>.html          # 4 casos (rutas relativas con ../)
 ├── css/estilos.css      # 1 tokens · 2 base · 3 componentes · 4 páginas · 5 utilidades
 ├── js/config.js         # contacto y autor (D-023, D-026): la única configuración editable
 ├── js/sitio.js          # cabecera fija, menú móvil, acordeón, aviso de contacto, aparición al hacer scroll
 ├── js/estimador.js      # función pura del rango (§7.4), sin DOM
 ├── js/cotizar.js        # estado, pasos, validación, resumen, envío simulado
-├── assets/logos/ · assets/fotos/   # ya existen (§11)
+├── assets/logos/ · assets/fotos/ · assets/og/   # ya existen (§11)
 └── _qa/pruebas.html     # pruebas del estimador y de la validación, como en Sereno
 ```
 
@@ -169,6 +178,10 @@ Mínimos de D-031: ningún texto funcional por debajo de 12 px; etiquetas de cam
 
 - Comportamiento completo en `MOVIMIENTO.md` §3: sticky, detección con `IntersectionObserver` y alternativa sin `backdrop-filter`.
 - **En Cotizar:** logo + «Salir sin enviar ✕» («Salir ✕» en móvil). En la confirmación, el enlace de salir se oculta.
+- **Página actual (D-040):**
+  - el enlace de la página actual lleva `aria-current="page"` y un subrayado de 2 px `--color-accion-primaria` a 6 px bajo el texto (4 px en el menú móvil);
+  - no cambia la altura de la cabecera;
+  - los casos marcan «Proyectos»; Inicio, Cotizar, Sobre, Privacidad y 404 no marcan ninguno.
 
 ---
 
@@ -198,7 +211,9 @@ Estados de referencia: Default, Hover, Foco, Deshabilitado y los específicos de
 | Paso de proceso | `<li>` en `<ol>` | Sobre verde: textos inversos |
 | Acordeón | `<details>/<summary>` | Animación en `MOVIMIENTO.md` |
 | Comparador antes/después | `<input type="range">` sobre dos imágenes | Teclado a pasos del 5 % |
-| Chip de filtro | `<button aria-pressed>` | Página Proyectos (§14.1) |
+| Chip de filtro | `<button aria-pressed>` | Página Proyectos: filtra por rubro. «Todos» por defecto; `?rubro=cafeteria\|tienda\|botica\|salon` llega desde las tarjetas de rubro de Inicio |
+| **Plano esquemático** (8 componentes «Esquema / Caso / Antes-Después», D-040) | SVG en línea dentro de `<figure>` con `<figcaption>`, cuyo texto incluye «Esquema conceptual · no es un plano de obra» | Líneas en `--color-tecnico-linea`, muros en tinta, mobiliario en superficie-alt, circulación discontinua y puntos numerados 01–03 en cuadrado hueco. Base 326 × 244, escalado ×1.5 en escritorio. Texto alternativo = la lista de decisiones que acompaña al plano (`aria-describedby`) |
+| Pie | `<footer>`; **un `<a>` por destino** (D-034) | Separadores «·» con `aria-hidden` |
 | Ícono | SVG en línea de Lucide 1.48 (ISC), `viewBox="0 0 24 24"`, `aria-hidden` | Trazo `currentColor`. WhatsApp usa el ícono «mensaje»; sin logos de marca |
 | Logo | SVG de `assets/logos/svg/` | Logotipo ≥ 80 px de ancho; con descriptor ≥ 200 px |
 
@@ -212,10 +227,29 @@ Estados de referencia: Default, Hover, Foco, Deshabilitado y los específicos de
 |---|---|
 | «Cotizar mi local» (cabecera, hero, CTA final) | `cotizar.html`, con el estado de Cotizar vacío |
 | «Cotizar este servicio» | `cotizar.html?servicio=diagnostico\|proyecto\|obra` (servicio preseleccionado) |
-| «Ver proyectos» y tarjetas de rubro | `#proyectos` hasta que exista la página Proyectos (§14.1). Después: `proyectos.html?rubro=…` |
-| Menú (Servicios, Proyectos, Cómo trabajamos) | anclas del §4.1 hasta que existan sus páginas |
+| «Ver proyectos», «Ver todos los proyectos» | `proyectos.html` |
+| Tarjetas de rubro | `proyectos.html?rubro=…` (filtro activo) |
+| Tarjetas de proyecto y «Ver el caso» | página del caso |
+| «Ver el proceso completo» | `como-trabajamos.html` |
+| Menú y pie | páginas del sitio |
 | WhatsApp, correo, Instagram, «¿Otra duda?» | aviso de contacto (D-023) |
 | FAQ | acordeón; varias preguntas pueden estar abiertas a la vez |
+
+---
+
+## 6b. Resto de páginas
+Todas llevan la cabecera fija con la página actual marcada y el pie. Las marcadas con † cierran con el CTA final de Inicio (CONTENT §2.8). Las medidas salen de los frames «HF · …» de Figma › 05.
+
+| Página | Estructura (escritorio → móvil) | Interacciones |
+|---|---|---|
+| **Servicios †** | Encabezado (antetítulo, H1 Display, intro) → 3 filas separadas por líneas: columna de 400 px (número, nombre, precio, plazo, para quién, «Cotizar este servicio») + detalle («Incluye» con ✓, notas; el diagnóstico lleva la nota D-024 en bloque superficie-alt) → bloque blanco «No incluye en ningún servicio» (3 columnas) + nota de precios. En móvil, todo apilado | «Cotizar este servicio» → `cotizar.html?servicio=…` |
+| **Proyectos †** | Encabezado → chips de filtro → cuadrícula 2 × 2 de tarjetas de 588 px (foto de 320 px de alto). En tablet, 2 columnas de 365 px; en móvil, 1 columna y chips con scroll horizontal | Chips filtran sin recargar (y actualizan `?rubro=`); tarjeta → caso |
+| **Caso ×4** | «← Todos los proyectos» → datos, H1, servicio · plazo → foto con «Foto de referencia» → El problema (Heading/M) → Lo que decidimos (fondo blanco): planos Antes y Después lado a lado (uno debajo del otro en móvil) + 3 decisiones numeradas → Materiales propuestos (2 columnas con líneas) → Qué haríamos distinto → cierre superficie-alt «¿Tu local se parece a este?» + «Cotizar un local parecido» → «Siguiente caso →» + título del siguiente | Siguiente: Botica → Florería → Barbería → Cafetería → Botica. «Cotizar un local parecido» → `cotizar.html?rubro=…` (rubro marcado) |
+| **Cómo trabajamos †** | Encabezado + cota → tabla de 5 fases (#, fase, semanas y 3 columnas iguales); en móvil, una ficha por fase con 3 pares etiqueta/texto → bloque verde con §5.2 → FAQ de 8 preguntas (misma composición que en Inicio) | Acordeón; «Escríbenos por WhatsApp» → aviso de contacto |
+| **Estudio †** | Encabezado → «Cómo decidimos» (fondo blanco, 3 + 2 principios) → «Capacidades» (tabla de 4 filas) → «Cómo abordamos un proyecto» / «Lo que no hacemos» (2 columnas) → «Sobre este proyecto →» | Enlace a Sobre |
+| **Sobre este proyecto** | Encabezado → columna de 720: «Qué es real y qué no», «Fotos» (5 créditos con «Ver en Unsplash →», `target="_blank" rel="noopener"`), «Autoría» | «Ver portafolio →» solo si `CONFIG.autor.url` tiene valor (D-038) |
+| **Privacidad** | H1 + texto en 720 px | — |
+| **404** | H1 + texto + «Volver al inicio» / «Cotizar mi local» (a todo el ancho en móvil) | — |
 
 ---
 
@@ -335,7 +369,8 @@ Todo en `MOVIMIENTO.md`: tokens, `prefers-reduced-motion`, cabecera fija, tabla 
   - `<title>` y meta descripción de CONTENT §1 (Metadatos);
   - `lang="es-PE"`, `canonical` relativo al dominio final, Open Graph y Twitter Card;
   - favicons y `site.webmanifest` de `assets/logos/favicon/`;
-  - la indexación y la imagen OG son decisiones abiertas (§14.2 y §14.3).
+  - **indexación (D-035):** `<meta name="robots" content="noindex, nofollow">` en todas las páginas y sin `sitemap.xml`. En la cabecera HTML hay una sola plantilla de `<head>` que la contiene, para poder retirarla en un solo lugar (procedimiento en D-035);
+  - **Open Graph (D-036):** `og:image` = `assets/og/pivote-og.png` (1200 × 630), con `og:image:alt` de CONTENT §12, `og:title` y `og:description` = título y descripción de la página, `twitter:card` = `summary_large_image`. La URL absoluta se fija en el Release, cuando exista la de GitHub Pages.
 
 ---
 
@@ -357,16 +392,22 @@ Todo en `MOVIMIENTO.md`: tokens, `prefers-reduced-motion`, cabecera fija, tabla 
 
 - **Para el Build:** generar versiones de 700 y 1400 px (`sips -Z`), servir con `srcset`/`sizes`, `loading="lazy"` salvo la del hero (`fetchpriority="high"`), y `width`/`height` explícitos para no mover el layout.
 - **Pie de foto de los casos:** «Foto de referencia» (CONTENT §4).
-- **Texto alternativo — PROPUESTA, requiere aprobación** (CONTENT no lo define):
+- **Texto alternativo:** aprobado en D-037. **La fuente es CONTENT §12**; esta tabla era la propuesta original. Las fotos de las tarjetas llevan `alt=""`.
 
 | Archivo | `alt` propuesto |
 |---|---|
 | `interior-madera-continua.jpg` (hero) | «Local revestido de madera clara, con repisas iluminadas y un mueble curvo; una persona lo cruza caminando.» |
-| `botica-estante.jpg` | «Una farmacéutica toma una caja de un estante de medicamentos ordenado por categorías.» |
+| `botica-estante.jpg` | «Una persona con camisa blanca toma una caja de un estante de medicamentos ordenado por categorías.» |
 | `floreria-mostrador.jpg` | «Mostrador de madera con vitrina, flores secas y un balde de flores frescas en primer plano.» |
-| `barberia-salon.jpg` | «Barbería con sillones en fila e iluminación puntual en el techo; un trabajador barre el piso.» |
+| `barberia-salon.jpg` | «Barbería con sillones en fila e iluminación puntual en el techo; una persona barre el piso.» |
 | `cafeteria-barra.jpg` | «Barra de café con máquina de espresso y molinos frente a ventanales altos, en un local de ladrillo.» |
 | `boutique-repisas.jpg` (reserva) | «Tienda con repisas blancas flotantes, accesorios en exhibición y un perchero de ropa clara.» |
+
+### 11.3 Imagen OG
+`assets/og/pivote-og.png` (1200 × 630, 36 KB), exportada del frame `95:3208`. Fondo papel, logotipo, antetítulo y H1; sin datos ficticios.
+
+### 11.4 Planos esquemáticos
+Se exportan a SVG desde los componentes «Esquema / …» (§15) durante el Build y se insertan en línea, para que hereden los tokens de color.
 
 ---
 
@@ -374,10 +415,10 @@ Todo en `MOVIMIENTO.md`: tokens, `prefers-reduced-motion`, cabecera fija, tabla 
 1. **Responsive:** sin desbordes ni textos cortados en 320, 360, 390, 768, 834, 1024, 1280 y 1440. Comparación a ojo contra los frames de Figma › 05.
 2. **Pruebas automáticas** en `_qa/pruebas.html`: los 9 casos del estimador, las reglas de validación del §7.3 y la persistencia (Atrás, Editar, Salir, Nueva cotización).
 3. **axe:** 0 violaciones en todas las páginas. Recorrido completo del formulario **solo con teclado**.
-4. **Lighthouse (móvil):** rendimiento ≥ 90; accesibilidad, buenas prácticas y SEO = 100 (salvo la penalización de SEO por `noindex`, si se elige, §14.2).
+4. **Lighthouse (móvil):** rendimiento ≥ 90; accesibilidad y buenas prácticas = 100. SEO = 100 salvo la penalización esperada por `noindex` (D-035).
 5. **Reducción de movimiento** activada: no hay desplazamientos y el contenido es visible.
 6. **Contenido:** ningún número, correo, dirección ni teléfono inventado. El aviso de concepto aparece solo en los 3 lugares. No hay `toLocaleString` sin locale.
-7. **Enlaces:** 0 rotos; `404.html` probado en GitHub Pages.
+7. **Enlaces:** 0 rotos, incluidos «Siguiente caso» en círculo, el filtro con `?rubro=` y las rutas relativas de `proyectos/`. `404.html` probado en GitHub Pages. Página actual marcada en cada página.
 8. **Regresión con el prototipo:** se repiten en el navegador las pruebas de `QA.md` (HIGH-FI UX REFINEMENT y Ajuste de selectores).
 9. **Registro:** `QA.md` guarda la evidencia de cada punto: qué se ejecutó y su resultado.
 
@@ -395,23 +436,25 @@ Todo en `MOVIMIENTO.md`: tokens, `prefers-reduced-motion`, cabecera fija, tabla 
 | Cambios de estado instantáneos (selección, errores, listas, panel) | transiciones de `MOVIMIENTO.md` |
 | Sin aparición al hacer scroll ni teclado | los dos implementados |
 | Estimador precalculado para 4 áreas | función con cualquier área válida |
-| Enlaces a páginas fuera del HF no navegan | navegan a sus páginas cuando existan (§14.1) |
+| Filtro de Proyectos con variables | filtro en JS con `?rubro=` y `aria-pressed` |
+| Página activa del menú móvil con variables `nav/*` | `aria-current="page"` según la URL |
+| Planos como componentes de Figma | SVG en línea (§11.4) |
+| Enlace a la página actual sin acción (Figma no permite navegar a sí mismo) | enlace normal con `aria-current` |
 
 ---
 
-## 14. Cuestiones abiertas (decide el usuario antes del Build)
-1. **Páginas sin diseño** (Servicios, Proyectos + 4 casos, Cómo trabajamos, Estudio). D-006 dice «Figma antes del código».
-   - **A.** Wireframe + HF en Figma antes de construirlas (fiel a D-006; más tiempo).
-   - **B.** Construirlas en código con los componentes congelados y aprobarlas en el navegador.
-   - **C — recomendada.** Build en dos tramos. Primero Inicio, Cotizar, Sobre, Privacidad y 404, que tienen diseño o son solo texto; los enlaces a las demás páginas apuntan a las anclas de Inicio. En paralelo, diseñar en Figma las 4 plantillas que faltan (Servicios, índice de Proyectos, caso y Cómo trabajamos/Estudio) y construirlas después de aprobarlas.
-2. **Indexación:**
-   - `noindex` mientras sea un concepto (**recomendado**: evita que un negocio real encuentre un estudio que no existe al buscar servicios en Lima; Sereno usó `noindex`);
-   - o indexable, con el aviso actual.
-3. **Imagen OG (1200 × 630):** no está diseñada. Propuesta: fondo papel + logotipo horizontal + H1, generada desde un frame nuevo en Figma. Requiere aprobación.
-4. **Textos alternativos** del §11.2: aprobar o corregir.
-5. **URL de autoría:** sigue pendiente. El enlace no se muestra mientras esté vacía (D-026).
-6. **Publicación:** repositorio y URL. Propuesta: repositorio público `pivote` en tu cuenta de GitHub, como Sereno. Publicar se aprueba aparte, después del Build.
-7. ~~Nombre del archivo de Figma~~: renombrado por el usuario (D-034); ya no está pendiente.
+## 14. Decisiones que cerraron las cuestiones abiertas
+| Cuestión | Decisión |
+|---|---|
+| Páginas sin diseño | Diseñadas en Figma antes del Build (D-034) |
+| Indexación | `noindex, nofollow` mientras sea concepto (D-035) |
+| Imagen OG | Diseñada y exportada (D-036) |
+| Textos alternativos | Aprobados, en CONTENT §12 (D-037) |
+| Autoría | Matías; URL configurable y vacía hasta que el usuario la defina (D-038) |
+| Publicación | Repositorio `pivote` en la cuenta habitual del usuario, GitHub Pages; no se publica hasta el Release (D-039) |
+| Contenido de los casos | Planos esquemáticos, materiales propuestos, «Qué haríamos distinto» en condicional, cierre y «Siguiente caso» (D-040) |
+
+**Único pendiente que no bloquea el Build:** la URL de autoría.
 
 ---
 
@@ -427,7 +470,16 @@ Archivo: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ — página **05 Hi
 | Overlays · Envío | Espera de 1 s, escritorio `69:1789` y móvil `69:1791` |
 | Cabecera (demo) | Arriba `73:2066` · Desplazada `73:2084` |
 | Cotizar · Revisión responsive | 1024 · 834 · 768 · 360 (estáticos) |
+| Páginas · Escritorio | Servicios `92:1764` · Proyectos `93:1939` · Cómo trabajamos `94:2142` · Estudio `94:2349` · Sobre `95:2460` · Privacidad `95:2581` · 404 `95:2638` · Casos: Botica `103:2822`, Florería `103:3174`, Barbería `103:3524`, Cafetería `103:3884` |
+| Páginas · Móvil | Servicios `92:1957` · Proyectos `93:2077` · Cómo trabajamos `94:2479` · Estudio `94:2664` · Sobre `95:2704` · Privacidad `95:2823` · 404 `95:2878` · Casos: Botica `103:3001`, Florería `103:3352`, Barbería `103:3707`, Cafetería `103:4066` |
+| Páginas · Revisión tablet 834 | Servicios `104:4978` · Proyectos `104:5167` · Caso Botica `104:5296` · Cómo trabajamos `104:5467` (estáticos) |
+| Esquemas de casos (componentes) | Botica `102:2823` / `102:2840` · Florería `102:2863` / `102:2878` · Barbería `102:2902` / `102:2917` · Cafetería `102:2946` / `102:2961` (antes / después) |
+| Assets · Open Graph | `95:3208` |
 
-- **Flujos de Present:** «Escritorio · Inicio → Cotizar», «Móvil · Inicio → Cotizar» y «Demo · Cabecera al desplazar».
-- **UI Kit** (página 04): 30 componentes (el Logo está en la página 01), incluidos «Opción de lista» `80:104` y «Lista desplegable» `80:106`.
+- **Flujos de Present:**
+  - «Escritorio · Inicio → Cotizar» y «Móvil · Inicio → Cotizar», que recorren todo el sitio;
+  - «Demo · Cabecera al desplazar»;
+  - «Escritorio · 404» y «Móvil · 404».
+- **Wireframes** de las páginas: Figma › 03.
+- **UI Kit** (página 04): 30 componentes (el Logo está en la página 01), incluidos «Opción de lista» `80:104` y «Lista desplegable» `80:106`. La **Cabecera** y el **Menú móvil** tienen propiedades booleanas «Activo · <página>» (D-040), y el **Pie** tiene un texto por enlace (D-034).
 - **Variables:** `Color`, `Espaciado`, `Radio` y `Tipografía` (tokens del producto); `Prototipo`, que es solo la lógica del prototipo y no se traslada tal cual.

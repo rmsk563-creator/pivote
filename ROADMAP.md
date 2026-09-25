@@ -21,11 +21,14 @@
 | **High-Fi Freeze** | ✅ Aprobado (D-033, 2026-09-24) |
 | Design Handoff (`HANDOFF.md`) | 🟡 Preparado; **pendiente de la revisión del usuario** |
 | DC-002 (estado del local obligatorio) | ✅ Resuelto: obligatorio con ayuda breve |
-| **Cobertura completa del diseño (D-034)** | 🟡 En curso |
+| **Cobertura completa del diseño (D-034, D-040)** | ✅ Completa; **pendiente del Design Coverage Gate del usuario** |
 | · Wireframes Servicios, Proyectos, Caso, Cómo trabajamos, Estudio, Sobre, Privacidad, 404 | ✅ Hechos (escritorio, Figma › 03); pendiente de revisión |
 | · HF Servicios, Proyectos, Cómo trabajamos, Estudio, Sobre, Privacidad, 404 (1440 + 390) | ✅ Hechos y con navegación; pendiente de revisión |
-| · HF de los 4 casos | ⛔ Bloqueado: falta contenido (materiales, «Qué haríamos distinto», antes/después) |
+| · HF de los 4 casos (1440 + 390; revisión 834) | ✅ Hechos y enlazados |
+| · Estado activo en la cabecera y el menú móvil | ✅ |
+| · Revisión tablet 834 (Servicios, Proyectos, Caso, Cómo trabajamos) | ✅ |
 | · Imagen OG | ✅ Diseñada y exportada (`assets/og/`) |
-| Freeze completo y handoff final | ⏳ Después de aprobar la cobertura completa |
+| Design Handoff (`HANDOFF.md`) | ✅ Versión completa; espera el Freeze final |
+| Freeze final | ⏳ Aprobación del usuario |
 | Código (Build) | ⏳ No empezar hasta el handoff final aprobado |
 | Publicación GitHub Pages | ⏳ |
