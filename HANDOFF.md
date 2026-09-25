@@ -1,6 +1,6 @@
 # Design Handoff — Pivote
 
-**Estado: VERSIÓN COMPLETA Y CONGELADA — Freeze final del diseño aprobado (D-041, 2026-09-24).** Es el contrato de implementación del Build. Excepción abierta: DC-003 (caso destacado de Inicio).
+**Estado: VERSIÓN COMPLETA Y CONGELADA — Freeze final del diseño aprobado (D-041, 2026-09-24).** Es el contrato de implementación del Build. DC-003 cerrado (opción A). Decisiones técnicas del Build en D-042.
 
 **Para quién es:** quien construya el sitio (la sesión de Build) y el usuario, que lo revisa antes de autorizar el código.
 
@@ -43,8 +43,8 @@ En tablet (600–1023), las páginas sin frame propio usan la composición móvi
 ## 2. Stack y restricciones
 - **HTML, CSS y JS planos, sin build, sin npm y sin módulos ES** (tu convención de siempre). Nombres de archivo, identificadores y comentarios en español.
 - **Varias páginas HTML**, no un solo `index.html` con router por hash. Es una web pública y cada página necesita su `<title>`, su descripción y su OG. Es la misma excepción a tu convención que en Sereno.
-- **Publicación:** GitHub Pages desde `main`/raíz. Todas las rutas relativas y `404.html` en la raíz.
-- **Sin dependencias en tiempo de ejecución.** Solo Google Fonts: `https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap`, con `preconnect`.
+- **Publicación:** GitHub Pages (Project Page `/pivote/`) desde `main`/raíz. Todas las rutas internas son relativas. `404.html` calcula su `<base>` en el `<head>` y la única URL absoluta (`og:image`) sale de una constante (D-042 · T-3).
+- **Sin dependencias en tiempo de ejecución.** Las fuentes (Archivo 400/500/600 e IBM Plex Mono 400/500) se alojan en `assets/fuentes/` en WOFF2 (D-042 · T-1). Sin Google Fonts en producción.
 - **Sin analítica, cookies ni envío de datos** (SCOPE › Deferred). El estado del formulario vive en memoria y en `sessionStorage`.
 - **Servidor local:** `python3 -m http.server 8080` (el manifest no funciona con `file://`).
 
@@ -208,7 +208,7 @@ Estados de referencia: Default, Hover, Foco, Deshabilitado y los específicos de
 | Fila de problema + Mini-plano | `<li>` + SVG en línea (`aria-hidden`) | 5 mini-planos |
 | Paso de proceso | `<li>` en `<ol>` | Sobre verde: textos inversos |
 | Acordeón | `<details>/<summary>` | Animación en `MOVIMIENTO.md` |
-| Comparador antes/después | `<input type="range">` sobre dos imágenes | Teclado a pasos del 5 %. **En revisión por DC-003:** hoy solo se usa en el caso destacado de Inicio, con la misma foto a ambos lados |
+| Comparador antes/después | — | **No se usa en el sitio** (DC-003 cerrado): el caso destacado de Inicio muestra el plano esquemático «Después» de la Botica |
 | Chip de filtro | `<button aria-pressed>` | Página Proyectos: filtra por rubro. «Todos» por defecto; `?rubro=cafeteria\|tienda\|botica\|salon` llega desde las tarjetas de rubro de Inicio |
 | **Plano esquemático** (8 componentes «Esquema / Caso / Antes-Después», D-040) | SVG en línea dentro de `<figure>` con `<figcaption>`, cuyo texto incluye «Esquema conceptual · no es un plano de obra» | Líneas en `--color-tecnico-linea`, muros en tinta, mobiliario en superficie-alt, circulación discontinua y puntos numerados 01–03 en cuadrado hueco. Base 326 × 244, escalado ×1.5 en escritorio. Texto alternativo = la lista de decisiones que acompaña al plano (`aria-describedby`) |
 | Pie | `<footer>`; **un `<a>` por destino** (D-034) | Separadores «·» con `aria-hidden` |

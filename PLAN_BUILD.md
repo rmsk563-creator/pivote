@@ -1,6 +1,6 @@
 # Plan de Build — Pivote
 
-**Estado:** propuesto el 2026-09-24, después del Freeze final (D-041). **Pendiente de la aprobación del usuario.** No se escribe código de la web hasta esa aprobación.
+**Estado:** aprobado el 2026-09-24 (D-042), con DC-003 cerrado (opción A) y las decisiones técnicas T-1 a T-4 aprobadas; T-3 se define en D-042.
 
 **Contrato:** `HANDOFF.md` (congelado). Este plan dice **cómo y en qué orden** se construye; **qué** se construye lo dice el handoff. Si algo del Build choca con el diseño, se abre un Decision Conflict y no se resuelve en el código.
 

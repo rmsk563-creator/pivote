@@ -453,4 +453,30 @@ Tras la prueba final en Present (todo correcto), el usuario aprobó:
 
 El componente Comparador dejaría de usarse en el sitio (queda en el kit como historial).
 
-**Estado: abierto — decide el usuario.** No bloquea el resto del Build; solo el bloque «caso destacado» de Inicio.
+**Resolución (2026-09-24, usuario): opción A.** Aplicada en Figma › 05, en escritorio, tablet y móvil:
+- el comparador se sustituye por la tarjeta «Después · Esquema conceptual · no es un plano de obra», con el componente `Esquema / Botica / Después` y sus puntos 01–03;
+- en escritorio, las decisiones 01–03 usan ahora los mismos cuadros numerados que las páginas de caso;
+- en tablet y móvil se añadió la lista de las 3 decisiones (con el mismo texto de escritorio), porque antes solo había un párrafo;
+- el componente Comparador ya no se usa en el sitio (queda en el kit como historial).
+
+**Estado: cerrado.**
+
+## D-042 · 2026-09-24 · Plan de Build aprobado + decisiones técnicas T-1 a T-4
+El usuario aprobó `PLAN_BUILD.md` (orden 0 → 11) y:
+- **T-1 · Fuentes en el propio sitio:**
+  - WOFF2 locales (subconjunto latino) en `assets/fuentes/`, con `font-display: swap`;
+  - `preload` solo para la fuente del titular (Archivo), que es la que pinta el LCP;
+  - fallback `"Helvetica Neue", Arial, sans-serif` y `ui-monospace, Menlo, monospace`;
+  - ninguna petición a Google en producción.
+- **T-2 · Cabecera y pie estáticos en las 13 páginas**, con una prueba obligatoria en `_qa/` que compara estructura, enlaces, textos, clases y navegación. Solo pueden variar `aria-current` y el prefijo de ruta.
+- **T-3 · Ruta base centralizada** (Project Page en `/pivote/`):
+  1. todas las rutas internas son **relativas** (`css/…`, `../css/…`), así que funcionan igual en la raíz, en `/pivote/` o en un dominio propio, sin editar enlaces;
+  2. `404.html` (servida por GitHub en cualquier profundidad) calcula su `<base>` con un script en línea en el `<head>`: en `*.github.io` usa el primer segmento de la ruta (`/pivote/`); en cualquier otro servidor, `/`. No hay ningún `/pivote/` escrito a mano;
+  3. la única URL absoluta (la `og:image`, que las redes exigen absoluta) sale de una sola constante, que aplica `_qa/url-publica.py`. Una prueba verifica que todas las páginas usan la misma.
+- **T-4 · Herramientas de QA en `_qa/`:** pruebas propias, axe, capturas y validación.
+  - En el Release hay que comprobar que `_qa/` no es accesible en producción. Jekyll ignora las carpetas con «_» y no se publica un `.nojekyll`.
+  - Si cambia la estrategia de Pages, se vuelve a comprobar.
+
+**Reglas del Build:** HANDOFF congelado; sin reinterpretar el diseño, simplificar componentes, eliminar estados, alterar el responsive, cambiar el copy ni tocar la lógica del estimador. Una limitación real abre un Decision Conflict. Commit al final de cada bloque.
+
+**Estado: aprobado.**

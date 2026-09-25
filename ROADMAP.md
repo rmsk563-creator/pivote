@@ -30,7 +30,8 @@
 | · Imagen OG | ✅ Diseñada y exportada (`assets/og/`) |
 | Design Handoff (`HANDOFF.md`) | ✅ Versión completa, congelada (D-041) |
 | **Freeze final del diseño** | ✅ Aprobado (D-041); etiqueta de Git `diseno-freeze-final` |
-| DC-003 (comparador con foto «antes» simulada en Inicio) | ⏳ Decisión del usuario |
-| Plan de Build (`PLAN_BUILD.md`) | 🟡 Preparado; pendiente de aprobación |
+| DC-003 (comparador con foto «antes» simulada en Inicio) | ✅ Cerrado: opción A, aplicada en Figma |
+| Plan de Build (`PLAN_BUILD.md`) + T-1 a T-4 | ✅ Aprobado (D-042) |
+| Build local (bloques 0–10) | 🟡 En curso |
 | Código (Build) | ⏳ No empezar hasta el handoff final aprobado |
 | Publicación GitHub Pages | ⏳ |
