@@ -438,7 +438,7 @@ Los 10 puntos, correctos: navegación activa en escritorio y en el menú móvil,
 | Responsive | ✅ 0 desbordes | 13 páginas × 10 anchos (320, 360, 390, 640, 720, 768, 834, 1024, 1280, 1440). 640 y 720 equivalen al zoom del 200 % en ventanas de 1280 y 1440 |
 | Ruta base `/pivote/` y 404 | ✅ | Con el emulador de Pages y el dominio real resuelto en local: `/pivote/` y `/pivote/proyectos/…` responden 200; `/pivote/proyectos/no-existe` y `/pivote/a/b/c` devuelven la 404 con `<base href="/pivote/">`, con estilos, fuentes e íconos |
 | `_qa/` no público (T-4) | ✅ en el emulador · ⏳ en producción | `/pivote/_qa/…` y `/pivote/.impeccable/…` responden 404. Se vuelve a comprobar en GitHub Pages durante el Release |
-| Comparación visual con Figma | ✅ | Inicio (1440, 390), Servicios, Cómo trabajamos, caso Botica (1440, 390), caso Cafetería (390), Cotizar pasos 1–2 (1440, 390), resumen (1440, 390) y confirmación (1440). La única diferencia es el corte de línea del H1 del hero, porque Archivo variable es un poco más estrecha que la estática de Figma |
+| Comparación visual con Figma | ✅ | Inicio (1440, 390), Servicios, Cómo trabajamos, caso Botica (1440, 390), caso Cafetería (390), Cotizar pasos 1–2 (1440, 390), resumen (1440, 390), confirmación (1440), Estudio (1440), Proyectos (390), Sobre (1440) y 404 (1440). Privacidad usa la misma plantilla que Sobre, y en Proyectos (390) el alto medido es de 2980 px frente a 2965 en Figma. La única diferencia es el corte de línea del H1 del hero, porque Archivo variable es un poco más estrecha que la estática de Figma |
 
 ### Bugs encontrados y corregidos durante el Build
 1. Íconos invisibles: el `<style>` interno del sprite no se aplica a través de `<use>`. Ahora los atributos de trazo van en cada `<path>`.
