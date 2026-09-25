@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>QA · pruebas de Pivote</title>
+<style>
+  body { font: 14px/1.45 ui-monospace, Menlo, monospace; margin: 24px; color: #16191C; background: #F3F2EE; }
+  h1 { font-size: 18px; } h2 { font-size: 15px; margin-top: 24px; }
+  .ok { color: #1F7A4D; } .fallo { color: #B3261E; font-weight: 600; }
+  #resumen { padding: 8px 12px; background: #fff; border-left: 4px solid #5A6066; }
+</style>
+</head>
+<body>
+<h1>Pruebas automáticas de Pivote</h1>
+<p id="resumen">Ejecutando…</p>
+<div id="resultados"></div>
+<script src="../js/estimador.js"></script>
+<script src="../js/cotizar-logica.js"></script>
+<script>
+/* Ejecutor mínimo: prueba(grupo, nombre, fn). fn puede devolver una promesa. */
+var PRUEBAS = [];
+function prueba(grupo, nombre, fn) { PRUEBAS.push({ grupo: grupo, nombre: nombre, fn: fn }); }
+function igual(obtenido, esperado, detalle) {
+  if (JSON.stringify(obtenido) !== JSON.stringify(esperado)) throw new Error((detalle ? detalle + ': ' : '') + 'se esperaba ' + JSON.stringify(esperado) + ' y se obtuvo ' + JSON.stringify(obtenido));
+}
+function cierto(v, detalle) { if (!v) throw new Error(detalle || 'se esperaba verdadero'); }
+
+/* ---- 1. Estimador (HANDOFF §7.4, CONTENT §8) ---------------------------- */
+var E = function (e) { return window.Estimador.estimar(e); };
+var CASOS = [
+  [{ area: 48, rubro: 'cafeteria', servicio: 'obra', estado: 'vacio', cierre: 'noche', centroComercial: 'no' }, 'S/ 77,000 – 118,000'],
+  [{ area: 48, rubro: 'botica', servicio: 'proyecto', estado: 'vacio', cierre: null, centroComercial: 'no' }, 'S/ 3,700 – 5,800'],
+  [{ area: 32, rubro: 'tienda', servicio: 'obra', estado: 'funcionamiento', cierre: 'abierto', centroComercial: 'no' }, 'S/ 40,000 – 61,000'],
+  [{ area: 60, rubro: 'salon', servicio: 'obra', estado: 'vacio', cierre: null, centroComercial: 'si' }, 'S/ 83,000 – 126,000'],
+  [{ area: 40, rubro: 'tienda', servicio: 'diagnostico', estado: 'funcionamiento', cierre: null, centroComercial: 'no' }, 'S/ 900 – 1,300'],
+  [{ area: 120, rubro: 'cafeteria', servicio: 'diagnostico', estado: 'funcionamiento', cierre: null, centroComercial: 'no' }, 'S/ 2,400 – 3,400'],
+  [{ area: 30, rubro: 'tienda', servicio: 'obra', estado: 'funcionamiento', cierre: 'total', centroComercial: 'no' }, 'S/ 32,000 – 49,000'],
+  [{ area: 90, rubro: 'salon', servicio: 'obra', estado: 'vacio', cierre: 'abierto', centroComercial: 'si' }, 'S/ 147,000 – 225,000'],
+  [{ area: null, rubro: 'cafeteria', servicio: 'obra', estado: 'sinlocal', cierre: null, centroComercial: 'no' }, 'S/ 1,330 – 2,030 por m²']
+];
+CASOS.forEach(function (c, i) {
+  prueba('Estimador · 9 casos del handoff', (i + 1) + '. ' + JSON.stringify(c[0]), function () { igual(E(c[0]).cifra, c[1]); });
+});
+prueba('Estimador · textos', 'Explicación del ejemplo de CONTENT §7.5', function () {
+  igual(E(CASOS[0][0]).explica, 'Calculado con 48 m² × diseño + obra × cafetería × local vacío × obra de noche. Es una referencia, no un presupuesto: el monto final sale de la visita y del proyecto. No incluye equipos de cocina ni mercadería.');
+});
+prueba('Estimador · textos', 'Diagnóstico menciona el descuento (D-024)', function () {
+  cierto(/descontamos el diagnóstico/.test(E(CASOS[4][0]).explica));
+});
+prueba('Estimador · casos especiales', '«Aún no lo sé» usa diseño + obra y añade el rango del proyecto', function () {
+  var r = E({ area: 48, rubro: 'cafeteria', servicio: 'nose', estado: 'vacio', cierre: 'noche', centroComercial: 'no' });
+  igual(r.cifra, 'S/ 77,000 – 118,000');
+  cierto(/Si solo es el proyecto de diseño: S\/ 4,400 – 6,900/.test(r.explica), r.explica);
+});
+prueba('Estimador · casos especiales', '«Aún sin local» con «Aún no lo sé» da la referencia por m²', function () {
+  igual(E({ area: null, rubro: 'tienda', servicio: 'nose', estado: 'sinlocal', cierre: null, centroComercial: 'no' }).cifra, 'S/ 1,020 – 1,560 por m²');
+});
+prueba('Estimador · casos especiales', '«Aún sin local» no activa el aviso de presupuesto', function () {
+  igual(E({ area: null, rubro: 'tienda', servicio: 'obra', estado: 'sinlocal' }).minParaAviso, 0);
+});
+prueba('Estimador · bordes', 'A = 10 es válido', function () { cierto(E({ area: 10, rubro: 'tienda', servicio: 'diagnostico' }).cifra); });
+prueba('Estimador · bordes', 'A = 9.9 no da cifra', function () { igual(E({ area: 9.9, rubro: 'tienda', servicio: 'diagnostico' }).cifra, null); });
+prueba('Estimador · bordes', 'A = 1,000 es válido', function () { cierto(E({ area: 1000, rubro: 'tienda', servicio: 'obra', estado: 'vacio' }).cifra); });
+prueba('Estimador · bordes', 'A = 1,001 no da cifra y lo explica', function () {
+  var r = E({ area: 1001, rubro: 'tienda', servicio: 'obra', estado: 'vacio' });
+  igual(r.cifra, null); cierto(/1,000 m²/.test(r.explica), r.explica);
+});
+prueba('Estimador · bordes', 'Sin área: texto de CONTENT §7.5', function () {
+  igual(E({ area: null, rubro: 'tienda', servicio: 'obra', estado: 'vacio' }).explica, 'Para calcular un rango necesitamos el área aproximada.');
+});
+prueba('Estimador · bordes', 'Sin cierre = factor 1.00 (igual que «cierre total»)', function () {
+  var base = { area: 48, rubro: 'tienda', servicio: 'obra', estado: 'vacio', centroComercial: 'no' };
+  igual(E(Object.assign({}, base, { cierre: null })).cifra, E(Object.assign({}, base, { cierre: 'total' })).cifra);
+});
+prueba('Estimador · bordes', 'Centro comercial ×1.08 cambia la obra', function () {
+  var base = { area: 48, rubro: 'tienda', servicio: 'obra', estado: 'vacio', cierre: 'total' };
+  cierto(E(Object.assign({}, base, { centroComercial: 'si' })).min > E(Object.assign({}, base, { centroComercial: 'no' })).min);
+});
+prueba('Estimador · redondeo', 'A 100 por debajo de 10,000; a 500 hasta 20,000; a 1,000 por encima', function () {
+  var R = window.Estimador.redondear;
+  igual([R(9949), R(9950), R(10249), R(10250), R(20250), R(20499), R(20500)], [9900, 10000, 10000, 10500, 20000, 20000, 21000]);
+});
+prueba('Estimador · formato', 'Coma de miles y guion corto con espacios', function () {
+  igual(window.Estimador.formatoRango(77000, 118000), 'S/ 77,000 – 118,000');
+});
+prueba('Estimador · aviso de presupuesto', 'Tope menor que el mínimo → aviso; «más de 100,000» y «prefiero no decirlo» → nunca', function () {
+  var A = window.Estimador.avisoPresupuesto;
+  igual([A('hasta20', 77000), A('20a50', 77000), A('50a100', 77000), A('mas100', 77000), A('nd', 77000), A('50a100', 40000), A('hasta20', 0)], [true, true, false, false, false, false, false]);
+});
+
+/* ---- Ejecución ---------------------------------------------------------- */
+(function () {
+  var res = document.getElementById('resultados'), ok = 0, fallos = 0, grupoActual = null;
+  var cadena = Promise.resolve();
+  PRUEBAS.forEach(function (p) {
+    cadena = cadena.then(function () {
+      if (p.grupo !== grupoActual) { grupoActual = p.grupo; var h = document.createElement('h2'); h.textContent = p.grupo; res.appendChild(h); }
+      var linea = document.createElement('div');
+      return Promise.resolve().then(p.fn).then(function () {
+        ok++; linea.className = 'ok'; linea.textContent = '✓ ' + p.nombre;
+      }, function (e) {
+        fallos++; linea.className = 'fallo'; linea.textContent = '✗ ' + p.nombre + ' — ' + (e && e.message);
+      }).then(function () { res.appendChild(linea); });
+    });
+  });
+  cadena.then(function () {
+    var r = document.getElementById('resumen');
+    r.textContent = (fallos ? 'FALLOS ' : 'OK ') + ok + '/' + (ok + fallos);
+    r.className = fallos ? 'fallo' : 'ok';
+    document.title = r.textContent;
+  });
+})();
+</script>
+</body>
+</html>
