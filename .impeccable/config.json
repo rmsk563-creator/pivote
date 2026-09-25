@@ -11,6 +11,52 @@
         ],
         "createdAt": "2026-09-25T01:50:52.140Z",
         "reason": "Token aprobado texto/inverso-secundario #A8B8B0 sobre verde botella (MARCA §3, D-018/D-019, contraste medido 4.76:1); es el diseño congelado D-041"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "css/estilos.css"
+        ],
+        "createdAt": "2026-09-25T05:40:08.833Z",
+        "reason": "Borde lateral de los avisos (errores, presupuesto, contacto) es el componente Aviso aprobado en el HF congelado (D-041); no es una tarjeta decorativa"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "css/estilos.css",
+          "index.html"
+        ],
+        "createdAt": "2026-09-25T05:40:08.860Z",
+        "reason": "Transiciones puntuales y aprobadas: padding de la cabecera Arriba/Desplazada (1 cambio por estado) y plegable del panel en Cotizar móvil; ≤240 ms y anuladas con prefers-reduced-motion"
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-25T05:40:08.885Z",
+        "reason": "Etiqueta mono con guion sobre el H1 es el patrón de sección de MARCA/HF congelado (D-041)"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-25T05:40:08.905Z",
+        "reason": "Etiquetas mono cortas en mayúsculas aprobadas en MARCA; no es texto corrido"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-25T05:40:08.928Z",
+        "reason": "Falso positivo: secciones de fondo a sangre; el contenido va en .contenedor con margen de 16/40 px (verificado en capturas)"
       }
     ]
   }
