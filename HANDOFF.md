@@ -1,6 +1,6 @@
 # Design Handoff — Pivote
 
-**Estado: VERSIÓN COMPLETA — cubre todo el sitemap (D-034, D-040).** Pendiente del **Freeze final** del usuario. Hasta esa aprobación no es base para el Build.
+**Estado: VERSIÓN COMPLETA Y CONGELADA — Freeze final del diseño aprobado (D-041, 2026-09-24).** Es el contrato de implementación del Build. Excepción abierta: DC-003 (caso destacado de Inicio).
 
 **Para quién es:** quien construya el sitio (la sesión de Build) y el usuario, que lo revisa antes de autorizar el código.
 
@@ -9,7 +9,7 @@
 ## 0. Fuentes de verdad y prioridad
 Si dos fuentes chocan, manda la primera de esta lista y se registra el conflicto en `DECISIONS.md`. No se resuelve en silencio.
 
-1. **Decisiones aprobadas:** `DECISIONS.md`, hasta D-033.
+1. **Decisiones aprobadas:** `DECISIONS.md`, hasta D-041 (y los Decision Conflicts que se resuelvan después).
 2. **Copy:** `CONTENT.md` v1.0, con los cambios de D-031 y D-032. Todo texto visible sale de ahí; este documento no repite el copy, lo referencia.
 3. **Diseño congelado:** Figma «Pivote — Estudio de espacios comerciales» (`bwWtTTnJSTklYl240LVNEZ`), páginas 04 UI Kit y 05 High Fidelity. El prototipo está en 05 (mapa en el §15).
 4. **Marca:** `MARCA.md` (logo, paleta, roles, contrastes, tipografía y tono).
@@ -23,8 +23,6 @@ Si dos fuentes chocan, manda la primera de esta lista y se registra el conflicto
 ## 1. Qué se construye
 Una web estática y responsive de un estudio conceptual (Reality Mode **Concept / Portfolio**, D-003) cuya acción principal es **cotizar un local**. El formulario es una simulación: valida, calcula un rango orientativo y confirma, pero **no envía ni guarda nada fuera de la pestaña** (D-005).
 
-| Página | Diseño aprobado | Fuente del copy |
-|---|---|---|
 | Página | Archivo | Diseño (Figma › 05) | Copy |
 |---|---|---|---|
 | Inicio | `index.html` | HF 1440 / 834 / 390 | CONTENT §2 |
@@ -157,7 +155,7 @@ Mínimos de D-031: ningún texto funcional por debajo de 12 px; etiquetas de cam
   - **Servicios:** 3 tarjetas de igual alto → 2 + 1 → apiladas.
   - **Cómo trabajamos:** 5 pasos en fila → 2 o 3 por fila → apilados.
   - **FAQ:** 2 columnas separadas 96 px → una columna.
-- **Anclas** (ids propuestos para las secciones a las que salta el menú en el prototipo): `#servicios`, `#proyectos`, `#como-trabajamos`, `#preguntas`. Todas con `scroll-margin-top` igual al alto de la cabecera desplazada.
+- **Anclas:** el menú ya lleva a páginas, así que no son necesarias. Si se usan (`#servicios`, `#proyectos`, `#como-trabajamos`, `#preguntas`), llevan `scroll-margin-top` igual al alto de la cabecera desplazada.
 
 ### 4.2 Cotizar (D-031 §1)
 - **≥ 1024:**
@@ -210,7 +208,7 @@ Estados de referencia: Default, Hover, Foco, Deshabilitado y los específicos de
 | Fila de problema + Mini-plano | `<li>` + SVG en línea (`aria-hidden`) | 5 mini-planos |
 | Paso de proceso | `<li>` en `<ol>` | Sobre verde: textos inversos |
 | Acordeón | `<details>/<summary>` | Animación en `MOVIMIENTO.md` |
-| Comparador antes/después | `<input type="range">` sobre dos imágenes | Teclado a pasos del 5 % |
+| Comparador antes/después | `<input type="range">` sobre dos imágenes | Teclado a pasos del 5 %. **En revisión por DC-003:** hoy solo se usa en el caso destacado de Inicio, con la misma foto a ambos lados |
 | Chip de filtro | `<button aria-pressed>` | Página Proyectos: filtra por rubro. «Todos» por defecto; `?rubro=cafeteria\|tienda\|botica\|salon` llega desde las tarjetas de rubro de Inicio |
 | **Plano esquemático** (8 componentes «Esquema / Caso / Antes-Después», D-040) | SVG en línea dentro de `<figure>` con `<figcaption>`, cuyo texto incluye «Esquema conceptual · no es un plano de obra» | Líneas en `--color-tecnico-linea`, muros en tinta, mobiliario en superficie-alt, circulación discontinua y puntos numerados 01–03 en cuadrado hueco. Base 326 × 244, escalado ×1.5 en escritorio. Texto alternativo = la lista de decisiones que acompaña al plano (`aria-describedby`) |
 | Pie | `<footer>`; **un `<a>` por destino** (D-034) | Separadores «·» con `aria-hidden` |

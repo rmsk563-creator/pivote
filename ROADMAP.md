@@ -28,7 +28,9 @@
 | · Estado activo en la cabecera y el menú móvil | ✅ |
 | · Revisión tablet 834 (Servicios, Proyectos, Caso, Cómo trabajamos) | ✅ |
 | · Imagen OG | ✅ Diseñada y exportada (`assets/og/`) |
-| Design Handoff (`HANDOFF.md`) | ✅ Versión completa; espera el Freeze final |
-| Freeze final | ⏳ Aprobación del usuario |
+| Design Handoff (`HANDOFF.md`) | ✅ Versión completa, congelada (D-041) |
+| **Freeze final del diseño** | ✅ Aprobado (D-041); etiqueta de Git `diseno-freeze-final` |
+| DC-003 (comparador con foto «antes» simulada en Inicio) | ⏳ Decisión del usuario |
+| Plan de Build (`PLAN_BUILD.md`) | 🟡 Preparado; pendiente de aprobación |
 | Código (Build) | ⏳ No empezar hasta el handoff final aprobado |
 | Publicación GitHub Pages | ⏳ |

@@ -1,7 +1,7 @@
 # Project Profile — Pivote
 
 ## Identidad
-**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **High-Fi Freeze aprobado (D-033); Design Handoff en revisión** (2026-09-24).
+**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **Freeze final del diseño aprobado (D-041); plan de Build en revisión** (2026-09-24).
 
 ## Objetivo
 Presentar un estudio de diseño de espacios comerciales para negocios pequeños y medianos, y convertir visitas en **solicitudes de cotización**. Para Matías funciona como proyecto de portafolio, muestra de UX/UI y posible referencia para captar clientes reales.
@@ -69,7 +69,7 @@ Historial completo en `DECISIONS.md`.
 - Páginas: 00 Portada · 01 Identidad (Pivote, logo, favicon) · 01b Naming (cerrado) · 01c Color (comparación; se eligió V4) · 02 Arquitectura · 03 Wireframes · 04 UI Kit · 05 High Fidelity (con el prototipo) · 06 Prototipo (instrucciones) · 99 Archivo (exploración Nexo).
 
 ## Estado actual
-- Último checkpoint aprobado: **High-Fi Freeze** (D-033, 2026-09-24).
+- Último checkpoint aprobado: **Freeze final del diseño** (D-041, 2026-09-24; etiqueta `diseno-freeze-final`).
 - **Aprobado como base (D-030):** High Fidelity de Inicio (1440, 834, 390) y Cotizar (1440, 390) con prototipo de variables (Figma › 05). DC-002 cerrado (estado del local obligatorio).
 - **Ronda HIGH-FI UX REFINEMENT aplicada (D-031):**
   - Cotizar responsive (1200 máx., revisado en 1440, 1024, 834, 768, 390 y 360);
@@ -83,10 +83,11 @@ Historial completo en `DECISIONS.md`.
 - **Ajuste de selectores (D-032):** distrito, fecha y área usan una lista desplegable pegada al campo; nombre y teléfono se «escriben» al tocarlos. Los diálogos quedan solo para interrupciones reales.
 - **High-Fi Freeze aprobado (D-033, 2026-09-24)** tras la comprobación final en Present.
 - **Cobertura completa del diseño (D-034, D-040):** todo el sitemap tiene HF en escritorio y móvil (revisión en tablet donde hacía falta), con navegación completa, OG e indexación `noindex, nofollow` (D-035). `HANDOFF.md` está en versión completa.
-- Siguiente gate: Design Coverage Gate y Freeze final del usuario → Build.
+- **Freeze final aprobado (D-041).** Cualquier cambio de diseño importante abre un Decision Conflict. DC-003 abierto (comparador de Inicio).
+- Siguiente gate: aprobación del plan de Build (`PLAN_BUILD.md`) → Build.
 
 ## Siguiente paso
-El usuario prueba el sitio completo en Present (lista en `QA.md`) y decide si aprueba el Design Coverage Gate y el Freeze final.
+El usuario revisa `PLAN_BUILD.md`, decide DC-003 y las decisiones técnicas del plan, y autoriza el Build.
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ

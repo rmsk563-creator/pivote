@@ -348,7 +348,7 @@ Flujo: arquitectura → wireframes → High Fidelity → prototipo y QA → free
 - Todo el sitemap diseñado y enlazado (QA en `QA.md`).
 - `HANDOFF.md` pasa a versión completa.
 
-**Estado: cobertura completa; pendiente del Design Coverage Gate y del Freeze final del usuario.**
+**Estado: cerrado con D-041.**
 
 ## D-035 · 2026-09-24 · Indexación: `noindex, nofollow` mientras sea Concept / Portfolio
 Pivote no debe aparecer en buscadores como si fuera un estudio operativo.
@@ -419,4 +419,38 @@ Aprobado por el usuario:
 
 No se creó un componente contenedor para los planos ni para los materiales: son composiciones sencillas y un componente no aportaba reutilización real.
 
-**Estado: aplicado; pendiente de la revisión del usuario.**
+**Estado: aprobado (D-041).**
+
+## D-041 · 2026-09-24 · FREEZE FINAL DEL DISEÑO
+Tras la prueba final en Present (todo correcto), el usuario aprobó:
+- el Design Coverage Gate;
+- la cobertura responsive y la navegación completa;
+- las páginas de caso;
+- `HANDOFF.md` completo;
+- el **Freeze final del diseño**.
+
+**Queda congelado el diseño completo del sitio:** Figma › 03 (wireframes), 04 (UI Kit) y 05 (High Fidelity y prototipo), `CONTENT.md`, `MARCA.md`, `MOVIMIENTO.md` y `HANDOFF.md`.
+
+**Desde ahora, cualquier cambio importante de diseño abre un Decision Conflict** antes de tocar Figma o el código.
+
+**Checkpoint de Git:** etiqueta `diseno-freeze-final`.
+
+**Estado: aprobado.**
+
+## DC-003 · 2026-09-24 · Decision Conflict — comparador con foto «antes» simulada en Inicio
+**Decisión previa:**
+- el HF de Inicio (congelado en D-033 y D-041) muestra en el caso destacado el componente «Comparador antes/después» (escritorio `36:150`, tablet `39:805`, móvil `38:515`);
+- D-040 prohíbe simular fotos «antes».
+
+**Conflicto detectado** al revisar `HANDOFF.md` como contrato de implementación:
+- las dos capas del comparador usan **la misma foto** (`botica-estante.jpg`), y el «antes» solo está desaturado;
+- el visitante lo leería como un antes y un después real, lo que contradice D-040 y la regla de realismo (D-003).
+
+**Alternativas:**
+- **A · recomendada:** sustituir el comparador por el plano esquemático «Después» de la Botica, con sus 3 puntos (componente `Esquema / Botica / Después`) y la etiqueta «Esquema conceptual · no es un plano de obra». Encaja con «Casos contados como decisiones» y repite un patrón ya aprobado.
+- **B:** sustituirlo por la foto de referencia, con el pie «Foto de referencia», como en la cabecera de los casos.
+- **C:** mantenerlo tal cual (no recomendado: contradice D-040).
+
+El componente Comparador dejaría de usarse en el sitio (queda en el kit como historial).
+
+**Estado: abierto — decide el usuario.** No bloquea el resto del Build; solo el bloque «caso destacado» de Inicio.

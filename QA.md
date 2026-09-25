@@ -402,4 +402,10 @@ Flujos **Escritorio · Inicio → Cotizar** y **Móvil · Inicio → Cotizar** (
 10. **A ojo:** los frames de revisión de 834 («Páginas · Revisión tablet 834») no tienen cortes ni desbordes.
 
 ### Estado
-🟡 **Cobertura completa. Pendiente de la prueba del usuario y de su aprobación del Design Coverage Gate y del Freeze final.**
+### Resultado de la prueba final (usuario, 2026-09-24)
+Los 10 puntos, correctos: navegación activa en escritorio y en el menú móvil, tarjetas → caso, «← Todos los proyectos», «Siguiente caso» circular, planos y puntos 01–03, «Cotizar un local parecido» con el rubro marcado, Inicio → casos y filtros, flujo completo de Cotizar y tablet sin cortes.
+
+✅ **Design Coverage Gate y Freeze final aprobados (D-041).**
+
+### Hallazgo posterior al freeze (revisión del contrato de implementación)
+- **DC-003:** el caso destacado de Inicio compara la misma foto (desaturada) como «antes» y «después». Contradice D-040. Pendiente de decisión del usuario; ver DECISIONS.
