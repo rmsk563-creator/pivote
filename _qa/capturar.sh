@@ -5,7 +5,7 @@
 # Deja las imágenes en _qa/capturas/ (ignorado por Git) y el informe en _qa/capturas/informe.txt.
 set -u
 CH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-BASE="http://127.0.0.1:8123"
+BASE="${BASE:-http://127.0.0.1:8123}"
 ANCHOS="${ANCHOS:-320 360 390 768 834 1024 1280 1440}"
 cd "$(dirname "$0")/.."
 mkdir -p _qa/capturas

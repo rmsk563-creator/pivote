@@ -505,3 +505,32 @@ Se describe en el mensaje de cierre del Build. Incluye el recorrido real con tec
 
 ## Prueba local del usuario · 2026-09-25 · ✅ APROBADA
 El usuario completó la prueba local completa y no encontró errores pendientes en navegación, responsive, formulario, estimador, desplegables, animaciones, pie, rutas, casos y 404. **Build local aprobado; Release autorizado (D-044).**
+
+---
+
+## Release · Smoke test en producción · 2026-09-25
+**URL pública:** https://rmsk563-creator.github.io/pivote/
+- Repositorio público `rmsk563-creator/pivote`.
+- GitHub Pages desde `main` y la raíz, con el build clásico de Jekyll.
+- Checkpoint previo: `pre-release-v1.0`.
+
+| Área | Resultado | Evidencia |
+|---|---|---|
+| Rutas | ✅ | 16 URL responden 200: raíz, `index.html`, 8 páginas, `proyectos` (sin barra, sirve `proyectos.html`), los 4 casos, `cotizar.html?nueva=1` y `404.html` |
+| Assets | ✅ 83/83 | Fuentes, íconos, planos, fotos 700/1400, logos, favicons, `og:image` (200, `image/png`), CSS y JS |
+| noindex, favicon, og | ✅ 13/13 | `noindex, nofollow`, 2 favicons y `og:image` absoluta en cada página |
+| 404 anidada | ✅ | `/pivote/proyectos/no-existe/otra` y `/pivote/a/b/c` → 404 con `<base href="/pivote/">`, estilos, fuente Archivo y logos (captura revisada) |
+| Herramientas internas no públicas | ✅ | `_qa/…` (pruebas, axe, vendor, scripts), `.impeccable/`, `.gitignore`, `_config.yml` y todos los `.md` internos (`QA.md`, `/QA`, `HANDOFF.md`, `/DECISIONS`, `LEEME`, `CREDITOS`) → 404 |
+| Dominio real por CDP (`_qa/produccion-cdp.mjs`) | ✅ 85/85 | 17 rutas × 5 anchos (320, 390, 768, 1024, 1440): estado HTTP, imágenes decodificadas, sin desborde horizontal, CSS aplicado, fuente Archivo cargada |
+| Pruebas funcionales en producción (`_qa/proxy-produccion.py`) | ✅ 72/73 · 1 falso fallo explicado | Formulario completo, estimador, persistencia, guardas, diálogo, cabecera y pie (T-2), metadatos, enlaces, teclado, contacto y movimiento, con y sin `prefers-reduced-motion`. El único fallo, «imágenes decodificadas», se debe al proxy: el tiempo virtual de headless agota la espera mientras la imagen baja de la red real, y en `127.0.0.1` la 404 calcula `<base href="/">` a propósito. La misma verificación en el dominio real (fila anterior) da 85/85 |
+| axe-core 4.10 en producción | ✅ 0 violaciones | 16 vistas por el proxy, a 1280 y 390. La 404 se probó en el dominio real (`404.html`, `proyectos/no-existe/otra`, `proyectos/`), a 1280 y 390: 0 violaciones. A través del proxy daba 1, porque ahí la 404 queda sin CSS por la `<base>` |
+| Visual | ✅ | Capturas de Inicio (1440) y de la 404 anidada, tomadas del dominio real |
+
+**Observación para el usuario (sin cambios, porque no es un bug del Build):**
+- `/pivote/proyectos/` (con barra final) muestra la 404 del sitio.
+- La lista de proyectos vive en `proyectos.html`, que también responde en `/pivote/proyectos` sin barra, y ningún enlace del sitio usa la ruta con barra.
+- Si se quiere que esa URL también muestre la lista, hay que añadir `proyectos/index.html`: es una página nueva y necesita decisión.
+
+**Pendiente del usuario:** prueba en un teléfono real (lista en el mensaje de entrega).
+
+**Estado:** ✅ **v1.0 publicada** (etiqueta `v1.0`).

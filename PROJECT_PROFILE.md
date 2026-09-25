@@ -1,7 +1,7 @@
 # Project Profile — Pivote
 
 ## Identidad
-**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **Build local aprobado por el usuario (D-044, 2026-09-25); Release en curso.**
+**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **v1.0 publicada (2026-09-25)** en https://rmsk563-creator.github.io/pivote/ · falta la prueba en un teléfono real.
 
 ## Objetivo
 Presentar un estudio de diseño de espacios comerciales para negocios pequeños y medianos, y convertir visitas en **solicitudes de cotización**. Para Matías funciona como proyecto de portafolio, muestra de UX/UI y posible referencia para captar clientes reales.
@@ -86,13 +86,14 @@ Historial completo en `DECISIONS.md`.
 - **Freeze final aprobado (D-041).** Cualquier cambio de diseño importante abre un Decision Conflict. DC-003 abierto (comparador de Inicio).
 - **Build local terminado (bloques 0–10):** 13 páginas; 72 pruebas automáticas; axe sin violaciones; sin desbordes en 10 anchos; ruta base `/pivote/` y 404 verificadas con un emulador de Pages. Desviaciones en D-043.
 - **Build local aprobado por el usuario** tras su prueba local completa (D-044). Release autorizado.
-- Siguiente gate: smoke test en producción → etiqueta `v1.0` → prueba del usuario en un teléfono real.
+- **Release v1.0 (2026-09-25):** repositorio público `rmsk563-creator/pivote`, Pages desde `main`; smoke test en producción OK (QA.md).
+- Siguiente gate: prueba del usuario en un teléfono real; decidir si `/pivote/proyectos/` debe mostrar la lista.
 
 ## Siguiente paso
-Publicar en GitHub Pages (`main`), ejecutar el smoke test en producción y etiquetar `v1.0`.
+El usuario prueba v1.0 en un teléfono real (lista en QA.md / mensaje de entrega).
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ
-- Repo: `~/Downloads/pivote` (local, sin remoto)
+- Repo: https://github.com/rmsk563-creator/pivote (público; local en `~/Downloads/pivote`)
 - Dominio candidato: `pivote.pe` (libre según whois, 2026-09-24; no reservado)
-- Staging / producción: —
+- Producción: https://rmsk563-creator.github.io/pivote/ (v1.0, 2026-09-25)
