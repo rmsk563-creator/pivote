@@ -32,7 +32,7 @@
 | **Freeze final del diseño** | ✅ Aprobado (D-041); etiqueta de Git `diseno-freeze-final` |
 | DC-003 (comparador con foto «antes» simulada en Inicio) | ✅ Cerrado: opción A, aplicada en Figma |
 | Plan de Build (`PLAN_BUILD.md`) + T-1 a T-4 | ✅ Aprobado (D-042) |
-| Build local (bloques 0–10) | ✅ Terminado y verificado (QA en `QA.md`, desviaciones en D-043); **pendiente de la prueba del usuario** |
-| Release (GitHub Pages `/pivote/`) | ⏳ Después de la aprobación del usuario |
+| Build local (bloques 0–10) | ✅ Terminado, verificado y **aprobado por el usuario tras su prueba local** (D-044, 2026-09-25) |
+| Release (GitHub Pages `/pivote/`) | 🟡 En curso: autorizado por el usuario (D-044) |
 | Código (Build) | ⏳ No empezar hasta el handoff final aprobado |
 | Publicación GitHub Pages | ⏳ |

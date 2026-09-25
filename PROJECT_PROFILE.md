@@ -1,7 +1,7 @@
 # Project Profile — Pivote
 
 ## Identidad
-**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **Build local terminado y verificado (2026-09-25); pendiente de la prueba del usuario antes del Release.**
+**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **Build local aprobado por el usuario (D-044, 2026-09-25); Release en curso.**
 
 ## Objetivo
 Presentar un estudio de diseño de espacios comerciales para negocios pequeños y medianos, y convertir visitas en **solicitudes de cotización**. Para Matías funciona como proyecto de portafolio, muestra de UX/UI y posible referencia para captar clientes reales.
@@ -85,10 +85,11 @@ Historial completo en `DECISIONS.md`.
 - **Cobertura completa del diseño (D-034, D-040):** todo el sitemap tiene HF en escritorio y móvil (revisión en tablet donde hacía falta), con navegación completa, OG e indexación `noindex, nofollow` (D-035). `HANDOFF.md` está en versión completa.
 - **Freeze final aprobado (D-041).** Cualquier cambio de diseño importante abre un Decision Conflict. DC-003 abierto (comparador de Inicio).
 - **Build local terminado (bloques 0–10):** 13 páginas; 72 pruebas automáticas; axe sin violaciones; sin desbordes en 10 anchos; ruta base `/pivote/` y 404 verificadas con un emulador de Pages. Desviaciones en D-043.
-- Siguiente gate: prueba local del usuario → Release (bloque 11).
+- **Build local aprobado por el usuario** tras su prueba local completa (D-044). Release autorizado.
+- Siguiente gate: smoke test en producción → etiqueta `v1.0` → prueba del usuario en un teléfono real.
 
 ## Siguiente paso
-El usuario prueba el Build en local (lista en el mensaje de cierre y en `QA.md`), decide la desviación 1 de D-043 y autoriza el Release.
+Publicar en GitHub Pages (`main`), ejecutar el smoke test en producción y etiquetar `v1.0`.
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ

@@ -500,3 +500,8 @@ Se describe en el mensaje de cierre del Build. Incluye el recorrido real con tec
   - Todo el sitio: 72 hallazgos, **idénticos archivo por archivo a los de antes del ajuste**, sin ninguno nuevo. Son los mismos patrones de las excepciones (color, etiqueta, transición, secciones a sangre), repetidos en páginas que las excepciones no cubren. Por decisión del usuario, las excepciones siguen limitadas a esos dos archivos.
 
 **Estado:** ✅ D-043.1 resuelta. Sin publicar; falta la prueba local del usuario.
+
+---
+
+## Prueba local del usuario · 2026-09-25 · ✅ APROBADA
+El usuario completó la prueba local completa y no encontró errores pendientes en navegación, responsive, formulario, estimador, desplegables, animaciones, pie, rutas, casos y 404. **Build local aprobado; Release autorizado (D-044).**

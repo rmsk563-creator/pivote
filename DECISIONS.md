@@ -490,3 +490,18 @@ Detectadas durante el Build; ninguna cambia el diseño aprobado. Detalle y evide
 5. **Enter en un campo de texto de Cotizar = «Continuar».**
 
 **Estado: aplicado; pendiente de revisión del usuario.**
+
+## D-044 · 2026-09-25 · Build local aprobado; Release autorizado
+El usuario completó la prueba local y no encontró errores pendientes en navegación, responsive, formulario, estimador, desplegables, animaciones, pie, rutas, casos y 404. **Aprueba el Build local y autoriza el Release.**
+
+Condiciones del Release, según el usuario:
+- checkpoint o etiqueta previa a la publicación;
+- repositorio `pivote`, con GitHub Pages desde `main`;
+- `_qa/` no publicado;
+- `noindex, nofollow` en todo el sitio;
+- smoke test en producción;
+- etiqueta `v1.0`.
+
+Durante el Release no se cambia diseño ni contenido, salvo que aparezca un bug real.
+
+**Detalle técnico del Release:** se añade `_config.yml`, que excluye del sitio publicado los documentos internos `.md`. Sin ese archivo, Jekyll (el build clásico de Pages) los convierte en páginas HTML **sin** `noindex`. `_qa/` y `.impeccable/` ya quedan fuera, porque Jekyll excluye lo que empieza por `_` o `.`. No cambia nada del sitio.

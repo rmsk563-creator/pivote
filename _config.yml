@@ -1,0 +1,19 @@
+# GitHub Pages (build clásico con Jekyll). El sitio es HTML estático; este archivo solo evita
+# que los documentos internos se publiquen como páginas HTML sin noindex (D-044).
+# _qa/ y .impeccable/ ya quedan fuera porque Jekyll excluye lo que empieza por «_» o «.».
+exclude:
+  - CONTENT.md
+  - DECISIONS.md
+  - HANDOFF.md
+  - MARCA.md
+  - MOVIMIENTO.md
+  - NAMING.md
+  - PLAN_BUILD.md
+  - PROJECT_PROFILE.md
+  - QA.md
+  - RESEARCH.md
+  - ROADMAP.md
+  - SCOPE.md
+  - assets/fotos/CREDITOS.md
+  - assets/fuentes/LEEME.md
+  - assets/logos/LEEME.md
