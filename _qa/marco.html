@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>QA · marco de ancho exacto</title>
+<style>
+  html, body { margin: 0; background: #888; }
+  iframe { display: block; border: 0; background: #fff; }
+  #informe { font: 12px/1.4 monospace; padding: 4px 6px; background: #111; color: #0f0; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<!-- Uso: _qa/marco.html?pagina=index.html&ancho=390[&alto=844][&completo=1][&y=0]
+     Carga la página en un iframe del ancho pedido (Chrome headless no baja de ~500 px de ventana)
+     y deja en #informe el ancho de scroll y los elementos que desbordan. -->
+<iframe id="marco" title="Página bajo prueba"></iframe>
+<div id="informe">cargando…</div>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var pagina = q.get('pagina') || 'index.html';
+  var ancho = parseInt(q.get('ancho') || '390', 10);
+  var alto = parseInt(q.get('alto') || '900', 10);
+  var completo = q.get('completo') === '1';
+  var y = parseInt(q.get('y') || '0', 10);
+  var marco = document.getElementById('marco');
+  marco.style.width = ancho + 'px';
+  marco.style.height = alto + 'px';
+  marco.src = '../' + pagina;
+  marco.addEventListener('load', function () {
+    setTimeout(function () {
+      var d = marco.contentDocument;
+      // Carga inmediata de imágenes diferidas para que las capturas sean completas
+      d.querySelectorAll('img[loading="lazy"]').forEach(function (i) { i.loading = 'eager'; });
+      setTimeout(function () {
+        var html = d.documentElement;
+        // En headless el IntersectionObserver no dispara: se fuerza la aparición para capturar
+        d.querySelectorAll('.aparece').forEach(function (el) { el.classList.add('visible'); el.style.transition = 'none'; });
+        if (completo) marco.style.height = html.scrollHeight + 'px';
+        if (y) { html.style.scrollBehavior = 'auto'; marco.contentWindow.scrollTo(0, y); }
+        var desbordes = [];
+        d.querySelectorAll('body *').forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          if (r.width && (r.right > ancho + 1 || r.left < -1)) {
+            // ignorar lo que está dentro de un contenedor con scroll horizontal propio
+            var p = el.parentElement, dentroScroll = false;
+            while (p && p !== d.body) { var cs = d.defaultView.getComputedStyle(p); if (cs.overflowX === 'auto' || cs.overflowX === 'scroll' || cs.overflowX === 'hidden') { dentroScroll = true; break; } p = p.parentElement; }
+            if (!dentroScroll && getComputedStyle(el).position !== 'fixed') desbordes.push(el.tagName.toLowerCase() + (el.className && typeof el.className === 'string' ? '.' + el.className.split(' ')[0] : '') + ' → ' + Math.round(r.right));
+          }
+        });
+        document.getElementById('informe').textContent =
+          'pagina=' + pagina + ' ancho=' + ancho + ' scrollWidth=' + html.scrollWidth + ' alto=' + html.scrollHeight +
+          ' desbordes=' + desbordes.length + (desbordes.length ? '\n' + desbordes.slice(0, 15).join('\n') : '');
+        document.title = 'LISTO';
+      }, 1500);
+    }, 300);
+  });
+})();
+</script>
+</body>
+</html>

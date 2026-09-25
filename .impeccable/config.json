@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gray-on-color",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-25T01:50:52.140Z",
+        "reason": "Token aprobado texto/inverso-secundario #A8B8B0 sobre verde botella (MARCA §3, D-018/D-019, contraste medido 4.76:1); es el diseño congelado D-041"
+      }
+    ]
+  }
+}
