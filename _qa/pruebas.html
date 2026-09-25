@@ -89,6 +89,68 @@ prueba('Estimador · aviso de presupuesto', 'Tope menor que el mínimo → aviso
   igual([A('hasta20', 77000), A('20a50', 77000), A('50a100', 77000), A('mas100', 77000), A('nd', 77000), A('50a100', 40000), A('hasta20', 0)], [true, true, false, false, false, false, false]);
 });
 
+/* ---- 2. Lógica de Cotizar (HANDOFF §7.2–7.3, CONTENT §7) ---------------- */
+var L = window.CotizarLogica;
+var HOY = new Date(2026, 8, 24); // 24 de septiembre de 2026
+function base(extra) { return Object.assign(L.estadoInicial(), extra || {}); }
+prueba('Cotizar · paso 1', 'Sin rubro ni servicio: dos errores con los textos de CONTENT §7.1', function () {
+  var v = L.validar(1, base());
+  igual(v.errores, { rubro: 'Elige el tipo de negocio para continuar.', servicio: 'Elige qué necesitas. “Aún no lo sé” también vale.' });
+});
+prueba('Cotizar · paso 1', 'Con rubro y servicio, sin errores', function () { igual(L.validar(1, base({ rubro: 'botica', servicio: 'nose' })).errores, {}); });
+prueba('Cotizar · paso 2', 'Área, distrito y estado son obligatorios (DC-002)', function () {
+  igual(Object.keys(L.validar(2, base()).errores), ['area', 'distrito', 'estado']);
+});
+prueba('Cotizar · paso 2', 'Área: vacía, < 10, decimales con coma y > 1,000 (aviso que no bloquea)', function () {
+  igual(L.validar(2, base({ area: '', distrito: 'Lince', estado: 'vacio' })).errores.area, 'Indica el área aproximada en m².');
+  igual(L.validar(2, base({ area: '8', distrito: 'Lince', estado: 'vacio' })).errores.area, 'El área parece muy pequeña. Revisa el número (en m²).');
+  igual(L.validar(2, base({ area: '48,5', distrito: 'Lince', estado: 'vacio' })).errores, {});
+  var g = L.validar(2, base({ area: '1200', distrito: 'Lince', estado: 'vacio' }));
+  igual([g.errores, g.avisos.area], [{}, 'Para más de 1,000 m² preferimos conversarlo. Puedes seguir sin rango.']);
+});
+prueba('Cotizar · paso 2', 'Área con letras cuenta como vacía', function () { igual(L.numeroArea('48 m2'), null); });
+prueba('Cotizar · paso 3', 'Fecha pasada: error con el mes actual', function () {
+  igual(L.validar(3, base({ fecha: '2026-08' }), HOY).errores.fecha, 'Esa fecha ya pasó. Elige un mes a partir de Septiembre 2026.');
+});
+prueba('Cotizar · paso 3', 'Menos de 8 semanas con diseño + obra: aviso que no bloquea', function () {
+  var v = L.validar(3, base({ fecha: '2026-10', servicio: 'obra' }), HOY);
+  igual([v.errores, v.avisos.fecha], [{}, 'Es un plazo corto para diseño + obra. Te diremos qué es posible en la visita.']);
+  igual(L.validar(3, base({ fecha: '2026-10', servicio: 'proyecto' }), HOY).avisos, {});
+  igual(L.validar(3, base({ fecha: '2027-03', servicio: 'obra' }), HOY).avisos, {});
+});
+prueba('Cotizar · paso 3', 'Todo opcional: sin datos no hay errores', function () { igual(L.validar(3, base(), HOY).errores, {}); });
+prueba('Cotizar · paso 4', 'Nombre, teléfono y privacidad obligatorios', function () {
+  igual(Object.keys(L.validar(4, base()).errores), ['nombre', 'telefono', 'privacidad']);
+});
+prueba('Cotizar · paso 4', 'Teléfono: 9 dígitos que empiezan con 9; se ignoran los espacios', function () {
+  var t = function (x) { return !!L.validar(4, base({ nombre: 'A', privacidad: true, telefono: x })).errores.telefono; };
+  igual([t('912 345 678'), t('912345678'), t('812345678'), t('91234567'), t('9123456789')], [false, false, true, true, true]);
+});
+prueba('Cotizar · paso 4', 'Correo: opcional, pero obligatorio y válido si la preferencia es «Correo»', function () {
+  var ok = { nombre: 'A', telefono: '912345678', privacidad: true };
+  igual(L.validar(4, base(ok)).errores, {});
+  igual(L.validar(4, base(Object.assign({ preferencia: 'correo' }, ok))).errores.correo, 'Revisa el correo: falta la @ o el dominio.');
+  igual(L.validar(4, base(Object.assign({ correo: 'nombre@example' }, ok))).errores.correo, 'Revisa el correo: falta la @ o el dominio.');
+  igual(L.validar(4, base(Object.assign({ correo: 'nombre@example.com', preferencia: 'correo' }, ok))).errores, {});
+});
+prueba('Cotizar · textos', 'Resumen de errores en singular y plural', function () {
+  igual([L.tituloResumenErrores(1), L.tituloResumenErrores(3)], ['Revisa 1 campo antes de continuar', 'Revisa 3 campos antes de continuar']);
+});
+prueba('Cotizar · resumen', 'Filas con el formato del prototipo (HANDOFF §7.5)', function () {
+  var f = L.filasResumen(base({ rubro: 'cafeteria', servicio: 'obra', area: '48', distrito: 'Miraflores', estado: 'vacio', fecha: '2027-03', cierre: 'noche', presupuesto: '20a50', nombre: 'Rosa', telefono: '912345678' }));
+  igual(f, { rubroServicio: 'Cafetería · Diseño + obra', local: '48 m² · Miraflores · local vacío · a la calle', plazo: 'Marzo 2027 · obra de noche · S/ 20,000 – 50,000', contacto: 'Rosa · 912 345 678 · WhatsApp' });
+});
+prueba('Cotizar · resumen', 'Sin fecha y sin cierre', function () {
+  igual(L.filasResumen(base({ sinFecha: true, presupuesto: 'nd' })).plazo, 'Sin fecha · cierre por definir · presupuesto sin indicar');
+});
+prueba('Cotizar · resumen', 'Resumen corto de la confirmación (CONTENT §7.6)', function () {
+  igual(L.resumenCorto(base({ rubro: 'cafeteria', servicio: 'obra', area: '48', distrito: 'Miraflores' })), 'Cafetería · 48 m² · Miraflores · Diseño + obra');
+});
+prueba('Cotizar · datos', '43 distritos de Lima + Callao + Otro', function () { igual(L.DISTRITOS.length, 45); igual(L.DISTRITOS.slice(-2), ['Callao', 'Otro']); });
+prueba('Cotizar · datos', 'Estado inicial: centro comercial «no» y preferencia «WhatsApp» preseleccionados', function () {
+  var e = L.estadoInicial(); igual([e.centroComercial, e.preferencia, e.enviado], ['no', 'whatsapp', false]);
+});
+
 /* ---- Ejecución ---------------------------------------------------------- */
 (function () {
   var res = document.getElementById('resultados'), ok = 0, fallos = 0, grupoActual = null;
