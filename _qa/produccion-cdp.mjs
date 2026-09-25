@@ -3,7 +3,7 @@
 // Uso: node _qa/produccion-cdp.mjs   (Node 24: WebSocket y fetch nativos)
 import { spawn } from 'node:child_process';
 const CH = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const B = 'https://rmsk563-creator.github.io/pivote/';
+const B = process.env.URL || 'https://rmsk563-creator.github.io/pivote/';
 const PAGINAS = ['', 'servicios.html', 'proyectos.html', 'proyectos', 'proyectos/botica-de-barrio.html', 'proyectos/floreria-en-barranco.html',
   'proyectos/barberia-con-espera-a-la-vista.html', 'proyectos/cafeteria-de-paso.html', 'como-trabajamos.html', 'estudio.html', 'sobre.html',
   'privacidad.html', 'cotizar.html?nueva=1', '404.html', 'proyectos/', 'proyectos/no-existe/otra', 'a/b/c'];
