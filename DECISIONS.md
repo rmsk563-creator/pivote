@@ -480,3 +480,13 @@ El usuario aprobó `PLAN_BUILD.md` (orden 0 → 11) y:
 **Reglas del Build:** HANDOFF congelado; sin reinterpretar el diseño, simplificar componentes, eliminar estados, alterar el responsive, cambiar el copy ni tocar la lógica del estimador. Una limitación real abre un Decision Conflict. Commit al final de cada bloque.
 
 **Estado: aprobado.**
+
+## D-043 · 2026-09-25 · Build local: desviaciones técnicas respecto de HANDOFF
+Detectadas durante el Build; ninguna cambia el diseño aprobado. Detalle y evidencia en `QA.md` (Build local · QA completa).
+1. **Enlaces del pie con área táctil de 24 px** (WCAG 2.5.8 AA), no 44 px como pedía HANDOFF §9: llegar a 44 exigiría separar las filas del pie congelado. **Pendiente de confirmación del usuario.**
+2. **Área > 1,000 m² en el resumen:** se muestra «Para más de 1,000 m² preferimos conversarlo.» (texto aprobado de CONTENT §7.2), en lugar del de §7.5, que es para cuando falta el área.
+3. **Metadatos derivados** para los 4 casos, Sobre, Privacidad y 404: H1 + «— Pivote» y una frase aprobada como descripción.
+4. **«Atrás»** sin flecha en el texto, como en el HF.
+5. **Enter en un campo de texto de Cotizar = «Continuar».**
+
+**Estado: aplicado; pendiente de revisión del usuario.**

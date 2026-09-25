@@ -409,3 +409,56 @@ Los 10 puntos, correctos: navegación activa en escritorio y en el menú móvil,
 
 ### Hallazgo posterior al freeze (revisión del contrato de implementación)
 - **DC-003:** el caso destacado de Inicio compara la misma foto (desaturada) como «antes» y «después». Contradice D-040. Pendiente de decisión del usuario; ver DECISIONS.
+
+---
+
+## Build local · QA completa · 2026-09-25 (bloque 10 de PLAN_BUILD)
+**Qué se probó:** el sitio construido en `~/Downloads/pivote` (13 páginas), servido en local. No está publicado.
+
+**Cómo reproducirlo:**
+- `python3 -m http.server 8123` en la raíz del proyecto;
+- `_qa/ejecutar-pruebas.sh` y `_qa/ejecutar-pruebas.sh --movimiento-reducido`;
+- `_qa/axe.html?ancho=1280|390`;
+- `ANCHOS="…" CAPTURAS=0 _qa/capturar.sh` (desbordes) y `_qa/tramos.sh` (capturas por tramos);
+- `python3 _qa/servidor-pages.py 8124`, que emula GitHub Pages en `/pivote/`.
+
+### Resultados
+| Área | Resultado | Evidencia |
+|---|---|---|
+| Estimador | ✅ 24/24 | Los 9 casos de HANDOFF §7.4 (77,000–118,000 · 3,700–5,800 · 40,000–61,000 · 83,000–126,000 · 900–1,300 · 2,400–3,400 · 32,000–49,000 · 147,000–225,000 · 1,330–2,030 por m²), más textos, «Aún no lo sé», «sin local», bordes (A = 9.9 / 10 / 1,000 / 1,001), redondeo, formato y aviso de presupuesto |
+| Lógica de Cotizar | ✅ 17/17 | Validación de los 4 pasos con los mensajes exactos de CONTENT §7, fecha pasada y plazo corto, teléfono, correo condicional, resumen, 45 distritos |
+| Formulario en el navegador | ✅ 16/16 | Recorrido completo; resumen de errores con foco y enlaces; panel; «Aún no tengo fecha»; `aria-invalid`; «Editar»; persistencia al recargar; «Enviando…» (deshabilitado, sin doble envío) → confirmación a ~1000 ms; guardas (no se saltan pasos ni se vuelve atrás tras enviar); `?servicio=` y `?rubro=`; diálogo «Salir sin enviar»; aviso de más de 1,000 m² |
+| Cabecera y pie (T-2) | ✅ 6/6 | Cabecera, menú móvil, pie y aviso de contacto idénticos en las 12 páginas del sitio (salvo `aria-current` y `../`); destinos y orden de la navegación; página actual marcada (los casos marcan «Proyectos») |
+| Metadatos | ✅ | `lang="es-PE"`, título, descripción, `noindex, nofollow`, la misma `og:image` absoluta, `og:image:alt`, Twitter y favicons en las 13 páginas; un `<h1>` por página (6 vistas en Cotizar); sin Google Fonts |
+| Enlaces y recursos | ✅ | 37 URL internas (href, src, srcset, use) sin errores; imágenes decodificadas en las 13 páginas; «Siguiente caso» circular; tarjetas → caso |
+| Contacto conceptual | ✅ | Sin `wa.me`, `mailto:` ni `tel:`; `CONFIG.contacto.activo = false`; `autor.url` vacío (el enlace de portafolio no se muestra) |
+| Teclado | ✅ automatizado · manual pendiente | Primer foco = «Saltar al contenido» en las 13 páginas; sin `tabindex` positivos; anillo de 3 px (claro sobre verde); foco al H1 al cambiar de paso y al resumen de errores; `<dialog>` con foco atrapado y Esc. El recorrido real con Tab lo hace el usuario (lista abajo) |
+| Movimiento | ✅ | Ninguna animación supera 400 ms (salvo la barra de «Enviando…», de 1000 ms, que es deliberada); con `prefers-reduced-motion` todo dura ≤ 1 ms y nada queda oculto por la aparición al hacer scroll |
+| axe-core 4.10 (WCAG 2.2 A/AA) | ✅ 0 violaciones | 17 vistas (13 páginas + 4 estados de Cotizar + menú móvil abierto) en 1280 y en 390 px |
+| Responsive | ✅ 0 desbordes | 13 páginas × 10 anchos (320, 360, 390, 640, 720, 768, 834, 1024, 1280, 1440). 640 y 720 equivalen al zoom del 200 % en ventanas de 1280 y 1440 |
+| Ruta base `/pivote/` y 404 | ✅ | Con el emulador de Pages y el dominio real resuelto en local: `/pivote/` y `/pivote/proyectos/…` responden 200; `/pivote/proyectos/no-existe` y `/pivote/a/b/c` devuelven la 404 con `<base href="/pivote/">`, con estilos, fuentes e íconos |
+| `_qa/` no público (T-4) | ✅ en el emulador · ⏳ en producción | `/pivote/_qa/…` y `/pivote/.impeccable/…` responden 404. Se vuelve a comprobar en GitHub Pages durante el Release |
+| Comparación visual con Figma | ✅ | Inicio (1440, 390), Servicios, Cómo trabajamos, caso Botica (1440, 390), caso Cafetería (390), Cotizar pasos 1–2 (1440, 390), resumen (1440, 390) y confirmación (1440). La única diferencia es el corte de línea del H1 del hero, porque Archivo variable es un poco más estrecha que la estática de Figma |
+
+### Bugs encontrados y corregidos durante el Build
+1. Íconos invisibles: el `<style>` interno del sprite no se aplica a través de `<use>`. Ahora los atributos de trazo van en cada `<path>`.
+2. Fotos de tarjetas a tamaño natural: `aspect-ratio` deja que el contenido estire la caja. Ahora la foto va con posición absoluta dentro del marco.
+3. En el pie, el separador «·» empezaba la línea al partirse. Ahora va detrás de cada enlace.
+4. El carrusel de casos en móvil encajaba la primera tarjeta contra el borde. Se añadió `scroll-padding`.
+5. Hero en móvil y tablet: la línea de rubros iba antes de la foto (Figma la pone después).
+6. Cotizar en móvil: el plegable «Tu solicitud» salía debajo del formulario y los bloques no tenían separación.
+7. El resumen de Cotizar desde 1280 px quedaba en una columna estrecha (la regla de dos columnas pisaba la variante sin panel).
+8. axe: los enlaces del pie medían 22 px de alto, por debajo del mínimo de 24 px (WCAG 2.5.8). Ahora miden 24 px (ver desviación 1).
+
+### Desviaciones respecto de HANDOFF (registradas en D-043)
+1. **Área táctil de los enlaces del pie: 24 px (mínimo WCAG 2.2 AA), no 44 px (HANDOFF §9).** Llegar a 44 px exigiría separar las filas del pie, que es diseño congelado. Queda para decisión del usuario.
+2. **Área de más de 1,000 m² en el resumen:** «Para más de 1,000 m² preferimos conversarlo.» (primera frase del aviso aprobado de CONTENT §7.2), en lugar del texto de §7.5 («necesitamos el área aproximada»), que no tiene sentido si la persona sí escribió un área.
+3. **Metadatos de los casos, Sobre, Privacidad y 404** (CONTENT §1 no los define): título = H1 + «— Pivote»; descripción = el problema del caso o la frase de introducción aprobada.
+4. **Botón «Atrás»** sin «←» en el texto, como en el HF (CONTENT dice «← Atrás»).
+5. **Enter en un campo de texto de Cotizar equivale a «Continuar».** Es un comportamiento de teclado añadido; no cambia la interfaz.
+
+### Pendiente de prueba manual del usuario (antes del Release)
+Se describe en el mensaje de cierre del Build. Incluye el recorrido real con teclado, el lector de pantalla, el zoom real del navegador al 200 %, el menú en un teléfono y Lighthouse desde las DevTools de Chrome (en local no hay `npx`).
+
+### Estado
+🟡 **Build local terminado y verificado.** Falta la prueba del usuario. No publicado.

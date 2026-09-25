@@ -6,7 +6,7 @@
 set -u
 CH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 BASE="http://127.0.0.1:8123"
-ANCHOS="320 360 390 768 834 1024 1280 1440"
+ANCHOS="${ANCHOS:-320 360 390 768 834 1024 1280 1440}"
 cd "$(dirname "$0")/.."
 mkdir -p _qa/capturas
 PAGINAS=${*:-"index.html servicios.html proyectos.html proyectos/botica-de-barrio.html proyectos/floreria-en-barranco.html proyectos/barberia-con-espera-a-la-vista.html proyectos/cafeteria-de-paso.html como-trabajamos.html estudio.html cotizar.html sobre.html privacidad.html 404.html"}

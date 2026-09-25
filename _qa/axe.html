@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>QA · axe</title>
+<style>body{font:13px/1.45 ui-monospace,Menlo,monospace;margin:20px}.ok{color:#1F7A4D}.fallo{color:#B3261E}</style>
+</head>
+<body>
+<h1>axe-core · WCAG 2.2 A/AA</h1>
+<p id="resumen">Ejecutando…</p>
+<pre id="detalle"></pre>
+<iframe id="marco" title="Página bajo prueba" style="width:1280px;height:900px"></iframe>
+<script>
+/* Carga cada página en un iframe del mismo origen, inyecta axe-core (solo en _qa, D-042 · T-4)
+   y reúne las violaciones. ?ancho=390 prueba la composición móvil. */
+var AXE = 'vendor/axe.min.js'; // copia local de axe-core 4.10.2 (MPL-2.0), solo para QA
+var q = new URLSearchParams(location.search);
+var ancho = parseInt(q.get('ancho') || '1280', 10);
+var sesion = JSON.stringify({ rubro: 'cafeteria', servicio: 'obra', area: '48', distrito: 'Miraflores', estado: 'vacio', centroComercial: 'no', fecha: '2027-03', cierre: 'noche', presupuesto: 'hasta20', nombre: 'Rosa', telefono: '912345678', preferencia: 'whatsapp', privacidad: true, enviado: false });
+var PAGINAS = ['index.html', 'servicios.html', 'proyectos.html', 'proyectos/botica-de-barrio.html', 'proyectos/floreria-en-barranco.html', 'proyectos/barberia-con-espera-a-la-vista.html', 'proyectos/cafeteria-de-paso.html', 'como-trabajamos.html', 'estudio.html', 'sobre.html', 'privacidad.html', '404.html',
+  'cotizar.html?nueva=1', 'cotizar.html#paso-1|errores', 'cotizar.html#resumen|sesion', 'cotizar.html#confirmacion|enviado', 'index.html|menu'];
+var marco = document.getElementById('marco'); marco.style.width = ancho + 'px';
+var codigoAxe = null, total = 0, lineas = [];
+function cargar(url) { return new Promise(function (r) { marco.onload = function () { setTimeout(function () { r(marco.contentWindow); }, 400); }; marco.src = url; }); }
+fetch(AXE).then(function (r) { return r.text(); }).then(function (t) { codigoAxe = t; return PAGINAS.reduce(function (p, entrada) {
+  return p.then(function () {
+    var partes = entrada.split('|'), url = partes[0], modo = partes[1];
+    if (modo === 'sesion') sessionStorage.setItem('pivote.cotizacion', sesion);
+    if (modo === 'enviado') sessionStorage.setItem('pivote.cotizacion', sesion.replace('"enviado":false', '"enviado":true'));
+    var sinHash = url.split('#')[0], hash = url.indexOf('#') >= 0 ? '#' + url.split('#')[1] : '';
+    return cargar('../' + sinHash + (sinHash.indexOf('?') >= 0 ? '&' : '?') + 'axe=' + Math.random() + hash)
+      .then(function (w) {
+        if (modo === 'errores') w.document.querySelector('[data-accion="continuar"]').click();
+        if (modo === 'menu') w.document.querySelector('[data-abrir-menu]').click();
+        w.document.querySelectorAll('.aparece').forEach(function (el) { el.classList.add('visible'); });
+        return new Promise(function (r) { setTimeout(r, 300); }).then(function () {
+          w.eval(codigoAxe);
+          return w.axe.run(w.document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] } });
+        });
+      }).then(function (res) {
+        total += res.violations.length;
+        lineas.push((res.violations.length ? '✗ ' : '✓ ') + entrada + ' · violaciones: ' + res.violations.length + ' · reglas superadas: ' + res.passes.length);
+        res.violations.forEach(function (v) { lineas.push('    ' + v.id + ' (' + v.impact + '): ' + v.help + ' → ' + v.nodes.slice(0, 3).map(function (n) { return n.target.join(' '); }).join(' | ')); });
+      });
+  });
+}, Promise.resolve()); }).then(function () {
+  document.getElementById('detalle').textContent = lineas.join('\n');
+  var r = document.getElementById('resumen'); r.textContent = (total ? 'FALLOS ' : 'OK ') + 'violaciones=' + total + ' en ' + PAGINAS.length + ' vistas · ancho ' + ancho; r.className = total ? 'fallo' : 'ok';
+}).catch(function (e) { document.getElementById('resumen').textContent = 'ERROR ' + e; });
+</script>
+</body>
+</html>

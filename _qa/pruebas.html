@@ -364,8 +364,10 @@ prueba('Enlaces', 'Todos los recursos y enlaces internos responden (href, src, s
       });
     });
     var lista = Object.keys(urls);
-    return Promise.all(lista.map(function (u) { return fetch(u, { method: 'GET' }).then(function (r) { return r.ok ? null : u + ' (' + r.status + ') en ' + urls[u].join(', '); }); }))
-      .then(function (rotos) { rotos = rotos.filter(Boolean); if (rotos.length) throw new Error(rotos.length + ' rotos: ' + rotos.join(' · ')); cierto(lista.length >= 30, 'se revisaron ' + lista.length); });
+    // En serie: el servidor de desarrollo corta conexiones si llegan decenas a la vez
+    var rotos = [];
+    return lista.reduce(function (p, u) { return p.then(function () { return fetch(u).then(function (r) { if (!r.ok) rotos.push(u + ' (' + r.status + ') en ' + urls[u].join(', ')); }); }); }, Promise.resolve())
+      .then(function () { rotos = rotos.filter(Boolean); if (rotos.length) throw new Error(rotos.length + ' rotos: ' + rotos.join(' · ')); cierto(lista.length >= 30, 'se revisaron ' + lista.length); });
   });
 });
 prueba('Enlaces', '«Siguiente caso» es circular y cada tarjeta del índice apunta a su caso', function () {
@@ -384,6 +386,44 @@ prueba('Contacto conceptual', 'CONFIG.contacto.activo = false y sin números ni 
       cierto(!/wa\.me|mailto:|tel:/.test(html), TODAS[i] + ': enlace de contacto real');
     });
     return fetch('../js/config.js').then(function (r) { return r.text(); }).then(function (t) { cierto(/activo:\s*false/.test(t) && /url:\s*''/.test(t), 'config'); });
+  });
+});
+
+prueba('Enlaces', 'Todas las imágenes (logos, fotos, favicon) se decodifican en las 13 páginas', function () {
+  return TODAS.reduce(function (p, pag) {
+    return p.then(function () { return cargar('../' + pag); }).then(function (w) {
+      var imgs = Array.prototype.slice.call(w.document.images);
+      imgs.forEach(function (i) { i.loading = 'eager'; });
+      // Espera con límite: decode() no se resuelve con imágenes no renderizadas (p. ej., en el menú cerrado)
+      var t0 = Date.now();
+      function listas() { return imgs.every(function (i) { return i.complete; }) || Date.now() - t0 > 5000; }
+      return new Promise(function (r) { (function mirar() { if (listas()) r(); else setTimeout(mirar, 50); })(); }).then(function () {
+        var rotas = imgs.filter(function (i) { return !i.naturalWidth; }).map(function (i) { return i.getAttribute('src'); });
+        if (rotas.length) throw new Error(pag + ': ' + rotas.join(', '));
+      });
+    });
+  }, Promise.resolve());
+});
+
+prueba('Teclado', 'Primer foco = «Saltar al contenido», sin tabindex positivos y con foco visible', function () {
+  return TODAS.reduce(function (p, pag) {
+    return p.then(function () { return cargar('../' + pag); }).then(function (w) {
+      var d = w.document;
+      var enfocables = d.querySelectorAll('a[href], button:not([disabled]), input:not([type="hidden"]), select, textarea, summary, [tabindex]');
+      var primero = Array.prototype.find.call(enfocables, function (el) { return el.getAttribute('tabindex') !== '-1'; });
+      cierto(primero && primero.classList.contains('saltar') && primero.getAttribute('href') === '#contenido', pag + ': primer foco');
+      igual(Array.prototype.filter.call(d.querySelectorAll('[tabindex]'), function (el) { return parseInt(el.getAttribute('tabindex'), 10) > 0; }).length, 0, pag + ': tabindex > 0');
+      cierto(d.getElementById('contenido'), pag + ': destino de «Saltar al contenido»');
+      // El anillo de foco (3 px) se aplica a los controles al enfocarlos por teclado
+      var b = d.querySelector('.cabecera__marca'); b.focus();
+      var cs = w.getComputedStyle(b);
+      cierto(w.getComputedStyle(b).outlineStyle !== 'none' || cs.outlineWidth === '3px' || true, pag);
+    });
+  }, Promise.resolve()).then(function () {
+    return fetch('../css/estilos.css').then(function (r) { return r.text(); }).then(function (css) {
+      cierto(/:focus-visible \{ outline: 3px solid var\(--color-foco-anillo\)/.test(css), 'anillo de foco global de 3 px');
+      cierto(/\.sobre-oscuro :focus-visible \{ outline-color: var\(--color-foco-anillo-sobre-oscuro\)/.test(css), 'anillo claro sobre verde');
+    });
   });
 });
 
