@@ -23,6 +23,8 @@
   var alto = parseInt(q.get('alto') || '900', 10);
   var completo = q.get('completo') === '1';
   var y = parseInt(q.get('y') || '0', 10);
+  // &sesion=<JSON> precarga el estado de Cotizar (solo para capturas)
+  if (q.get('sesion')) sessionStorage.setItem('pivote.cotizacion', q.get('sesion'));
   var marco = document.getElementById('marco');
   marco.style.width = ancho + 'px';
   marco.style.height = alto + 'px';

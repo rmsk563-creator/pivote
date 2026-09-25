@@ -151,6 +151,242 @@ prueba('Cotizar · datos', 'Estado inicial: centro comercial «no» y preferenci
   var e = L.estadoInicial(); igual([e.centroComercial, e.preferencia, e.enviado], ['no', 'whatsapp', false]);
 });
 
+/* ---- 3. Cotizar en el navegador (iframe) --------------------------------- */
+function espera(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+var marco = null;
+function cargar(url) {
+  return new Promise(function (resolver) {
+    if (!marco) { marco = document.createElement('iframe'); marco.style.cssText = 'width:1280px;height:900px;position:absolute;left:-9999px;top:0'; document.body.appendChild(marco); }
+    marco.onload = function () { setTimeout(function () { resolver(marco.contentWindow); }, 150); };
+    // Parámetro único: una URL que solo cambia el #fragmento no recarga el iframe
+    var partes = url.split('#'); cargar.n = (cargar.n || 0) + 1;
+    marco.src = partes[0] + (partes[0].indexOf('?') >= 0 ? '&' : '?') + 'recarga=' + cargar.n + (partes[1] ? '#' + partes[1] : '');
+  });
+}
+function vis(w) { var v = w.document.querySelector('[data-vista]:not([hidden])'); return v && v.getAttribute('data-vista'); }
+function marcar(w, nombre, valor) { var el = w.document.querySelector('input[name="' + nombre + '"][value="' + valor + '"]'); el.click(); }
+function escribir(w, nombre, valor) { var el = w.document.querySelector('[name="' + nombre + '"]'); el.value = valor; el.dispatchEvent(new w.Event(el.tagName === 'SELECT' ? 'change' : 'input', { bubbles: true })); el.dispatchEvent(new w.Event('change', { bubbles: true })); }
+function accion(w, a) { w.document.querySelector('[data-vista]:not([hidden]) [data-accion="' + a + '"]').click(); }
+function texto(w, sel) { return w.document.querySelector(sel).textContent.trim(); }
+
+prueba('Cotizar · recorrido', '?nueva=1 empieza de cero en el paso 1', function () {
+  return cargar('../cotizar.html?nueva=1').then(function (w) {
+    igual([vis(w), w.location.hash, w.location.search], ['paso-1', '#paso-1', '']);  // ?nueva y ?recarga se retiran
+    igual(JSON.parse(w.sessionStorage.getItem('pivote.cotizacion')).rubro, null);
+  });
+});
+prueba('Cotizar · recorrido', 'Continuar sin datos: resumen de errores con foco y 2 enlaces', function () {
+  var w = marco.contentWindow; accion(w, 'continuar');
+  return espera(50).then(function () {
+    var r = w.document.querySelector('[data-vista="paso-1"] [data-resumen-errores]');
+    igual([r.hidden, texto(w, '[data-vista="paso-1"] [data-titulo]'), r.querySelectorAll('a').length, w.document.activeElement === r], [false, 'Revisa 2 campos antes de continuar', 2, true]);
+    igual(texto(w, '#error-rubro'), 'Elige el tipo de negocio para continuar.');
+    igual(w.document.querySelector('input[name="rubro"]').getAttribute('aria-invalid'), 'true');
+  });
+});
+prueba('Cotizar · recorrido', 'Elegir rubro y servicio: el error desaparece y el panel se actualiza', function () {
+  var w = marco.contentWindow; marcar(w, 'rubro', 'cafeteria'); marcar(w, 'servicio', 'obra');
+  return espera(50).then(function () {
+    igual([w.document.querySelector('#error-rubro').hidden, texto(w, '[data-panel="rubro"]'), texto(w, '[data-panel="servicio"]')], [true, 'Cafetería', 'Diseño + obra']);
+    accion(w, 'continuar'); return espera(80);
+  }).then(function () { igual(vis(w), 'paso-2'); igual(w.document.activeElement.id, 'h-paso-2'); });
+});
+prueba('Cotizar · recorrido', 'Paso 2: texto de DC-002 y tres errores; «Otro» distrito de la lista completa', function () {
+  var w = marco.contentWindow; accion(w, 'continuar');
+  return espera(50).then(function () {
+    igual(texto(w, '[data-vista="paso-2"] [data-texto]'), 'Completa el área, el distrito y el estado del local para continuar.');
+    igual(w.document.querySelectorAll('[data-vista="paso-2"] [data-resumen-errores] a').length, 3);
+    igual(w.document.querySelectorAll('#campo-distrito option').length, 46);
+    escribir(w, 'area', '48'); escribir(w, 'distrito', 'Miraflores'); marcar(w, 'estado', 'vacio');
+    return espera(50);
+  }).then(function () {
+    igual(texto(w, '[data-panel="local"]'), '48 m² · Miraflores');
+    accion(w, 'continuar'); return espera(80);
+  }).then(function () { igual(vis(w), 'paso-3'); });
+});
+prueba('Cotizar · recorrido', 'Paso 3: «Aún no tengo fecha» vacía la fecha; se puede continuar', function () {
+  var w = marco.contentWindow; escribir(w, 'fecha', '2027-03');
+  var sin = w.document.querySelector('input[name="sinFecha"]'); sin.click();
+  return espera(30).then(function () {
+    igual(w.document.querySelector('[name="fecha"]').value, '');
+    sin.click(); escribir(w, 'fecha', '2027-03'); marcar(w, 'cierre', 'noche'); marcar(w, 'presupuesto', 'hasta20');
+    return espera(30);
+  }).then(function () { igual(w.document.querySelector('input[name="sinFecha"]').checked, false); accion(w, 'continuar'); return espera(80); })
+    .then(function () { igual(vis(w), 'paso-4'); });
+});
+prueba('Cotizar · recorrido', 'Paso 4: errores de nombre, teléfono y privacidad; luego al resumen', function () {
+  var w = marco.contentWindow; accion(w, 'revisar');
+  return espera(50).then(function () {
+    igual(w.document.querySelectorAll('[data-vista="paso-4"] [data-resumen-errores] a').length, 3);
+    escribir(w, 'nombre', 'Rosa'); escribir(w, 'telefono', '912 345 678'); w.document.querySelector('[name="privacidad"]').click();
+    return espera(30);
+  }).then(function () { accion(w, 'revisar'); return espera(80); }).then(function () { igual(vis(w), 'resumen'); });
+});
+prueba('Cotizar · resumen', 'Rango, explicación, aviso de presupuesto y filas', function () {
+  var w = marco.contentWindow;
+  igual(texto(w, '[data-rango-cifra]'), 'S/ 77,000 – 118,000');
+  cierto(/No incluye equipos de cocina ni mercadería\.$/.test(texto(w, '[data-rango-explica]')));
+  igual(w.document.querySelector('[data-aviso-presupuesto]').hidden, false);
+  igual([texto(w, '[data-fila="rubroServicio"]'), texto(w, '[data-fila="local"]'), texto(w, '[data-fila="plazo"]'), texto(w, '[data-fila="contacto"]')],
+    ['Cafetería · Diseño + obra', '48 m² · Miraflores · local vacío · a la calle', 'Marzo 2027 · obra de noche · hasta S/ 20,000', 'Rosa · 912 345 678 · WhatsApp']);
+  igual(w.document.querySelector('[data-panel-zona]').hidden, true);
+});
+prueba('Cotizar · resumen', '«¿Cómo lo calculamos?» abre y cierra la explicación', function () {
+  var w = marco.contentWindow, b = w.document.querySelector('[data-como]'); b.click();
+  igual([b.getAttribute('aria-expanded'), w.document.querySelector('#como-calculamos').hidden], ['true', false]); b.click();
+});
+prueba('Cotizar · persistencia', '«Editar» lleva al paso con los datos; al recargar se conserva todo', function () {
+  var w = marco.contentWindow; w.document.querySelector('[data-editar][href="#paso-2"]').click();
+  return espera(80).then(function () {
+    igual([vis(w), w.document.querySelector('[name="area"]').value, w.document.querySelector('[name="distrito"]').value], ['paso-2', '48', 'Miraflores']);
+    return cargar('../cotizar.html#resumen');
+  }).then(function (w2) { igual(vis(w2), 'resumen'); igual(texto(w2, '[data-rango-cifra]'), 'S/ 77,000 – 118,000'); });
+});
+prueba('Cotizar · envío', 'Enviar: «Enviando…» deshabilitado, sin doble envío, confirmación a los ~1000 ms', function () {
+  var w = marco.contentWindow, b = w.document.querySelector('[data-accion="enviar"]'); b.click(); b.click();
+  return espera(300).then(function () {
+    igual([vis(w), b.disabled, b.getAttribute('aria-busy'), texto(w, '[data-etiqueta-enviar]')], ['resumen', true, 'true', 'Enviando…']);
+    return espera(1000);
+  }).then(function () {
+    igual(vis(w), 'confirmacion');
+    igual(texto(w, '[data-resumen-corto]'), 'Cafetería · 48 m² · Miraflores · Diseño + obra');
+    igual(texto(w, '[data-confirmacion-rango]'), 'S/ 77,000 – 118,000');
+    igual(w.document.querySelector('[data-accion="salir"]').hidden, true);
+  });
+});
+prueba('Cotizar · envío', 'Tras enviar, volver al resumen redirige a la confirmación', function () {
+  var w = marco.contentWindow; w.location.hash = 'resumen';
+  return espera(80).then(function () { igual(vis(w), 'confirmacion'); });
+});
+prueba('Cotizar · envío', '«Nueva cotización» vacía el estado y vuelve al paso 1', function () {
+  var w = marco.contentWindow; w.document.querySelector('[data-accion="nueva"]').click();
+  return espera(80).then(function () {
+    igual([vis(w), JSON.parse(w.sessionStorage.getItem('pivote.cotizacion')).rubro, w.document.querySelector('input[name="rubro"]:checked')], ['paso-1', null, null]);
+  });
+});
+prueba('Cotizar · entradas', '?servicio=obra y ?rubro=botica llegan preseleccionados', function () {
+  return cargar('../cotizar.html?servicio=obra').then(function (w) {
+    igual(w.document.querySelector('input[name="servicio"]:checked').value, 'obra');
+    return cargar('../cotizar.html?rubro=botica');
+  }).then(function (w) { igual([w.document.querySelector('input[name="rubro"]:checked').value, w.document.querySelector('input[name="servicio"]:checked')], ['botica', null]); });
+});
+prueba('Cotizar · entradas', 'No se puede saltar pasos: #resumen sin datos lleva al paso 1', function () {
+  return cargar('../cotizar.html?nueva=1').then(function () { return cargar('../cotizar.html#resumen'); }).then(function (w) { igual(vis(w), 'paso-1'); });
+});
+prueba('Cotizar · salir', 'Con datos, «Salir» abre el diálogo; «Seguir completando» lo cierra', function () {
+  var w = marco.contentWindow; marcar(w, 'rubro', 'tienda');
+  w.document.querySelector('[data-accion="salir"]').click();
+  var d = w.document.getElementById('dialogo-salir');
+  igual(d.open, true);
+  d.querySelector('.boton--primario[data-dialogo-cerrar]').click();
+  igual(d.open, false);
+});
+prueba('Cotizar · salir', 'Área > 1,000: aviso que no bloquea', function () {
+  var w = marco.contentWindow; marcar(w, 'servicio', 'proyecto'); accion(w, 'continuar');
+  return espera(80).then(function () {
+    escribir(w, 'area', '1200'); escribir(w, 'distrito', 'Callao'); marcar(w, 'estado', 'funcionamiento'); accion(w, 'continuar');
+    return espera(80);
+  }).then(function () { igual(vis(w), 'paso-3'); w.location.hash = 'paso-2'; return espera(80); })
+    .then(function () { igual(texto(w, '#aviso-area'), 'Para más de 1,000 m² preferimos conversarlo. Puedes seguir sin rango.'); return cargar('../cotizar.html?nueva=1'); });
+});
+
+/* ---- 4. Páginas: cabecera y pie (T-2), metadatos y enlaces --------------- */
+var PAGINAS = ['index.html', 'servicios.html', 'proyectos.html', 'proyectos/botica-de-barrio.html', 'proyectos/floreria-en-barranco.html', 'proyectos/barberia-con-espera-a-la-vista.html', 'proyectos/cafeteria-de-paso.html', 'como-trabajamos.html', 'estudio.html', 'sobre.html', 'privacidad.html', '404.html'];
+var TODAS = PAGINAS.concat(['cotizar.html']);
+var docs = {};
+function doc(p) { if (docs[p]) return Promise.resolve(docs[p]); return fetch('../' + p).then(function (r) { if (!r.ok) throw new Error(p + ' → ' + r.status); return r.text(); }).then(function (t) { docs[p] = new DOMParser().parseFromString(t, 'text/html'); return docs[p]; }); }
+function normalizar(el) {
+  var c = el.cloneNode(true);
+  c.querySelectorAll('[aria-current]').forEach(function (n) { n.removeAttribute('aria-current'); });
+  return c.outerHTML.replace(/(href|src)="(\.\.\/)+/g, '$1="').replace(/\s+/g, ' ');
+}
+var BLOQUES = { 'cabecera': 'header.cabecera', 'menú móvil': '#menu-movil', 'pie': 'footer.pie', 'aviso de contacto': '[data-aviso-contacto]' };
+Object.keys(BLOQUES).forEach(function (nombre) {
+  prueba('T-2 · cabecera y pie consistentes', nombre + ' idéntico en las 12 páginas del sitio (salvo aria-current y ../)', function () {
+    return Promise.all(PAGINAS.map(doc)).then(function (ds) {
+      var ref = normalizar(ds[0].querySelector(BLOQUES[nombre]));
+      ds.forEach(function (d, i) { var el = d.querySelector(BLOQUES[nombre]); cierto(el, PAGINAS[i] + ': falta ' + nombre); if (normalizar(el) !== ref) throw new Error(PAGINAS[i] + ': ' + nombre + ' distinto de index.html'); });
+    });
+  });
+});
+prueba('T-2 · cabecera y pie consistentes', 'Enlaces de la navegación: destinos, textos y orden', function () {
+  return Promise.all(PAGINAS.map(doc)).then(function (ds) {
+    ds.forEach(function (d, i) {
+      var nav = Array.prototype.map.call(d.querySelectorAll('.cabecera__enlaces a'), function (a) { return a.getAttribute('href').replace(/^(\.\.\/)+/, '') + '|' + a.textContent; });
+      igual(nav, ['servicios.html|Servicios', 'proyectos.html|Proyectos', 'como-trabajamos.html|Cómo trabajamos', 'estudio.html|Estudio'], PAGINAS[i]);
+    });
+  });
+});
+prueba('T-2 · cabecera y pie consistentes', 'Página actual marcada con aria-current (los casos marcan Proyectos)', function () {
+  var esperado = { 'servicios.html': 'servicios.html', 'proyectos.html': 'proyectos.html', 'como-trabajamos.html': 'como-trabajamos.html', 'estudio.html': 'estudio.html' };
+  return Promise.all(PAGINAS.map(doc)).then(function (ds) {
+    ds.forEach(function (d, i) {
+      var p = PAGINAS[i], a = d.querySelector('.cabecera__enlaces a[aria-current="page"]');
+      var e = p.indexOf('proyectos/') === 0 ? 'proyectos.html' : (esperado[p] || null);
+      igual(a ? a.getAttribute('href').replace(/^(\.\.\/)+/, '') : null, e, p);
+      igual(d.querySelectorAll('[aria-current="page"]').length, e ? 3 : (p === 'sobre.html' || p === 'privacidad.html' ? 1 : 0), p + ' (cabecera + menú móvil + pie, o solo pie)');
+    });
+  });
+});
+prueba('Metadatos', 'lang, título, descripción, noindex, OG común y favicons en las 13 páginas', function () {
+  return Promise.all(TODAS.map(doc)).then(function (ds) {
+    var og = null;
+    ds.forEach(function (d, i) {
+      var p = TODAS[i], q = function (s) { var e = d.querySelector(s); return e && (e.getAttribute('content') || e.getAttribute('href')); };
+      igual(d.documentElement.getAttribute('lang'), 'es-PE', p);
+      cierto(d.title && / — Pivote|^Pivote — /.test(d.title), p + ': título');
+      cierto(q('meta[name="description"]'), p + ': descripción');
+      igual(q('meta[name="robots"]'), 'noindex, nofollow', p);
+      og = og || q('meta[property="og:image"]'); igual(q('meta[property="og:image"]'), og, p + ': og:image');
+      cierto(/^https:\/\//.test(og), 'og:image absoluta');
+      cierto(q('meta[property="og:image:alt"]') && q('meta[name="twitter:card"]') === 'summary_large_image', p + ': og alt / twitter');
+      cierto(q('link[rel="icon"][type="image/svg+xml"]') && q('link[rel="manifest"]'), p + ': favicon y manifest');
+      igual(d.querySelectorAll('h1').length, p === 'cotizar.html' ? 6 : 1, p + ': h1');
+      igual(d.querySelectorAll('link[href*="fonts.googleapis"], link[href*="fonts.gstatic"]').length, 0, p + ': sin Google Fonts');
+    });
+  });
+});
+prueba('Enlaces', 'Todos los recursos y enlaces internos responden (href, src, srcset, use)', function () {
+  return Promise.all(TODAS.map(doc)).then(function (ds) {
+    var urls = {};
+    ds.forEach(function (d, i) {
+      var p = TODAS[i], base = new URL('../' + p, location.href);
+      if (p === '404.html') base = new URL('../', location.href);
+      d.querySelectorAll('a[href], link[href], img[src], script[src], use[href], img[srcset]').forEach(function (el) {
+        var vals = [];
+        ['href', 'src'].forEach(function (a) { if (el.getAttribute(a)) vals.push(el.getAttribute(a)); });
+        if (el.getAttribute('srcset')) el.getAttribute('srcset').split(',').forEach(function (s) { vals.push(s.trim().split(' ')[0]); });
+        vals.forEach(function (v) {
+          if (/^(https?:|mailto:|tel:|#|javascript:)/.test(v)) return;
+          var u = new URL(v, base); u.hash = ''; u.search = '';
+          (urls[u.href] = urls[u.href] || []).push(p);
+        });
+      });
+    });
+    var lista = Object.keys(urls);
+    return Promise.all(lista.map(function (u) { return fetch(u, { method: 'GET' }).then(function (r) { return r.ok ? null : u + ' (' + r.status + ') en ' + urls[u].join(', '); }); }))
+      .then(function (rotos) { rotos = rotos.filter(Boolean); if (rotos.length) throw new Error(rotos.length + ' rotos: ' + rotos.join(' · ')); cierto(lista.length >= 30, 'se revisaron ' + lista.length); });
+  });
+});
+prueba('Enlaces', '«Siguiente caso» es circular y cada tarjeta del índice apunta a su caso', function () {
+  var orden = ['botica-de-barrio', 'floreria-en-barranco', 'barberia-con-espera-a-la-vista', 'cafeteria-de-paso'];
+  return Promise.all(orden.map(function (c) { return doc('proyectos/' + c + '.html'); })).then(function (ds) {
+    ds.forEach(function (d, i) { igual(d.querySelector('.siguiente__enlace').getAttribute('href'), '../proyectos/' + orden[(i + 1) % 4] + '.html', orden[i]); });
+    return doc('proyectos.html');
+  }).then(function (d) {
+    igual(Array.prototype.map.call(d.querySelectorAll('[data-casos] .tarjeta__enlace'), function (a) { return a.getAttribute('href'); }), orden.map(function (c) { return 'proyectos/' + c + '.html'; }));
+  });
+});
+prueba('Contacto conceptual', 'CONFIG.contacto.activo = false y sin números ni correos en las páginas', function () {
+  return Promise.all(TODAS.map(doc)).then(function (ds) {
+    ds.forEach(function (d, i) {
+      var html = d.documentElement.outerHTML;
+      cierto(!/wa\.me|mailto:|tel:/.test(html), TODAS[i] + ': enlace de contacto real');
+    });
+    return fetch('../js/config.js').then(function (r) { return r.text(); }).then(function (t) { cierto(/activo:\s*false/.test(t) && /url:\s*''/.test(t), 'config'); });
+  });
+});
+
 /* ---- Ejecución ---------------------------------------------------------- */
 (function () {
   var res = document.getElementById('resultados'), ok = 0, fallos = 0, grupoActual = null;

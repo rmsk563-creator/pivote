@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cotiza tu local — Pivote</title>
+<meta name="description" content="4 pasos, unos 3 minutos y un rango orientativo al final.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F3F2EE">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pivote">
+<meta property="og:locale" content="es_PE">
+<meta property="og:title" content="Cotiza tu local — Pivote">
+<meta property="og:description" content="4 pasos, unos 3 minutos y un rango orientativo al final.">
+<meta property="og:image" content="https://rmsk563-creator.github.io/pivote/assets/og/pivote-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pivote · Estudio de espacios comerciales. Locales pensados para que la gente entre y compre.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logos/favicon/favicon.ico" sizes="any">
+<link rel="icon" href="assets/logos/favicon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/logos/favicon/apple-touch-icon.png">
+<link rel="manifest" href="assets/logos/favicon/site.webmanifest">
+<link rel="preload" href="assets/fuentes/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="cabecera cabecera--cotizar" data-cabecera>
+  <div class="cabecera__interior">
+    <a class="cabecera__marca" href="index.html"><img class="cabecera__logo" src="assets/logos/svg/pivote-logotipo-positivo.svg" alt="Pivote" width="104" height="36"></a>
+    <button class="cabecera__salir t-ls" type="button" data-accion="salir"><span class="solo-escritorio">Salir sin enviar</span><span class="solo-movil">Salir</span> ✕</button>
+  </div>
+</header>
+
+<main id="contenido" class="cotizar">
+  <form class="contenedor" data-cotizar novalidate autocomplete="on">
+    <p class="visualmente-oculto" aria-live="polite" data-anuncio></p>
+    <div class="cotizar__rejilla" data-rejilla>
+      <div data-vistas>
+      <section class="vista" id="paso-1" data-vista="paso-1" aria-labelledby="h-paso-1" hidden>
+        <div class="tarjeta-form">
+          <div class="progreso">
+            <p class="progreso__rotulo t-mxs">Paso 1 de 4 · Rubro</p>
+            <ol class="progreso__barra" aria-hidden="true"><li class="hecho"></li><li></li><li></li><li></li></ol>
+          </div>
+          <div class="pila-12"><h1 class="t-hl vista__h1" id="h-paso-1" tabindex="-1">Cuéntanos sobre tu negocio</h1><p class="t-bl c-sec">Son 4 pasos cortos. Puedes volver atrás sin perder nada.</p></div>
+          <div class="aviso aviso--errores" role="alert" tabindex="-1" data-resumen-errores hidden>
+            <p class="t-lm" data-titulo></p>
+            <p class="t-bs c-sec" data-texto hidden></p>
+            <ul class="t-bs"></ul>
+          </div>
+          <fieldset class="grupo" data-grupo="rubro" aria-describedby="error-rubro">
+            <legend class="grupo__leyenda">¿Qué tipo de negocio es?</legend>
+            <div class="opciones opciones--2"><label class="opcion"><input type="radio" name="rubro" value="cafeteria" id="campo-rubro"><span class="opcion__radio" aria-hidden="true"></span>Cafetería o restaurante</label><label class="opcion"><input type="radio" name="rubro" value="tienda"><span class="opcion__radio" aria-hidden="true"></span>Tienda o retail</label><label class="opcion"><input type="radio" name="rubro" value="botica"><span class="opcion__radio" aria-hidden="true"></span>Botica o farmacia</label><label class="opcion"><input type="radio" name="rubro" value="salon"><span class="opcion__radio" aria-hidden="true"></span>Salón o barbería</label><label class="opcion"><input type="radio" name="rubro" value="otro"><span class="opcion__radio" aria-hidden="true"></span>Otro</label></div>
+            <p class="campo__error" id="error-rubro" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+          </fieldset>
+          <div class="otro-rubro" data-otro-rubro hidden>
+          <div class="campo" data-campo="rubroOtro">
+            <label class="campo__etiqueta" for="campo-rubroOtro">¿Cuál?</label>
+            <div class="campo__caja"><input class="campo__control" id="campo-rubroOtro" name="rubroOtro" type="text" autocomplete="off" placeholder="Ej.: óptica, librería" aria-describedby="error-rubroOtro aviso-rubroOtro"></div>
+            <p class="campo__error" id="error-rubroOtro" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+            <p class="campo__aviso" id="aviso-rubroOtro" hidden></p>
+          </div>
+          </div>
+          <fieldset class="grupo" data-grupo="servicio" aria-describedby="error-servicio">
+            <legend class="grupo__leyenda">¿Qué necesitas?</legend>
+            <div class="opciones opciones--1"><label class="opcion"><input type="radio" name="servicio" value="diagnostico" id="campo-servicio"><span class="opcion__radio" aria-hidden="true"></span>Diagnóstico de un local que ya funciona</label><label class="opcion"><input type="radio" name="servicio" value="proyecto"><span class="opcion__radio" aria-hidden="true"></span>Proyecto de diseño</label><label class="opcion"><input type="radio" name="servicio" value="obra"><span class="opcion__radio" aria-hidden="true"></span>Diseño + obra</label><label class="opcion"><input type="radio" name="servicio" value="nose"><span class="opcion__radio" aria-hidden="true"></span>Aún no lo sé, ayúdenme a decidir</label></div>
+            <p class="campo__error" id="error-servicio" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+          </fieldset>
+          <div class="acciones-paso acciones-paso--solo">
+            <button class="boton boton--primario" type="button" data-accion="continuar">Continuar<svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#flecha-derecha"/></svg></button>
+          </div>
+        </div>
+      </section>
+      <section class="vista" id="paso-2" data-vista="paso-2" aria-labelledby="h-paso-2" hidden>
+        <div class="tarjeta-form">
+          <div class="progreso">
+            <p class="progreso__rotulo t-mxs">Paso 2 de 4 · Tu local</p>
+            <ol class="progreso__barra" aria-hidden="true"><li class="hecho"></li><li class="hecho"></li><li></li><li></li></ol>
+          </div>
+          <h1 class="t-hl vista__h1" id="h-paso-2" tabindex="-1">¿Cómo es tu local?</h1>
+          <div class="aviso aviso--errores" role="alert" tabindex="-1" data-resumen-errores hidden>
+            <p class="t-lm" data-titulo></p>
+            <p class="t-bs c-sec" data-texto hidden></p>
+            <ul class="t-bs"></ul>
+          </div>
+          <div class="campos-fila">
+          <div class="campo" data-campo="area">
+            <label class="campo__etiqueta" for="campo-area">Área aproximada (m²)</label>
+            <div class="campo__caja"><input class="campo__control" id="campo-area" name="area" type="text" inputmode="decimal" autocomplete="off" placeholder="Ej.: 48" aria-describedby="ayuda-area error-area aviso-area"><span class="campo__sufijo" aria-hidden="true">m²</span></div>
+            <p class="campo__ayuda" id="ayuda-area">Aproximado está bien. Si no lo sabes: frente × fondo.</p>
+            <p class="campo__error" id="error-area" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+            <p class="campo__aviso" id="aviso-area" hidden></p>
+          </div>
+          <div class="campo" data-campo="distrito">
+            <label class="campo__etiqueta" for="campo-distrito">Distrito</label>
+            <div class="campo__caja"><select class="campo__control" id="campo-distrito" name="distrito" aria-describedby="ayuda-distrito error-distrito aviso-distrito"><option value="">Elige un distrito</option><option>Ancón</option><option>Ate</option><option>Barranco</option><option>Breña</option><option>Carabayllo</option><option>Cercado de Lima</option><option>Chaclacayo</option><option>Chorrillos</option><option>Cieneguilla</option><option>Comas</option><option>El Agustino</option><option>Independencia</option><option>Jesús María</option><option>La Molina</option><option>La Victoria</option><option>Lince</option><option>Los Olivos</option><option>Lurigancho (Chosica)</option><option>Lurín</option><option>Magdalena del Mar</option><option>Miraflores</option><option>Pachacámac</option><option>Pucusana</option><option>Pueblo Libre</option><option>Puente Piedra</option><option>Punta Hermosa</option><option>Punta Negra</option><option>Rímac</option><option>San Bartolo</option><option>San Borja</option><option>San Isidro</option><option>San Juan de Lurigancho</option><option>San Juan de Miraflores</option><option>San Luis</option><option>San Martín de Porres</option><option>San Miguel</option><option>Santa Anita</option><option>Santa María del Mar</option><option>Santa Rosa</option><option>Santiago de Surco</option><option>Surquillo</option><option>Villa El Salvador</option><option>Villa María del Triunfo</option><option>Callao</option><option>Otro</option></select><svg class="icono campo__chevron" aria-hidden="true"><use href="assets/iconos/iconos.svg#desplegar"/></svg></div>
+            <p class="campo__ayuda" id="ayuda-distrito">Cambia traslados y trámites.</p>
+            <p class="campo__error" id="error-distrito" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+            <p class="campo__aviso" id="aviso-distrito" hidden></p>
+          </div>
+          </div>
+          <fieldset class="grupo" data-grupo="estado" aria-describedby="ayuda-estado error-estado">
+            <legend class="grupo__leyenda">Estado del local</legend>
+            <p class="grupo__ayuda" id="ayuda-estado">El estado actual del local influye en el alcance y el costo estimado de la intervención.</p>
+            <div class="opciones opciones--3"><label class="opcion"><input type="radio" name="estado" value="vacio" id="campo-estado"><span class="opcion__radio" aria-hidden="true"></span>Local vacío</label><label class="opcion"><input type="radio" name="estado" value="funcionamiento"><span class="opcion__radio" aria-hidden="true"></span>En funcionamiento</label><label class="opcion"><input type="radio" name="estado" value="sinlocal"><span class="opcion__radio" aria-hidden="true"></span>Aún no tengo local</label></div>
+            <p class="campo__error" id="error-estado" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+          </fieldset>
+          <fieldset class="grupo" data-grupo="centroComercial" aria-describedby="error-centroComercial">
+            <legend class="grupo__leyenda">¿Está dentro de un centro comercial?</legend>
+            <div class="opciones opciones--2"><label class="opcion"><input type="radio" name="centroComercial" value="si" id="campo-centroComercial"><span class="opcion__radio" aria-hidden="true"></span>Sí</label><label class="opcion"><input type="radio" name="centroComercial" value="no"><span class="opcion__radio" aria-hidden="true"></span>No</label></div>
+            <p class="campo__error" id="error-centroComercial" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+          </fieldset>
+          <div class="carga" data-carga>
+            <p class="t-ls" id="etiqueta-carga">Fotos o planos (opcional)</p>
+            <label class="carga__zona" data-carga-zona>
+              <input type="file" name="archivo" accept=".jpg,.jpeg,.png,.pdf" aria-labelledby="etiqueta-carga" aria-describedby="ayuda-carga">
+              <svg class="icono icono--22" aria-hidden="true"><use href="assets/iconos/iconos.svg#subir"/></svg>
+              <span class="t-bs">Arrastra fotos o planos, o elígelos</span>
+              <span class="t-mxs c-tec">JPG, PNG o PDF · hasta 10 MB</span>
+            </label>
+            <div class="carga__archivo" data-carga-archivo hidden><span class="t-bs"><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#archivo"/></svg><span data-carga-nombre></span></span><button class="carga__quitar" type="button" data-carga-quitar>Quitar</button></div>
+            <p class="campo__ayuda" id="ayuda-carga">Opcional: ayuda a estimar mejor.</p>
+          </div>
+          <div class="acciones-paso">
+            <a class="boton boton--secundario" href="#paso-1" data-accion="atras">Atrás</a><button class="boton boton--primario" type="button" data-accion="continuar">Continuar<svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#flecha-derecha"/></svg></button>
+          </div>
+        </div>
+      </section>
+      <section class="vista" id="paso-3" data-vista="paso-3" aria-labelledby="h-paso-3" hidden>
+        <div class="tarjeta-form">
+          <div class="progreso">
+            <p class="progreso__rotulo t-mxs">Paso 3 de 4 · Plazo y presupuesto</p>
+            <ol class="progreso__barra" aria-hidden="true"><li class="hecho"></li><li class="hecho"></li><li class="hecho"></li><li></li></ol>
+          </div>
+          <div class="pila-12"><h1 class="t-hl vista__h1" id="h-paso-3" tabindex="-1">Plazo y presupuesto</h1><p class="t-bl c-sec">Sirve para proponerte algo realista. Nada de esto te compromete.</p></div>
+          <div class="aviso aviso--errores" role="alert" tabindex="-1" data-resumen-errores hidden>
+            <p class="t-lm" data-titulo></p>
+            <p class="t-bs c-sec" data-texto hidden></p>
+            <ul class="t-bs"></ul>
+          </div>
+          <div class="pila-12">
+          <div class="campo" data-campo="fecha">
+            <label class="campo__etiqueta" for="campo-fecha">¿Cuándo quieres abrir?</label>
+            <div class="campo__caja"><input class="campo__control" id="campo-fecha" name="fecha" type="month" aria-describedby="error-fecha aviso-fecha"></div>
+            <p class="campo__error" id="error-fecha" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+            <p class="campo__aviso" id="aviso-fecha" hidden></p>
+          </div>
+            <label class="opcion opcion--suelta"><input type="checkbox" name="sinFecha"><span class="opcion__radio" aria-hidden="true"></span>Aún no tengo fecha</label>
+          </div>
+          <fieldset class="grupo" data-grupo="cierre" aria-describedby="error-cierre">
+            <legend class="grupo__leyenda">¿Puedes cerrar durante la obra?</legend>
+            <div class="opciones opciones--1"><label class="opcion"><input type="radio" name="cierre" value="total" id="campo-cierre"><span class="opcion__radio" aria-hidden="true"></span>Sí</label><label class="opcion"><input type="radio" name="cierre" value="noche"><span class="opcion__radio" aria-hidden="true"></span>Solo de noche o domingos</label><label class="opcion"><input type="radio" name="cierre" value="abierto"><span class="opcion__radio" aria-hidden="true"></span>No, debe seguir abierto</label></div>
+            <p class="campo__error" id="error-cierre" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+          </fieldset>
+          <fieldset class="grupo" data-grupo="presupuesto" aria-describedby="error-presupuesto">
+            <legend class="grupo__leyenda">Presupuesto aproximado para todo (diseño + obra)</legend>
+            <div class="opciones opciones--2"><label class="opcion"><input type="radio" name="presupuesto" value="hasta20" id="campo-presupuesto"><span class="opcion__radio" aria-hidden="true"></span>Hasta S/ 20,000</label><label class="opcion"><input type="radio" name="presupuesto" value="20a50"><span class="opcion__radio" aria-hidden="true"></span>S/ 20,000 – 50,000</label><label class="opcion"><input type="radio" name="presupuesto" value="50a100"><span class="opcion__radio" aria-hidden="true"></span>S/ 50,000 – 100,000</label><label class="opcion"><input type="radio" name="presupuesto" value="mas100"><span class="opcion__radio" aria-hidden="true"></span>Más de S/ 100,000</label><label class="opcion"><input type="radio" name="presupuesto" value="nd"><span class="opcion__radio" aria-hidden="true"></span>Prefiero no decirlo</label></div>
+            <p class="campo__error" id="error-presupuesto" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+          </fieldset>
+          <div class="acciones-paso">
+            <a class="boton boton--secundario" href="#paso-2" data-accion="atras">Atrás</a><button class="boton boton--primario" type="button" data-accion="continuar">Continuar<svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#flecha-derecha"/></svg></button>
+          </div>
+        </div>
+      </section>
+      <section class="vista" id="paso-4" data-vista="paso-4" aria-labelledby="h-paso-4" hidden>
+        <div class="tarjeta-form">
+          <div class="progreso">
+            <p class="progreso__rotulo t-mxs">Paso 4 de 4 · Contacto</p>
+            <ol class="progreso__barra" aria-hidden="true"><li class="hecho"></li><li class="hecho"></li><li class="hecho"></li><li class="hecho"></li></ol>
+          </div>
+          <h1 class="t-hl vista__h1" id="h-paso-4" tabindex="-1">¿Cómo te contactamos?</h1>
+          <div class="aviso aviso--errores" role="alert" tabindex="-1" data-resumen-errores hidden>
+            <p class="t-lm" data-titulo></p>
+            <p class="t-bs c-sec" data-texto hidden></p>
+            <ul class="t-bs"></ul>
+          </div>
+          <div class="campos-fila">
+          <div class="campo" data-campo="nombre">
+            <label class="campo__etiqueta" for="campo-nombre">Tu nombre</label>
+            <div class="campo__caja"><input class="campo__control" id="campo-nombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" aria-describedby="ayuda-nombre error-nombre aviso-nombre"></div>
+            <p class="campo__ayuda" id="ayuda-nombre">Como quieres que te llamemos.</p>
+            <p class="campo__error" id="error-nombre" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+            <p class="campo__aviso" id="aviso-nombre" hidden></p>
+          </div>
+          <div class="campo" data-campo="negocio">
+            <label class="campo__etiqueta" for="campo-negocio">Nombre del negocio (opcional)</label>
+            <div class="campo__caja"><input class="campo__control" id="campo-negocio" name="negocio" type="text" autocomplete="organization" placeholder="Opcional" aria-describedby="ayuda-negocio error-negocio aviso-negocio"></div>
+            <p class="campo__ayuda" id="ayuda-negocio">Si ya tiene nombre.</p>
+            <p class="campo__error" id="error-negocio" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+            <p class="campo__aviso" id="aviso-negocio" hidden></p>
+          </div>
+          <div class="campo" data-campo="telefono">
+            <label class="campo__etiqueta" for="campo-telefono">WhatsApp o teléfono (+51)</label>
+            <div class="campo__caja"><input class="campo__control" id="campo-telefono" name="telefono" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="9__ ___ ___" aria-describedby="ayuda-telefono error-telefono aviso-telefono"></div>
+            <p class="campo__ayuda" id="ayuda-telefono">Celular de 9 dígitos.</p>
+            <p class="campo__error" id="error-telefono" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+            <p class="campo__aviso" id="aviso-telefono" hidden></p>
+          </div>
+          <div class="campo" data-campo="correo">
+            <label class="campo__etiqueta" for="campo-correo">Correo (opcional)</label>
+            <div class="campo__caja"><input class="campo__control" id="campo-correo" name="correo" type="email" autocomplete="email" placeholder="nombre@example.com" aria-describedby="ayuda-correo error-correo aviso-correo"></div>
+            <p class="campo__ayuda" id="ayuda-correo">Obligatorio si eliges «Correo».</p>
+            <p class="campo__error" id="error-correo" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+            <p class="campo__aviso" id="aviso-correo" hidden></p>
+          </div>
+          </div>
+          <fieldset class="grupo" data-grupo="preferencia" aria-describedby="error-preferencia">
+            <legend class="grupo__leyenda">¿Cómo prefieres que te contactemos?</legend>
+            <div class="opciones opciones--3"><label class="opcion"><input type="radio" name="preferencia" value="whatsapp" id="campo-preferencia"><span class="opcion__radio" aria-hidden="true"></span>WhatsApp</label><label class="opcion"><input type="radio" name="preferencia" value="llamada"><span class="opcion__radio" aria-hidden="true"></span>Llamada</label><label class="opcion"><input type="radio" name="preferencia" value="correo"><span class="opcion__radio" aria-hidden="true"></span>Correo</label></div>
+            <p class="campo__error" id="error-preferencia" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+          </fieldset>
+          <div class="campo" data-campo="privacidad">
+            <label class="casilla" data-casilla><input type="checkbox" name="privacidad" id="campo-privacidad" aria-describedby="error-privacidad"><span class="casilla__caja" aria-hidden="true"><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#check"/></svg></span><span>Acepto la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad<span class="visualmente-oculto"> (se abre en una pestaña nueva)</span></a></span></label>
+            <p class="campo__error" id="error-privacidad" hidden><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#alerta"/></svg><span></span></p>
+          </div>
+          <div class="acciones-paso">
+            <a class="boton boton--secundario" href="#paso-3" data-accion="atras">Atrás</a><button class="boton boton--primario" type="button" data-accion="revisar">Revisar solicitud<svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#flecha-derecha"/></svg></button>
+          </div>
+        </div>
+      </section>
+      <section class="vista" id="resumen" data-vista="resumen" aria-labelledby="h-resumen" hidden>
+        <div class="revision">
+          <div class="revision__tarjeta">
+            <div class="revision__encabezado"><p class="antetitulo t-ms">Revisión final</p><h1 class="t-hl vista__h1" id="h-resumen" tabindex="-1">Revisa tu solicitud</h1></div>
+            <div class="revision__filas"><div class="fila-resumen"><dl><dt>Rubro y servicio</dt><dd data-fila="rubroServicio">—</dd></dl><a href="#paso-1" data-editar>Editar<span class="visualmente-oculto">: Rubro y servicio</span></a></div><div class="fila-resumen"><dl><dt>Tu local</dt><dd data-fila="local">—</dd></dl><a href="#paso-2" data-editar>Editar<span class="visualmente-oculto">: Tu local</span></a></div><div class="fila-resumen"><dl><dt>Plazo y presupuesto</dt><dd data-fila="plazo">—</dd></dl><a href="#paso-3" data-editar>Editar<span class="visualmente-oculto">: Plazo y presupuesto</span></a></div><div class="fila-resumen"><dl><dt>Contacto</dt><dd data-fila="contacto">—</dd></dl><a href="#paso-4" data-editar>Editar<span class="visualmente-oculto">: Contacto</span></a></div></div>
+            <div class="acciones-paso">
+              <a class="boton boton--secundario" href="#paso-4" data-accion="atras">Atrás</a><button class="boton boton--primario" type="button" data-accion="enviar"><span data-etiqueta-enviar>Enviar solicitud</span><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#flecha-derecha"/></svg></button>
+            </div>
+          </div>
+          <div class="revision__lateral">
+            <section class="rango" aria-labelledby="rotulo-rango">
+              <h2 class="rango__rotulo t-ms" id="rotulo-rango">Rango orientativo</h2>
+              <p class="t-hl" aria-live="polite" data-rango-cifra>S/ —</p>
+              <p class="rango__explica t-bs" data-rango-explica></p>
+              <button class="rango__enlace" type="button" aria-expanded="false" aria-controls="como-calculamos" data-como>¿Cómo lo calculamos?</button>
+              <p class="rango__como" id="como-calculamos" hidden>Multiplicamos tus m² por una tarifa de referencia según el servicio y la ajustamos por rubro (una cafetería necesita más instalaciones que una tienda), por el estado del local, por el horario de obra y por si está en un centro comercial. Es un rango, no un presupuesto.</p>
+            </section>
+            <div class="aviso aviso--presupuesto" data-aviso-presupuesto hidden>
+              <p class="t-lm">Tu presupuesto está por debajo de este rango.</p>
+              <p class="t-bs c-sec">Podemos empezar por un diagnóstico o hacer la obra por fases. Lo vemos en la visita.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="vista" id="confirmacion" data-vista="confirmacion" aria-labelledby="h-confirmacion" hidden>
+        <div class="confirmacion">
+          <span class="marca-exito" aria-hidden="true"><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#check"/></svg></span>
+          <p class="antetitulo t-ms">Cotización · Confirmación</p>
+          <h1 class="t-hl vista__h1" id="h-confirmacion" tabindex="-1">Solicitud preparada correctamente</h1>
+          <p class="t-bl">Gracias por contarnos sobre tu local.</p>
+          <div class="resumen-corto">
+            <p class="t-ms c-sec">Tu solicitud</p>
+            <p class="t-bm" data-resumen-corto></p>
+            <p class="t-bs c-sec">Rango orientativo</p>
+            <p class="t-lm" data-confirmacion-rango></p>
+          </div>
+          <p class="aviso aviso--concepto t-bs">Como Pivote es un proyecto conceptual de portafolio, esta solicitud no se envió ni se almacenó.</p>
+          <div class="confirmacion__acciones">
+            <button class="boton boton--primario" type="button" data-accion="inicio">Volver al inicio</button>
+            <button class="boton boton--secundario" type="button" data-accion="nueva">Nueva cotización</button>
+          </div>
+        </div>
+      </section>
+      </div>
+      <aside class="cotizar__panel-zona" data-panel-zona aria-label="Tu solicitud">
+        <button class="plegable t-ls" type="button" aria-expanded="false" aria-controls="panel-solicitud" data-plegable>Tu solicitud ·<span class="plegable__rubro" data-plegable-rubro>—</span><svg class="icono" aria-hidden="true"><use href="assets/iconos/iconos.svg#desplegar"/></svg></button>
+        <div class="panel" id="panel-solicitud">
+          <p class="t-ms c-tec">Tu solicitud</p>
+          <dl class="pila-12">
+            <div class="panel__fila"><dt>Rubro</dt><dd data-panel="rubro">—</dd></div>
+            <div class="panel__fila"><dt>Servicio</dt><dd data-panel="servicio">—</dd></div>
+            <div class="panel__fila"><dt>Local</dt><dd data-panel="local">—</dd></div>
+          </dl>
+          <hr>
+          <p class="t-lm">Qué pasa después</p>
+          <ol>
+            <li>1 · Ves un rango orientativo al terminar.</li>
+            <li>2 · Coordinamos una visita para medir.</li>
+            <li>3 · Recibes la propuesta con presupuesto por partidas.</li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </form>
+</main>
+
+<dialog class="dialogo" id="dialogo-salir" aria-labelledby="titulo-salir">
+  <div class="dialogo__cabeza"><h2 class="t-hs" id="titulo-salir">¿Salir sin enviar?</h2><button class="dialogo__cerrar" type="button" data-dialogo-cerrar aria-label="Cerrar"><svg class="icono icono--22" aria-hidden="true"><use href="assets/iconos/iconos.svg#cerrar"/></svg></button></div>
+  <p class="t-bm">Tus respuestas se borrarán.</p>
+  <div class="dialogo__acciones"><button class="boton boton--secundario" type="button" data-salir-confirmar>Salir</button><button class="boton boton--primario" type="button" data-dialogo-cerrar autofocus>Seguir completando</button></div>
+</dialog>
+<script src="js/config.js"></script>
+<script src="js/sitio.js"></script>
+<script src="js/estimador.js"></script>
+<script src="js/cotizar-logica.js"></script>
+<script src="js/cotizar.js"></script>
+</body>
+</html>
