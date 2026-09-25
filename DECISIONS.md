@@ -324,3 +324,69 @@ El usuario hizo la comprobación final en Present y aprobó:
 **Siguiente gate:** revisión del Design Handoff (`HANDOFF.md`) por el usuario. Sin su aprobación no empieza el Build.
 
 **Estado: aprobado.**
+
+## D-034 · 2026-09-24 · Cobertura completa del diseño antes del Build
+Tras revisar el handoff preliminar, el usuario decide **terminar en Figma todas las páginas sin diseño** antes de programar: Servicios, Proyectos, 4 casos, Cómo trabajamos, Estudio, Sobre este proyecto, Privacidad y 404. No se diseña en código ni se empieza el Build con páginas principales sin diseño aprobado.
+
+Flujo: arquitectura → wireframes → High Fidelity → prototipo y QA → freeze completo → handoff final → Build.
+- Se usan el UI Kit congelado, CONTENT, MARCA, MOVIMIENTO y las decisiones responsive existentes, sin reabrir identidad ni componentes salvo necesidad real.
+- `HANDOFF.md` queda como **versión preliminar** hasta que esas páginas estén diseñadas, revisadas, aprobadas y congeladas.
+
+**Avance (2026-09-24):**
+- Wireframes de escritorio de las 8 plantillas (Figma › 03).
+- HF en escritorio 1440 y móvil 390 de Servicios, Proyectos (filtro por rubro funcional), Cómo trabajamos, Estudio, Sobre este proyecto, Privacidad y 404 (Figma › 05, secciones «Páginas · Escritorio» y «Páginas · Móvil»).
+- Imagen OG (`assets/og/pivote-og.png`).
+- Navegación completa del sitio en el prototipo.
+
+**Cambio en el UI Kit por necesidad real:** en el componente **Pie**, los enlaces eran un solo texto por columna («Servicios · Proyectos · …»), así que no se podía enlazar cada destino. Ahora cada enlace es un texto propio con separadores «·», con el mismo aspecto. Esto también corresponde a lo que será el HTML (un `<a>` por destino).
+
+**Bloqueado por contenido:** las 4 páginas de caso. CONTENT §4 pide materiales, «Qué haríamos distinto» y un antes/después que no están definidos, y no existen imágenes «antes». Pendiente de decisión del usuario.
+
+**Estado: en curso.**
+
+## D-035 · 2026-09-24 · Indexación: `noindex, nofollow` mientras sea Concept / Portfolio
+Pivote no debe aparecer en buscadores como si fuera un estudio operativo.
+- **Implementación:** `<meta name="robots" content="noindex, nofollow">` en todas las páginas, incluida `404.html`. En GitHub Pages de proyecto, el `robots.txt` de la subcarpeta no cuenta, así que la meta etiqueta es la que manda.
+- No se genera `sitemap.xml` mientras dure la restricción.
+- **Open Graph sí** (sirve para compartir el portafolio). No depende de la indexación.
+- **Cómo se retira** (solo si el Reality Mode pasa a Client/Staging con dominio propio o a Production, con aprobación explícita y una decisión nueva):
+  1. confirmar que el estudio, los precios, los contactos y los casos sean reales o estén declarados;
+  2. cambiar la meta a `index, follow` en una única plantilla de cabecera;
+  3. añadir `sitemap.xml` y `robots.txt` en la raíz del dominio;
+  4. declarar la URL canónica definitiva;
+  5. registrar el cambio aquí y en `PROJECT_PROFILE.md`.
+
+**Estado: aprobado.**
+
+## D-036 · 2026-09-24 · Imagen Open Graph
+1200 × 630, diseñada en Figma con el sistema de Pivote:
+- fondo papel;
+- logotipo;
+- «Estudio de espacios comerciales»;
+- H1 «Locales pensados para que la gente entre y compre.».
+
+Sin métricas, clientes, premios ni datos ficticios. Se exporta a `assets/og/` y forma parte de los assets del handoff.
+
+**Estado: aprobado el brief; diseño pendiente de revisión.**
+
+## D-037 · 2026-09-24 · Textos alternativos
+Se aprueban los textos propuestos en el handoff con estas reglas:
+- describen solo lo visible, sin «imagen de…»;
+- son concisos;
+- nunca presentan los interiores como obras de Pivote.
+
+Las fotos que repiten lo que ya dice el texto vecino (tarjetas con título) llevan `alt=""`. Textos finales en CONTENT §12.
+
+**Estado: aprobado.**
+
+## D-038 · 2026-09-24 · Autoría configurable
+- **Autor:** Matías. La URL sigue pendiente y no se inventa.
+- Se configura en un solo lugar (`js/config.js` › `autor`): con la URL vacía, el enlace «Ver portafolio →» no se muestra en ninguna página. Agregarla después es cambiar un valor.
+
+**Estado: aprobado.**
+
+## D-039 · 2026-09-24 · Repositorio y publicación (para Release)
+- Repositorio `pivote` en la cuenta habitual de GitHub del usuario, publicado con GitHub Pages.
+- El repositorio puede prepararse durante el Build; **no se publica** hasta el Release y su aprobación.
+
+**Estado: aprobado como plan.**

@@ -82,10 +82,11 @@ Historial completo en `DECISIONS.md`.
   - estimador corregido.
 - **Ajuste de selectores (D-032):** distrito, fecha y área usan una lista desplegable pegada al campo; nombre y teléfono se «escriben» al tocarlos. Los diálogos quedan solo para interrupciones reales.
 - **High-Fi Freeze aprobado (D-033, 2026-09-24)** tras la comprobación final en Present.
-- Siguiente gate: revisión del Design Handoff (`HANDOFF.md`) → autorización del Build.
+- **Cobertura completa del diseño en curso (D-034):** wireframes y HF de 7 de las 8 plantillas, OG e indexación `noindex, nofollow` (D-035). Los 4 casos están bloqueados por contenido.
+- Siguiente gate: decisión de contenido de los casos → HF de los casos → QA → freeze completo → handoff final → Build.
 
 ## Siguiente paso
-El usuario revisa `HANDOFF.md` y decide las cuestiones abiertas de su §14. Sin su aprobación no empieza el Build.
+El usuario decide el contenido de los casos y revisa las páginas nuevas. `HANDOFF.md` es preliminar (D-034).
 
 ## Enlaces
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ

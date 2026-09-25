@@ -20,7 +20,7 @@
 | 8 | Colores sin variable en componentes | Figma › 04 | 0 encontrados | ✅ |
 | 9 | «Nexo» y «Vértice» en documentos | `PROJECT_PROFILE` | Solo como historia (nombre del archivo de Figma y página de archivo). Correcto | ✅ |
 | 10 | «arquitectura interior» en CONTENT §3.2 («planos de arquitectura interior») | `CONTENT.md` | Es contenido secundario, permitido por D-022 | ✅ sin cambio |
-| 11 | Nombre del archivo de Figma («Nexo Arquitectura — Web») | Figma | La API no permite renombrarlo: **acción manual del usuario** | ⏳ |
+| 11 | Nombre del archivo de Figma («Nexo Arquitectura — Web») | Figma | Renombrado por el usuario a «Pivote — Estudio de espacios comerciales» (confirmado el 2026-09-24). La API no expone el nombre del archivo, así que no se pudo verificar | ✅ |
 | 12 | URL de autoría | `CONTENT` §9 | Campo preparado y vacío (D-026) | ⏳ usuario |
 
 **Excluido a propósito:** Figma › 01b (registro del naming), 01c (comparación cromática histórica) y 99 Archivo. Documentan decisiones pasadas y no se corrigen.
@@ -283,3 +283,61 @@ Probada por el usuario: todo funcionó. Pidió cambiar los diálogos de selecci�
 
 ### Estado
 ✅ **HIGH-FI FREEZE aprobado por el usuario (D-033).** Esta sección queda como referencia de la última comprobación del diseño. La QA del código se hará contra `HANDOFF.md` §12.
+
+---
+
+## Cobertura completa del diseño · ronda 1 · 2026-09-24 (D-034)
+**Alcance:**
+- **Wireframes** de escritorio de 8 plantillas (Figma › 03).
+- **HF** en 1440 y 390 de Servicios, Proyectos, Cómo trabajamos, Estudio, Sobre este proyecto, Privacidad y 404 (Figma › 05, secciones «Páginas · Escritorio» y «Páginas · Móvil», 14 frames).
+- **Imagen OG.**
+- **Navegación** de todo el sitio.
+- Los **4 casos** quedan fuera: bloqueados por contenido (ver DECISIONS D-034).
+
+### Cómo se construyeron
+Solo con componentes y tokens congelados:
+- cabecera fija (estado Desplazada);
+- pie, antetítulo, botón, ícono, chip de filtro, tarjeta de proyecto, cota y acordeón;
+- el CTA final y las preguntas frecuentes, clonados de Inicio;
+- colores enlazados a `Color`;
+- textos con estilos tipográficos y modo por frame (Escritorio / Móvil).
+
+Único cambio en el kit: el **Pie** tiene ahora un texto por enlace (D-034).
+
+### Revisión técnica (leída desde el archivo)
+| Comprobación | Resultado |
+|---|---|
+| Frames en 05 | 43 |
+| Nodos con interacción · acciones | 520 · 10,187 |
+| Destinos rotos · variables inexistentes · condicionales vacíos | **0 · 0 · 0** |
+| Controles sin clic en las páginas | Solo el enlace a la propia página en el pie (Figma no permite navegar a sí mismo) y las 4 tarjetas de Proyectos (esperan las páginas de caso) |
+| Filtro de Proyectos | 5 chips enlazados a `chip/*`; visibilidad de las tarjetas enlazada a `vis/caso/*`. Las tarjetas de rubro de Inicio abren Proyectos ya filtrado; los enlaces de navegación a Proyectos restablecen «Todos» |
+| Íconos | Corregido durante la construcción: los ✓ de Servicios no se veían, porque el trazo de una capa de instancia se pinta con el valor base (blanco) y no con el de la variable enlazada. Ahora se guarda el color resuelto junto al enlace |
+| Símbolos | «↗» caía en una fuente de respaldo (cuadro); se cambió por «→» |
+| Imagen OG | 1200 × 630, PNG de 36 KB en `assets/og/pivote-og.png`; antetítulo a 22 px para que se lea en la vista previa |
+
+### Prueba manual en Present (páginas terminadas)
+Flujos **Escritorio · Inicio → Cotizar** y **Móvil · Inicio → Cotizar** (ahora recorren todo el sitio), **Escritorio · 404** y **Móvil · 404**.
+1. **Cabecera:** desde Inicio, Servicios, Proyectos, Cómo trabajamos y Estudio abren su página. El logo vuelve a Inicio. «Cotizar mi local» abre el paso 1 vacío.
+2. **Pie:** en cada página, Servicios, Proyectos, Cómo trabajamos, Estudio, Cotizar, Sobre este proyecto y Privacidad funcionan. WhatsApp, Correo e Instagram muestran el aviso de contacto.
+3. **Servicios:**
+   - cada «Cotizar este servicio» abre el paso 1 con ese servicio ya marcado;
+   - la nota del diagnóstico descontable se ve solo en Diagnóstico.
+4. **Proyectos:**
+   - los chips filtran (un caso por rubro) y «Todos» vuelve a mostrar los 4;
+   - desde Inicio, cada tarjeta de rubro abre Proyectos con su filtro activo.
+5. **Cómo trabajamos:** tabla de 5 fases legible; 8 preguntas que se abren y cierran; «Escríbenos por WhatsApp» muestra el aviso.
+6. **Estudio:** «Sobre este proyecto →» abre esa página.
+7. **Sobre este proyecto:** cada «Ver en Unsplash →» abre la foto original en una pestaña nueva. No hay enlace de portafolio.
+8. **Privacidad y 404:** en la 404, «Volver al inicio» y «Cotizar mi local» funcionan.
+9. **Móvil:**
+   - el menú ☰ lleva a cada página;
+   - los chips de Proyectos se desplazan en horizontal;
+   - no hay textos cortados ni scroll horizontal.
+10. **Legibilidad:** revisa al 100 % que los textos y los controles se lean como en Inicio y Cotizar.
+
+### Estado
+🟡 **Pendiente:**
+- la decisión de contenido de los casos;
+- el HF de los 4 casos;
+- la revisión del usuario de estas páginas.

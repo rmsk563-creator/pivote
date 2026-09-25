@@ -1,6 +1,6 @@
 # Design Handoff — Pivote
 
-**Estado:** preparado tras el High-Fi Freeze (D-033, 2026-09-24). **Pendiente de la revisión del usuario.** El Build no empieza hasta que lo apruebe y decida las cuestiones abiertas del §14.
+**Estado: VERSIÓN PRELIMINAR (D-034).** Cubre Inicio y Cotizar. Se completará cuando las páginas restantes estén diseñadas, revisadas, aprobadas y congeladas. Ya están decididas las cuestiones §14.1–§14.6 (D-034 a D-039); ver `DECISIONS.md`. No es base para el Build todavía.
 
 **Para quién es:** quien construya el sitio (la sesión de Build) y el usuario, que lo revisa antes de autorizar el código.
 
@@ -411,7 +411,7 @@ Todo en `MOVIMIENTO.md`: tokens, `prefers-reduced-motion`, cabecera fija, tabla 
 4. **Textos alternativos** del §11.2: aprobar o corregir.
 5. **URL de autoría:** sigue pendiente. El enlace no se muestra mientras esté vacía (D-026).
 6. **Publicación:** repositorio y URL. Propuesta: repositorio público `pivote` en tu cuenta de GitHub, como Sereno. Publicar se aprueba aparte, después del Build.
-7. **Nombre del archivo de Figma:** sigue siendo «Nexo…». Hay que renombrarlo a mano; la API no puede.
+7. ~~Nombre del archivo de Figma~~: renombrado por el usuario (D-034); ya no está pendiente.
 
 ---
 

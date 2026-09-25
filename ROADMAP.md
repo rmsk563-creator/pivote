@@ -13,7 +13,6 @@
 | Fotos de los casos (6) | ✅ Seleccionadas, revisadas y con crédito (D-027) |
 | UI Kit v1.0 (Figma › 04) | ✅ Aprobado; ajustes de QA (D-029 §8) |
 | Revisión de consistencia (docs ↔ Figma) | ✅ Hecha, ver `QA.md` |
-| Wireframes Servicios, Proyectos, Caso, Cómo trabajamos, Estudio, Sobre, 404 | ⏳ |
 | High Fidelity Inicio (escritorio, tablet, móvil) y Cotizar (escritorio, móvil) | ✅ Aprobado como base para la prueba manual (D-030) |
 | Prototipo Inicio → Cotizar (variables y lógica) | ✅ Ronda 1 probada por el usuario en Present |
 | **HIGH-FI UX REFINEMENT** (D-031): Cotizar responsive, cabecera fija, selectores, nuevo final, datos de prueba, tamaños, movimiento, estimador corregido | ✅ Aprobado tras la prueba en Present |
@@ -22,5 +21,11 @@
 | **High-Fi Freeze** | ✅ Aprobado (D-033, 2026-09-24) |
 | Design Handoff (`HANDOFF.md`) | 🟡 Preparado; **pendiente de la revisión del usuario** |
 | DC-002 (estado del local obligatorio) | ✅ Resuelto: obligatorio con ayuda breve |
-| Código (Build) | ⏳ No empezar hasta que el usuario apruebe el handoff |
+| **Cobertura completa del diseño (D-034)** | 🟡 En curso |
+| · Wireframes Servicios, Proyectos, Caso, Cómo trabajamos, Estudio, Sobre, Privacidad, 404 | ✅ Hechos (escritorio, Figma › 03); pendiente de revisión |
+| · HF Servicios, Proyectos, Cómo trabajamos, Estudio, Sobre, Privacidad, 404 (1440 + 390) | ✅ Hechos y con navegación; pendiente de revisión |
+| · HF de los 4 casos | ⛔ Bloqueado: falta contenido (materiales, «Qué haríamos distinto», antes/después) |
+| · Imagen OG | ✅ Diseñada y exportada (`assets/og/`) |
+| Freeze completo y handoff final | ⏳ Después de aprobar la cobertura completa |
+| Código (Build) | ⏳ No empezar hasta el handoff final aprobado |
 | Publicación GitHub Pages | ⏳ |

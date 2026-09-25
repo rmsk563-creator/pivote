@@ -408,6 +408,42 @@ Cualquier cifra de la web que venga de esta lista se presenta como «orientativa
 
 ---
 
+## 11b. Textos derivados usados en las páginas nuevas (D-034, pendientes de revisión)
+No hay copy nuevo inventado. Estos textos reutilizan frases aprobadas o etiquetas de estructura de este documento:
+- **H1 de Servicios:** «Tres formas de trabajar juntos» (H2 de §2.5).
+- **H1 de Proyectos:** «Casos contados como decisiones» (H2 de §2.4).
+- **H1 de Cómo trabajamos:** «De la primera visita a la apertura.» (H2 de §2.6), con la cota «≈ 10–14 semanas en total (diseño + obra)».
+- **Antetítulos** tomados de la navegación o de las etiquetas de §3 y §6:
+  - «Servicios», «Proyectos», «Cómo trabajamos» y «Estudio»;
+  - «No incluye en ningún servicio», «Cómo decidimos», «Capacidades», «Cómo abordamos un proyecto» y «Lo que no hacemos».
+- **Servicios:** el plazo se muestra como «Plazo · 1–2 semanas».
+- **Cómo trabajamos:**
+  - la columna de semanas se muestra como «Semana 1» / «Semanas 2–3»;
+  - §5.2 («Garantías honestas») se compone con la primera frase como título y el resto como texto, sin cambiar las palabras.
+- **Sobre este proyecto:**
+  - subtítulos «Qué es real y qué no», «Fotos» y «Autoría» (etiquetas de §9);
+  - introducción de fotos: «Fotos de Unsplash. Son interiores reales de otros autores y se usan como ilustración, no como obra del estudio.»;
+  - 5 créditos (autor + dónde se usa + «Ver en Unsplash →», con el enlace de `assets/fotos/CREDITOS.md`). La foto de reserva no se usa, así que no se acredita.
+- **Privacidad:** H1 «Privacidad» (nombre del enlace del pie).
+- **404:** sin antetítulo.
+
+## 12. Textos alternativos (D-037)
+| Archivo | Dónde | `alt` |
+|---|---|---|
+| `interior-madera-continua.jpg` | Hero de Inicio | «Local revestido de madera clara, con repisas iluminadas y un mueble curvo; una persona lo cruza caminando.» |
+| `botica-estante.jpg` | Caso Botica (foto principal) | «Una persona con camisa blanca toma una caja de un estante de medicamentos ordenado por categorías.» |
+| `floreria-mostrador.jpg` | Caso Florería | «Mostrador de madera con vitrina, flores secas y un balde de flores frescas en primer plano.» |
+| `barberia-salon.jpg` | Caso Barbería | «Barbería con sillones en fila e iluminación puntual en el techo; una persona barre el piso.» |
+| `cafeteria-barra.jpg` | Caso Cafetería | «Barra de café con máquina de espresso y molinos frente a ventanales altos, en un local de ladrillo.» |
+| `boutique-repisas.jpg` | Reserva | «Tienda con repisas blancas flotantes, accesorios en exhibición y un perchero de ropa clara.» |
+
+- **Tarjetas de proyecto** (Inicio y Proyectos): la foto lleva `alt=""`, porque el título y los datos de la tarjeta ya la describen y todo lleva al mismo enlace.
+- **Mini-planos, barras de latón, íconos y el pilar del logo:** decorativos (`alt=""` o `aria-hidden="true"`).
+- **Logo:** `alt="Pivote"` (en el pie, «Pivote · Estudio de espacios comerciales»).
+- **Imagen OG:** no se muestra en la página; `og:image:alt` = «Pivote · Estudio de espacios comerciales. Locales pensados para que la gente entre y compre.»
+
+---
+
 ## Estado de cierre
 - ✅ **Resuelto:**
   - H1 (D-022);
@@ -417,4 +453,6 @@ Cualquier cifra de la web que venga de esta lista se presenta como «orientativa
   - autoría (D-026);
   - fotos de botica y cafetería (D-027);
   - fuentes y supuestos del estimador (§8.1).
-- ⏳ **Único pendiente:** URL de autoría (`autor.url`).
+- ⏳ **Pendientes:**
+  - URL de autoría (`autor.url`, D-038);
+  - contenido de los casos que CONTENT no define (materiales, «Qué haríamos distinto», imágenes antes/después): pendiente de decisión del usuario (D-034).
