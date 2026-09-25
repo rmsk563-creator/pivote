@@ -622,3 +622,4 @@ El usuario completó la prueba local completa y no encontró errores pendientes 
   - signo − centrado con la pregunta (± 3 px) y + en las cerradas.
 - **Regresión:** pruebas 73/73 (normal y movimiento reducido); axe con 0 violaciones en 17 vistas, a 1280 y 390; 0 desbordes en Inicio y Cómo trabajamos en 10 anchos; detector Impeccable sin hallazgos en `index.html` y `css/estilos.css`.
 - **Límite del arnés, anotado:** en Chrome headless con tiempo virtual, las Web Animations dentro de un iframe no avanzan. Por eso esta verificación se hace con CDP en tiempo real y no con el marco de iframe.
+- **Producción (tras publicar `76c10fe`):** acordeones 390/390 sobre el dominio real; dominio real 34/34 (17 rutas × 390 y 1440); rutas de Proyectos 16/16. **Estado:** ✅ v1.0.2 publicada (etiqueta `v1.0.2`).
