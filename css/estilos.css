@@ -531,7 +531,7 @@ button { cursor: pointer; }
 .acordeon__pregunta::-webkit-details-marker { display: none; }
 .acordeon__signo { font-size: var(--t-hs); line-height: var(--t-hs-lh); font-weight: 600; flex: none; width: 13px; text-align: center; }
 .acordeon__signo::before { content: "+"; }
-.acordeon[open] .acordeon__signo::before { content: "−"; }
+.acordeon[open]:not(.cerrando) .acordeon__signo::before { content: "−"; }
 .acordeon__respuesta { padding: 0 0 20px; margin-top: -10px; color: var(--color-texto-secundario); }
 
 /* Chip de filtro */
@@ -960,11 +960,7 @@ select.campo__control:invalid, select.campo__control.vacio { color: var(--color-
 .aparece.visible { opacity: 1; transform: none; }
 
 /* Movimiento: transiciones de MOVIMIENTO.md §4 que dependen de varios componentes */
-:root { interpolate-size: allow-keywords; }
-@supports selector(::details-content) {
-  .acordeon::details-content { block-size: 0; overflow: hidden; transition: block-size var(--dur-base) var(--ease-salida), content-visibility var(--dur-base) allow-discrete; }
-  .acordeon[open]::details-content { block-size: auto; }
-}
+/* Acordeón: la altura la anima js/sitio.js (iniciarAcordeones) midiendo el contenido real; en reposo es auto */
 @media (max-width: 1023px) {
   .cotizar__panel-zona .panel { display: grid; max-height: 0; padding-block: 0; overflow: hidden; visibility: hidden; transition: max-height var(--dur-base) var(--ease-salida), padding var(--dur-base) var(--ease-salida), visibility var(--dur-base); }
   .cotizar__panel-zona .panel.abierto { max-height: 640px; padding-block: 8px 24px; visibility: visible; }

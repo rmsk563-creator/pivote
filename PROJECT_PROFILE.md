@@ -1,7 +1,7 @@
 # Project Profile — Pivote
 
 ## Identidad
-**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **v1.0.1 publicada (2026-09-25)** en https://rmsk563-creator.github.io/pivote/ · falta la prueba en un teléfono real.
+**Pivote** · Estudio de espacios comerciales · web responsive de servicios (multipágina, estática) · **Reality Mode: Concept / Portfolio** · v0.1 · en diseño: Brand Gate, CONTENT v1.0 y UI Kit aprobados; **v1.0.2 publicada (2026-09-25)** en https://rmsk563-creator.github.io/pivote/ · falta la prueba en un teléfono real.
 
 ## Objetivo
 Presentar un estudio de diseño de espacios comerciales para negocios pequeños y medianos, y convertir visitas en **solicitudes de cotización**. Para Matías funciona como proyecto de portafolio, muestra de UX/UI y posible referencia para captar clientes reales.
@@ -88,6 +88,7 @@ Historial completo en `DECISIONS.md`.
 - **Build local aprobado por el usuario** tras su prueba local completa (D-044). Release autorizado.
 - **Release v1.0 (2026-09-25):** repositorio público `rmsk563-creator/pivote`, Pages desde `main`; smoke test en producción OK (QA.md).
 - **v1.0.1 (2026-09-25):** `/pivote/proyectos/` lleva a la página única `proyectos.html` (ruta de compatibilidad, sin duplicar).
+- **v1.0.2 (2026-09-25):** bugfix de los acordeones FAQ (respuesta recortada); la altura la da el contenido real (QA.md).
 - Siguiente gate: prueba del usuario en un teléfono real.
 
 ## Siguiente paso
@@ -97,4 +98,4 @@ El usuario prueba v1.0 en un teléfono real (lista en QA.md / mensaje de entrega
 - Figma: https://www.figma.com/design/bwWtTTnJSTklYl240LVNEZ
 - Repo: https://github.com/rmsk563-creator/pivote (público; local en `~/Downloads/pivote`)
 - Dominio candidato: `pivote.pe` (libre según whois, 2026-09-24; no reservado)
-- Producción: https://rmsk563-creator.github.io/pivote/ (v1.0.1, 2026-09-25)
+- Producción: https://rmsk563-creator.github.io/pivote/ (v1.0.2, 2026-09-25)

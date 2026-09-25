@@ -571,3 +571,54 @@ El usuario completó la prueba local completa y no encontró errores pendientes 
 **En local:** pruebas 73/73 y axe con 0 violaciones en 17 vistas.
 
 **Estado:** ✅ **v1.0.1 publicada** (etiqueta `v1.0.1`).
+
+---
+
+## v1.0.2 · BUGFIX · Acordeones FAQ con respuestas recortadas · 2026-09-25
+**Reporte del usuario (producción):** al abrir preguntas frecuentes, parte de la respuesta queda oculta o cortada y la pregunta siguiente empieza antes de que termine la respuesta (Inicio, «Lo que todos preguntan antes de empezar»).
+
+**Causa raíz** (patrón `.acordeon`, compartido por las 6 FAQ de Inicio y las 8 de Cómo trabajamos):
+1. **Recorte de la primera línea, confirmado en cada respuesta abierta:**
+   - la animación se hacía sobre `::details-content`, con `overflow: hidden`, y la respuesta tiene `margin-top: -10px` (el acercamiento aprobado a la pregunta);
+   - esos 10 px quedaban fuera de la caja recortada, así que se perdía la parte superior de la primera línea;
+   - medido: la respuesta empieza en y=57, pero el área visible del contenido empieza en y=67.
+2. **La altura dependía de que una transición CSS llegara a `auto`:**
+   - la animación era `block-size: 0 → auto`, con `interpolate-size: allow-keywords` y `content-visibility` en modo discreto;
+   - la altura final solo quedaba bien si esa transición terminaba; mientras no terminaba, el contenido quedaba con `block-size: 0` y se recortaba;
+   - en Chrome headless se reprodujo con el `<details>` abierto y altura 0 de forma permanente al abrir varias seguidas;
+   - `interpolate-size` solo existe en Chromium, así que otros navegadores no tienen la interpolación que sostenía el diseño;
+   - no había alturas fijas ni `max-height` en el FAQ: el fallo no era de cantidad de texto, sino de que la altura dependía de la animación.
+
+**Corrección** (solo el patrón del acordeón):
+- `css/estilos.css`: se quitan la animación de `::details-content` y `interpolate-size`.
+  - En reposo, el `<details>` tiene su altura natural: la respuesta completa manda a cualquier ancho, zoom o tras un resize.
+  - El signo muestra «+» también mientras se cierra (`.cerrando`).
+- `js/sitio.js` (`iniciarAcordeones`): la misma animación aprobada (MOVIMIENTO §4: 200 ms, `--dur-base` y `--ease-salida`) con la API Web Animations sobre la altura del `<details>`.
+  - Mide la altura real en cada apertura y cierre; ninguna altura es estimada.
+  - `overflow: hidden` solo durante la animación. Al terminar se quitan los estilos en línea y la altura vuelve a `auto`.
+  - Se puede interrumpir: un nuevo clic invierte la animación desde la altura en que va.
+  - Varias preguntas pueden estar abiertas a la vez (HANDOFF).
+  - Sin la API o con `prefers-reduced-motion`, el `<details>` nativo abre y cierra sin animar.
+  - Semántica, teclado (Enter y Espacio) y foco quedan en el `<summary>` nativo.
+- El arreglo se aplica automáticamente a todos los `.acordeon` del sitio (14 en 2 páginas). No cambian el diseño, los textos, el espaciado ni el fundido de la respuesta.
+
+**Verificación** (`_qa/acordeones-cdp.mjs`: Chrome por CDP en tiempo real, sin iframe, con clics y teclas reales; comprueba 2 px por dentro del borde superior e inferior de **cada línea**):
+- **Antes del arreglo** (misma prueba sobre `v1.0.1`): falla. Todas las respuestas abiertas tienen «1 línea recortada» en 1440 y 390, y hay aperturas y cierres que no terminan.
+- **Después: 390/390.** Cubre:
+  - Inicio y Cómo trabajamos, en 1440, 1280, 1024, 834, 768, 390, 360 y 320;
+  - zoom 200 % en 1440, 1280 y 390;
+  - todas abiertas a la vez;
+  - resize con todas abiertas, a otro ancho y de vuelta;
+  - cerrar todas;
+  - abrir, cerrar y reabrir cada una;
+  - interrupciones a mitad de la animación;
+  - Enter abre y Espacio cierra, con el foco visible en la pregunta;
+  - `prefers-reduced-motion` en 1440 y 390.
+- En cada respuesta abierta se comprueba:
+  - todas las líneas visibles y dentro del `<details>`;
+  - la pregunta siguiente empieza después de la última línea;
+  - sin scroll interno;
+  - sin animación ni estilos en línea residuales;
+  - signo − centrado con la pregunta (± 3 px) y + en las cerradas.
+- **Regresión:** pruebas 73/73 (normal y movimiento reducido); axe con 0 violaciones en 17 vistas, a 1280 y 390; 0 desbordes en Inicio y Cómo trabajamos en 10 anchos; detector Impeccable sin hallazgos en `index.html` y `css/estilos.css`.
+- **Límite del arnés, anotado:** en Chrome headless con tiempo virtual, las Web Animations dentro de un iframe no avanzan. Por eso esta verificación se hace con CDP en tiempo real y no con el marco de iframe.

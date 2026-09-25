@@ -33,6 +33,6 @@
 | DC-003 (comparador con foto «antes» simulada en Inicio) | ✅ Cerrado: opción A, aplicada en Figma |
 | Plan de Build (`PLAN_BUILD.md`) + T-1 a T-4 | ✅ Aprobado (D-042) |
 | Build local (bloques 0–10) | ✅ Terminado, verificado y **aprobado por el usuario tras su prueba local** (D-044, 2026-09-25) |
-| Release (GitHub Pages `/pivote/`) | ✅ **v1.0 publicada** el 2026-09-25 en https://rmsk563-creator.github.io/pivote/ · smoke test OK (QA.md) · **v1.0.1** (2026-09-25): `/pivote/proyectos/` redirige a Proyectos · falta la prueba del usuario en un teléfono real |
+| Release (GitHub Pages `/pivote/`) | ✅ **v1.0 publicada** el 2026-09-25 en https://rmsk563-creator.github.io/pivote/ · smoke test OK (QA.md) · **v1.0.1** (2026-09-25): `/pivote/proyectos/` redirige a Proyectos · **v1.0.2** (2026-09-25): bugfix de los acordeones FAQ · falta la prueba del usuario en un teléfono real |
 | Código (Build) | ⏳ No empezar hasta el handoff final aprobado |
 | Publicación GitHub Pages | ⏳ |

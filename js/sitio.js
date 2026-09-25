@@ -1,5 +1,5 @@
 /* Comportamiento común a todas las páginas: cabecera fija, menú móvil, aviso de contacto,
-   enlace de autoría y aparición al hacer scroll (MOVIMIENTO.md). Sin dependencias. */
+   enlace de autoría, acordeón y aparición al hacer scroll (MOVIMIENTO.md). Sin dependencias. */
 (function () {
   'use strict';
 
@@ -112,11 +112,47 @@
     });
   }
 
+  /* Acordeón (MOVIMIENTO §4): despliegue de altura en 200 ms. La altura se mide en cada apertura y cierre
+     y, al terminar, vuelve a auto: la respuesta completa manda a cualquier ancho, zoom o tras un resize.
+     Sin la API de animaciones o con movimiento reducido, el <details> abre y cierra sin animar. */
+  function iniciarAcordeones() {
+    var acordeones = document.querySelectorAll('.acordeon');
+    if (!acordeones.length || reducirMovimiento || !Element.prototype.animate) return;
+    var estilo = getComputedStyle(document.documentElement);
+    var duracion = parseFloat(estilo.getPropertyValue('--dur-base')) || 200;
+    var curva = estilo.getPropertyValue('--ease-salida').trim() || 'ease-out';
+    acordeones.forEach(function (acordeon) {
+      var pregunta = acordeon.querySelector('summary'), animacion = null;
+      pregunta.addEventListener('click', function (ev) {
+        ev.preventDefault();
+        var desde = acordeon.getBoundingClientRect().height;
+        if (animacion) { animacion.cancel(); animacion = null; }
+        var abrir = !acordeon.open || acordeon.classList.contains('cerrando');
+        acordeon.classList.remove('cerrando');
+        // Altura final medida, nunca estimada: abierto = contenido completo; cerrado = pregunta + bordes
+        acordeon.open = true;
+        var cs = getComputedStyle(acordeon);
+        var hasta = abrir ? acordeon.getBoundingClientRect().height
+          : pregunta.getBoundingClientRect().height + parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth);
+        if (!abrir) acordeon.classList.add('cerrando');
+        acordeon.style.overflow = 'hidden';
+        animacion = acordeon.animate({ height: [desde + 'px', hasta + 'px'] }, { duration: duracion, easing: curva });
+        animacion.onfinish = animacion.oncancel = function (e) {
+          if (e.type === 'cancel') return;
+          animacion = null;
+          acordeon.style.overflow = '';
+          if (!abrir) { acordeon.open = false; acordeon.classList.remove('cerrando'); }
+        };
+      });
+    });
+  }
+
   function iniciar() {
     iniciarCabecera();
     iniciarMenu();
     iniciarContacto();
     iniciarAutor();
+    iniciarAcordeones();
     iniciarAparicion();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);
